@@ -6,46 +6,68 @@ var dataKaryawan = localStorage.dataKaryawan ? JSON.parse(localStorage.dataKarya
 //mempersingkat cara get query
 var el = (el) => document.querySelector(el);
 
-//untuk menyimpan data 
-const saveData = () =>{
-  if(dataKaryawan[0] || dataKaryawan [1] || dataKaryawan[7]){
-    alert("data sudah digunakan silahkan pakai yang lainnya")
-  document.getElementById("add-karyawan").reset();
+var isUsed = function (){
+  for (let i = 0; i < dataKaryawan.length; i++) {
+    if(dataKaryawan[i].nik === document.querySelector("input[name=nik]").value || 
+      dataKaryawan[i].name === document.querySelector("input[name=name]").value || 
+      dataKaryawan[i].email === document.querySelector("input[name=email]").value){
+        return true
 
-  } else{
-  const nik=el('input[name="nik"]').value,
-    name=el('input[name="name"]').value,
-    birthDate= el('input[name="birthDate"]').value,
-    gender= el('input[name="gender"]').nextSibling.textContent,
-    address=el('input[name="address"]').value,
-    religion=el('input[name="religion"]').value,
-    citizenship=el('input[name="citizenship"]').value,
-    email=el('input[name="email"]').value,
-    division=el('select[name="division"]').value;
-    //push object baru ke array datakaryawan
-    dataKaryawan.push({
-      nik,
-      name,
-      birthDate,
-      gender,
-      address,
-      religion,
-      citizenship,
-      email,
-      division
-  })
-  //simpan ke lokal storage
-  localStorage.setItem("dataKaryawan", JSON.stringify(dataKaryawan))
-  document.getElementById("add-karyawan").submit();
-  // listKaryawan()
+    } else{
+        return false
+    
+    }
   }
 }
+
+
+//untuk menyimpan data 
+const saveData = () =>{
+
+  if(isUsed===false){
+  const nik=el('input[name="nik"]').value,
+  name=el('input[name="name"]').value,
+  birthDate= el('input[name="birthDate"]').value,
+  gender= el('input[name="gender"]').nextSibling.textContent,
+  address=el('input[name="address"]').value,
+  religion=el('input[name="religion"]').value,
+  citizenship=el('input[name="citizenship"]').value,
+  email=el('input[name="email"]').value,
+  division=el('select[name="division"]').value;
+  //push object baru ke array datakaryawan
+  dataKaryawan.push({
+    nik,
+    name,
+    birthDate,
+    gender,
+    address,
+    religion,
+    citizenship,
+    email,
+    division
+})
+//simpan ke lokal storage
+localStorage.setItem("dataKaryawan", JSON.stringify(dataKaryawan))
+document.getElementById("add-karyawan").submit();
+// listKaryawan()
+
+  } else{
+    document.querySelector("#add-karyawan").reset();
+    alert("maaf data sudah di gunakan silahkan pakai yang lain!!")
+  }
+}
+  
+
+
+
+
 
 const deleteKaryawan = () =>{
     dataKaryawan.pop();
     localStorage.setItem("dataKaryawan", JSON.stringify(dataKaryawan));
 
 }
+
 
 
 

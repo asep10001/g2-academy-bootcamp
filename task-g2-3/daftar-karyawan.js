@@ -23,7 +23,7 @@ var el = (el) => document.querySelector(el);
 
                   <td><a href="./update.html" id="edit" class="btn btn-sm btn-info edit" >Update Data</a>
                   <a id="info" href="/ninja"><button>Info</button></a>
-                  <a id="delete" onclick="deleteKaryawan()" href="" class="btn btn-sm btn-danger delete" data-id="">Delete</a>';</td>
+                  <a id="delete" onclick="deleteKaryawan(i)" href="" class="btn btn-sm btn-danger delete" data-id="">Delete</a>';</td>
 
 
   
@@ -34,8 +34,9 @@ var el = (el) => document.querySelector(el);
   }
 listUser()
 
-const deleteKaryawan = () =>{
-  dataKaryawan.pop();
+const deleteKaryawan = (ind) =>{
+  let index = dataKaryawan[ind];
+  dataKaryawan.splice(index, 1);
   localStorage.setItem("dataKaryawan", JSON.stringify(dataKaryawan));
 
 }
