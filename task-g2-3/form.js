@@ -1,71 +1,118 @@
-let dataKaryawan = [];
+// let dataKaryawan = [];
 
-  //looping ada berapa index
-let setData = ()=>{
-        const dataLokalKaryawan = dataKaryawan[0];
-        let key = localStorage.length-1;
-        //stringify datakaryawan pada index[i]
-        let stringDataKaryawan = JSON.stringify(dataLokalKaryawan);
-        localStorage.setItem("karyawan"+[key], stringDataKaryawan);
-        let objectDataKaryawan = JSON.parse(localStorage.getItem("karyawan"+[key]));
+//cek dulu dah ada apa belum
+var dataKaryawan = localStorage.dataKaryawan ? JSON.parse(localStorage.dataKaryawan) : [];
+
+//mempersingkat cara get query
+var el = (el) => document.querySelector(el);
+
+//untuk menyimpan data 
+const saveData = () =>{
+  if(dataKaryawan[0] || dataKaryawan [1] || dataKaryawan[7]){
+    alert("data sudah digunakan silahkan pakai yang lainnya")
+  document.getElementById("add-karyawan").reset();
+
+  } else{
+  const nik=el('input[name="nik"]').value,
+    name=el('input[name="name"]').value,
+    birthDate= el('input[name="birthDate"]').value,
+    gender= el('input[name="gender"]').nextSibling.textContent,
+    address=el('input[name="address"]').value,
+    religion=el('input[name="religion"]').value,
+    citizenship=el('input[name="citizenship"]').value,
+    email=el('input[name="email"]').value,
+    division=el('select[name="division"]').value;
+    //push object baru ke array datakaryawan
+    dataKaryawan.push({
+      nik,
+      name,
+      birthDate,
+      gender,
+      address,
+      religion,
+      citizenship,
+      email,
+      division
+  })
+  //simpan ke lokal storage
+  localStorage.setItem("dataKaryawan", JSON.stringify(dataKaryawan))
+  document.getElementById("add-karyawan").submit();
+  // listKaryawan()
+  }
 }
 
-  
-  
-  
-   
-  
-  var nik='',
-  name='',
-  birthDate= '',
-  gender='',
-  address='',
-  religion='',
-  citizenship='',
-  email='',
-  division='';
+const deleteKaryawan = () =>{
+    dataKaryawan.pop();
+    localStorage.setItem("dataKaryawan", JSON.stringify(dataKaryawan));
 
-  //function data
+}
 
-  let data =()=>{
-    nik=document.querySelector('input[name="nik"]').value;
-    name=document.querySelector('input[name="name"]').value;
-    birthDate= document.querySelector('input[name="birthDate"]').value;
-    gender= document.querySelector('input[name="gender"]').value;
-    address=document.querySelector('input[name="address"]').value;
-    religion=document.querySelector('input[name="religion"]').value;
-    citizenship=document.querySelector('input[name="citizenship"]').value;
-    email=document.querySelector('input[name="email"]').value;
-    division=document.querySelector('select[name="division"]').value;
-  }
 
-    //push object baru ke array datakaryawan
-    let pushDataKaryawan = ()=>{
-        dataKaryawan.push({
-            nik: nik,
-            name: name,
-            birthDate: birthDate,
-            gender: gender,
-            address: address,
-            religion: religion,
-            citizenship: citizenship,
-            email: email,
-            division: division
-        })
-      }
+
+
+//   const listUser = () => {
     
+//     let rows = ""
+//     for (let i = 0; i < dataKaryawan.length; i++) {
+//         const user = dataKaryawan[i];
+//         rows += `
+//             <tr>
+//                 <td>${user.nik}</td>
+//                 <td>${user.name}</td>
+//                 <td>${user.birthDate}</td>
+//                 <td>${user.gender}</td>
+//                 <td>${user.address}</td>
+//                 <td>${user.religion}</td>
+//                 <td>${user.citizenship}</td>
+//                 <td>${user.email}</td>
+//                 <td>${user.division}</td>
+
+//             </tr>
+//         `
+//     }
+//     el("table tbody").innerHTML = rows
+// }
+// listUser()
+  
+
+//   //looping ada berapa index
+// let setData = ()=>{
+//         const dataLokalKaryawan = dataKaryawan[0];
+//         let key = localStorage.length-1;
+//         //stringify datakaryawan pada index[i]
+//         let stringDataKaryawan = JSON.stringify(dataLokalKaryawan);
+//         localStorage.setItem("karyawan"+[key], stringDataKaryawan);
+//         let objectDataKaryawan = JSON.parse(localStorage.getItem("karyawan"+[key]));
+// }
+
+//   var nik='',
+//   name='',
+//   birthDate= '',
+//   gender='',
+//   address='',
+//   religion='',
+//   citizenship='',
+//   email='',
+//   division='';
+
+//   //function data
+
+//   let data =()=>{
+//   }
+
+
   
   
-  document.querySelector("#submit").addEventListener("click", function(){
-    alert('clicked');
-    data();
-    pushDataKaryawan();
-    setData();
-    console.log(dataKaryawan);
-    // document.querySelector('input[name="name"]').options[document.querySelector('input[name="name"]').selectedIndex].value;
-  })
+  // document.querySelector("#submit").addEventListener("click", function(){
+  //   alert('clicked');
+  //   data();
+  //   pushDataKaryawan();
+  //   setData();
+  //   console.log(dataKaryawan);
+  //   // document.querySelector('input[name="name"]').options[document.querySelector('input[name="name"]').selectedIndex].value;
+  // })
   
-  //ketika di klik add masukan ke nama variabel baru untuk object yang akan di push
+  // //ketika di klik add masukan ke nama variabel baru untuk object yang akan di push
 
   
   
