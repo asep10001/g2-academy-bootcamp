@@ -1,83 +1,81 @@
-const express = require('express');
-const app = express();
-const mysql = require('mysql');
-const bodyParser = require('body-parser');
-const hbs = require('hbs');
-const db = require('./mysql/db-config');
-const path = require('path');
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '/public')));
-app.set('view engine', 'hbs');
+function deleteItem (key){
+  localStorage.removeItem(key);
+}
+let table = document.querySelector("#table-karyawan");
+//menambahkan row baru di akhir
+var rowAkhir = table.rows.length;
 
 
-//get halaman daftar_karyawan
-app.get('/daftar_karyawan', (req, res) => {
+//looping untuk mengambil data masing masing cell dari local storage
+function looping(){
+  for (let i = 0; i < localStorage.length; i++) {
+    let dataKaryawan = JSON.parse(localStorage.getItem(localStorage.key(i)));
 
-  var sql = `SELECT * FROM daftar_karyawan;`
+    var row = table.insertRow(rowAkhir);
 
-  var query = db.query(sql, (err, results) => {
-    if (err) throw err;
-    res.render('daftar_karyawan', { results: results });
-    console.log(results);
-  });
-});
-
-//get halaman pertama
-app.get('/', (req, res) => {
-
-  var sql = `SELECT * FROM daftar_karyawan`;
-  var query = db.query(sql, (err, results) => {
-    if (err) throw err;
-    res.render('daftar_karyawan', { results: results });
-    console.log(results);
-  });
-});
-
-//post add video
-app.post("/add_employee", function(req, res) {
-  let data = { name: req.body.name, thumbnail: req.body.thumbnail, description: req.body.description, division: req.body.division, age: req.body.age, gender: req.body.gender};
-  let sql = "INSERT INTO daftar_karyawan SET?";
-  let query = db.query(sql, data, (err, results) => {
-    if (err) throw err;
-    res.redirect('/');
-  });
-});
-
-//route untuk update data
-app.post('/update_employee', (req, res) => {
-  let sql = `UPDATE daftar_karyawan SET name='${req.body.name}',thumbnail='${req.body.thumbnail}', description='${req.body.description}', division='${req.body.division}', age=${req.body.age}, gender='${req.body.gender}' WHERE id=${req.body.id}`;
-  let query = db.query(sql, (err, results) => {
-    if (err) throw err;
-    res.redirect('/');
-  });
-});
-
-//route untuk delete data
-app.post('/delete', (req, res) => {
-  let sql = `DELETE FROM daftar_karyawan WHERE id=${req.body.id}`;
-  let query = db.query(sql, (err, results) => {
-    if (err) throw err;
-    res.redirect('/');
-  });
-});
-
-//get detail ninja
-app.get("/ninja/:id", function(req, res) {
-  var video_id = parseInt(req.params.id);
-  let sql = 'SELECT * FROM daftar_karyawan WHERE id =?';
-  let query = db.query(sql, video_id, (error, results) => {
-    if (error) {
-      throw error;
-    } else {
-        res.render("detail", { results: results });
-        console.log(results);
+    var edit = document.querySelector("#edit");
+    var nikCell = row.insertCell(0);
+    var nameCell = row.insertCell(1);
+    var birthDateCell = row.insertCell(2);
+    var genderCell = row.insertCell(3);
+    var addressCell= row.insertCell(4);
+    var religionCell = row.insertCell(5);
+    var citizenshipCell = row.insertCell(6);
+    var division = row.insertCell(7);
+    var actions = row.insertCell(8);
+  
+    nikCell.innerHTML = dataKaryawan.nik;
+    nameCell.innerHTML = dataKaryawan.name;
+    birthDateCell.innerHTML = dataKaryawan.birthDate;
+    genderCell.innerHTML = dataKaryawan.gender;
+    addressCell.innerHTML = dataKaryawan.address;
+    religionCell.innerHTML = dataKaryawan.religion;
+    citizenshipCell.innerHTML = dataKaryawan.citizenship;
+    division.innerHTML = dataKaryawan.division;
+    actions.innerHTML = '<a href="./update.html" id="edit" class="btn btn-sm btn-info edit" data-id="{{ id }}" data-thumbnail="{{ thumbnail }}" data-name="{{ name }}" data-description="{{ description }}" data-age="{{ age }}" data-division="{{ division }}" data-gender="{{ gender }}">Update Data</a>' + '<a id="info" href="/ninja/{{ id }}"><button>Info</button></a>' + '<a id="delete" href="javascript:void(0);" class="btn btn-sm btn-danger delete" data-id="{{ id}} ">Delete</a>';
+    var hapus = document.querySelectorAll("a#delete");
+    for (let i = 0; i < hapus.length; i++) {
+      hapus[i].addEventListener("click", function(){
+        localStorage.removeItem(localStorage.key(i));
+      })
     }
-  });
-});
-//server listening
-app.listen(8000, () => {
-  console.log('Server is running at port 8000');
-});
+    var editing = document.querySelectorAll("a#edit");
+    for (let i = 0; i < editing.length; i++) {
+      editing[i].addEventListener("click", function(){
+        
+        document.querySelector('input[name="name"]').value = JSON.parse(localStorage.getItem(localStorage.key(i))).name;
+      })
+      
+    }
+
+  }
+}
+
+looping();
+
+var filterArray = [];
+
+function filter() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("search");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("table-karyawan");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[7];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+// filter();
+

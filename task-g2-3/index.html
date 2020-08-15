@@ -21,118 +21,8 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <!--===============================================================================================-->
-    <style>
-      label, select, option, .uk-form-label {
-  font-family: Montserrat;
-  font-size: 18px;
-  font-weight: 600;
-  text-transform: capitalize;
-  font-size: 16px;
-  color: #555555;
-  line-height: 1.5;
-}
 
-h1 {
-  font-family: Montserrat;
-  font-weight: 500;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-.uk-container {
-  margin: 1em 3em !important;
-  padding: 3em !important;
-  border-radius: 10px;
-  -webkit-box-shadow: 10px;
-          box-shadow: 10px;
-}
-
-html {
-  background-image: url("../assets/images/bg-01.jpg");
-  background-size: cover;
-}
-
-.uk-card-default {
-  background: #fff;
-  color: #666;
-  -webkit-box-shadow: 0px 5px 20px #ffc800c2;
-          box-shadow: 0px 5px 20px #ffc800c2;
-}
-
-button {
-  border-radius: 10px;
-  width: 100%;
-}
-
-button.uk-button.uk-button-default {
-  width: 100%;
-  padding: 0.5em;
-  font-size: xxx-large;
-  border: none;
-}
-
-button:hover {
-  background: linear-gradient(45deg, #00dbde, #fc00ff);
-  opacity: 3;
-  -webkit-transition: all 1s;
-  transition: all 1s;
-}
-
-button#facebook {
-  color: #fff;
-  background-color: #3b5998;
-  border-radius: 10px;
-  font-family: Montserrat;
-  font-size: 18px;
-  font-weight: 600;
-  text-transform: capitalize;
-}
-
-button#facebook img {
-  width: 2em;
-  height: 2em;
-}
-
-button#google {
-  color: #555555;
-  background-color: #fff;
-  border-radius: 10px;
-  font-family: Montserrat;
-  font-size: 18px;
-  font-weight: 600;
-  text-transform: capitalize;
-}
-
-button#submit {
-  background-color: #333333;
-  color: #fff;
-  border-radius: 10px;
-  font-family: Montserrat;
-  font-size: 18px;
-  font-weight: 600;
-  text-transform: capitalize;
-  width: 100%;
-}
-
-#form-horizontal-text, #form-horizontal-select {
-  border-radius: 10px;
-}
-
-h4 {
-  font-family: Montserrat;
-  font-size: 18px;
-  font-weight: 600;
-  text-transform: capitalize;
-  font-size: 14px;
-  color: #999999;
-  text-align: center;
-}
-/*# sourceMappingURL=index.css.map */
-</style>
-
+    <script src="./form.js" defer></script>
 </head>
 <body>
     <button class="uk-button uk-button-default" type="button" uk-toggle="target: #offcanvas-nav-primary; mode: click" >MENU</button>
@@ -140,9 +30,10 @@ h4 {
         <div class="uk-offcanvas-bar uk-flex uk-flex-column">
 
             <ul class="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical">
-                <li class="uk-active"><a href="/">Home</a></li>
-                <li class="uk-active"><a href="/daftar_karyawan">Daftar Karyawan</a></li>
-                <li class="uk-active"><a href="/daftar_divisi">Daftar Divisi</a></li>
+                <li class="uk-active"><a href="./index.html">Input Karyawan</a></li>
+                <li class="uk-active"><a href="./login.html">Sign In and Sign Up</a></li>
+                <li class="uk-active"><a href="./daftar_karyawan.html">Daftar Karyawan</a></li>
+                <li class="uk-active"><a href="./daftar_divisi.html">Daftar Divisi</a></li>
             </ul>
         </div>
     </div>
@@ -163,33 +54,66 @@ h4 {
         </div>
 
         <div class="uk-child-width-expand@s" uk-grid>
-            <form class="uk-form-horizontal uk-margin-large">
-
+            <form class="uk-form-horizontal uk-margin-large" href="#">
+                <div class="uk-margin">
+                  <label class="uk-form-label" for="form-horizontal-text">NIK</label>
+                  <div class="uk-form-controls">
+                      <input class="uk-input" id="form-horizontal-text" type="text" name='nik' placeholder="Please input your taka address" min=1>
+                  </div>
+              </div>
                 <div class="uk-margin">
                     <label class="uk-form-label" for="form-horizontal-text">Name</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" id="form-horizontal-text" type="text" placeholder="What's your name new ninja?">
+                        <input name='name' class="uk-input" id="form-horizontal-text" type="text" placeholder="What's your name new ninja?">
                     </div>
                 </div>
 
                 <div class="uk-margin">
-                    <label class="uk-form-label" for="form-horizontal-text">Age</label>
+                    <label class="uk-form-label" for="form-horizontal-text">birthDate</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" id="form-horizontal-text" type="number" placeholder="How old are you?" min=1>
+                        <input name='birthDate' class="uk-input" id="form-horizontal-text" type="date"  min=1>
                     </div>
                 </div>
+                <div class="uk-margin">
+                  <div class="uk-form-label">Gender</div>
+                  <div class="uk-form-controls uk-form-controls-text">
+                      <label><input class="uk-radio" type="radio" name="gender"> Male</label><br>
+                      <label><input class="uk-radio" type="radio" name="gender"> Female</label><br>
+                      <label><input class="uk-radio" type="radio" name="gender"> Genderless</label>
+                  </div>
+              </div>
+              <div class="uk-margin">
+                <label class="uk-form-label" for="form-horizontal-text">Address</label>
+                <div class="uk-form-controls">
+                    <input name='address' class="uk-input" id="form-horizontal-text" type="text" placeholder="What's your village name?">
+                </div>
+            </div>
+            <div class="uk-margin">
+              <label class="uk-form-label" for="form-horizontal-text">Religion</label>
+              <div class="uk-form-controls">
+                  <input name='religion' class="uk-input" id="form-horizontal-text" type="text" placeholder="What's your belief?">
+              </div>
+          </div>
+
+          <div class="uk-margin">
+            <label class="uk-form-label" for="form-horizontal-text">Citizenship</label>
+            <div class="uk-form-controls">
+                <input name='citizenship' class="uk-input" id="form-horizontal-text" type="text" placeholder="What's your belief?">
+            </div>
+        </div>
 
                 <div class="uk-margin">
                     <label class="uk-form-label" for="form-horizontal-text">E-mail</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" id="form-horizontal-text" type="email" placeholder="Please input your taka address" min=1>
+                        <input name="email" class="uk-input" id="form-horizontal-text" type="email" placeholder="Please input your taka address" min=1>
                     </div>
                 </div>
-            
+
+           
                 <div class="uk-margin">
                     <label class="uk-form-label" for="form-horizontal-select">Division</label>
                     <div class="uk-form-controls">
-                        <select class="uk-select" id="form-horizontal-select">
+                        <select name="division" class="uk-select" id="form-horizontal-select">
                             <option>Anbu</option>
                             <option>Jounnin</option>
                             <option>Chunnin</option>
@@ -198,14 +122,7 @@ h4 {
                     </div>
                 </div>
             
-                <div class="uk-margin">
-                    <div class="uk-form-label">Gender</div>
-                    <div class="uk-form-controls uk-form-controls-text">
-                        <label><input class="uk-radio" type="radio" name="radio1"> Male</label><br>
-                        <label><input class="uk-radio" type="radio" name="radio1"> Female</label><br>
-                        <label><input class="uk-radio" type="radio" name="radio1"> Genderless</label>
-                    </div>
-                </div>
+
             
             </form>
         </div>
