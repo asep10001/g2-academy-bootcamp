@@ -43,4 +43,7 @@ button.uk-button.uk-button-default:hover {
 .uk-position-relative.uk-visible-toggle.uk-light.uk-slideshow {
   margin: 5.1em 0;
 }
+button#add_employee {
+  width: -webkit-fill-available;
+}
 /*# sourceMappingURL=daftar_karyawan.css.map */
