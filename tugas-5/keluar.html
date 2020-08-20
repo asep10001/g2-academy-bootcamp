@@ -9,15 +9,18 @@
   <body>
     <div>
       <label for="id">MASUKAN ID CEPark</label>
-      <input type="text" name="id" />
-      <label for="plat">MASUKAN NO KENDARAAN CEPark</label>
-      <input type="text" name="plat" />
-      <select name="type" id="">
-        <option value="Mobil">== Pilih Tipe Kendaraan ==</option>
+      <input type="text" name="id" placeholder="silahkan masukan id" oninput="checkVehicle(), showNopol()"/>
+      <label for="plat" >MASUKAN NO KENDARAAN CEPark</label>
+      <input type="text" name="plat" disabled/>
+      <select name="type" id="" disabled>
+        <option value="Pilih">== Pilih Tipe Kendaraan ==</option>
         <option value="Mobil">Mobil</option>
         <option value="Motor">Motor</option>
       </select>
-      <button type="submit">INPUT</button>
+      <button type="submit" onclick="hitungTotal(checkVehicle()), tampilData(), removeData(checkVehicle())">INPUT</button>
+      <h1>
+        
+      </h1>
     </div>
   </body>
 </html>

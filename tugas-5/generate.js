@@ -10,8 +10,8 @@ const time = () => {
   var hour = d.getHours();
   var minutes = d.getMinutes();
   var seconds = d.getSeconds();
-  var time  = `${hour} : ${minutes} : ${seconds}`;
-  return time
+  var time = `${hour} : ${minutes} : ${seconds}`;
+  return time;
 };
 const makeidBike = (length) => {
   let result = "BK";
@@ -21,6 +21,25 @@ const makeidBike = (length) => {
 
   for (let i = 0; i < length; i++) {
     result += character.charAt(Math.floor(Math.random() * characterLength));
+  }
+  return result;
+  // menyimpan result ke database
+};
+
+const nopol = () => {
+  let result = "";
+  let charAlfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let charAngka = "01234567890";
+  let charAlfaLength = charAlfa.length;
+  let charAngkaLength = charAngka.length;
+
+  result += charAlfa.charAt(Math.floor(Math.random() * charAlfaLength));
+
+  for (let i = 0; i < 4; i++) {
+    result += charAngka.charAt(Math.floor(Math.random() * charAngkaLength));
+  }
+  for (i = 0; i < 3; i++) {
+    result += charAlfa.charAt(Math.floor(Math.random() * charAlfaLength));
   }
   return result;
   // menyimpan result ke database
@@ -39,30 +58,38 @@ const makeidCar = (length) => {
   // menyimpan result ke database
 };
 
-const showDataBike = () =>{
+const showDataBike = () => {
   el("#id-bike").innerHTML = makeidBike(5);
   el("#time-bike").innerHTML = time();
+  el("#nopol").innerHTML = nopol();
 
-}
-
-const showDataCar = () =>{
-  el("#id-car").innerHTML = makeidCar(5);
-  el("#time-car").innerHTML = time();
-
-}
-
-const saveCostBike = () => {  
-  showDataBike();
-  const id  = el("#id-bike").innerHTML;
-  const time = el("#time-bike").innerHTML;
-  costBike.push({id, time});
-  localStorage.setItem("costBike", JSON.stringify(costBike));
 };
 
-const saveCostCar = () => {  
+const showDataCar = () => {
+  el("#id-car").innerHTML = makeidCar(5);
+  el("#time-car").innerHTML = time();
+  el("#nopol").innerHTML = nopol();
+
+};
+
+const saveCostBike = () => {
+  
+  showDataBike();
+  const id = el("#id-bike").innerHTML;
+  const time = el("#time-bike").innerHTML;
+  const nopol = el("#nopol").innerHTML;
+  costBike.push({ id, time, nopol });
+  localStorage.setItem("costBike", JSON.stringify(costBike));
+  setTimeout(() => {
+    location.reload();
+  }, 5000);
+};
+
+const saveCostCar = () => {
   showDataCar();
-  const id  = el("#id-car").innerHTML;
+  const id = el("#id-car").innerHTML;
   const time = el("#time-car").innerHTML;
-  costCar.push({id, time});
+  const nopol = el('#nopol').innerHTML;
+  costCar.push({ id, time, nopol});
   localStorage.setItem("costCar", JSON.stringify(costCar));
 };

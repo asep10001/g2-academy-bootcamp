@@ -4,21 +4,65 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CEPark</title>
+    <link rel="stylesheet" href="./generate.css" />
+    <!-- UIkit CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/uikit@3.5.6/dist/css/uikit.min.css"
+    />
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.6/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.6/dist/js/uikit-icons.min.js"></script>
     <script src="./generate.js"></script>
   </head>
-  <body>
-    <div>
-      <h1>SELAMAT DATANG DI CEPark</h1>
-      <h1 id="id-bike"></h1>
-      <h1 id="time-bike"></h1>
-      <button type="submit" onclick="saveCostBike()">GENERATE BIKE</button>
-    </div>
-
-    <div>
-      <h1>SELAMAT DATANG DI CEPark</h1>
-      <h1 id="id-car"></h1>
-      <h1 id="time-car"></h1>
-      <button type="submit" onclick="saveCostCar()">GENERATE CAR</button>
+  <body
+    class="uk-background-cover uk-height-medium uk-panel uk-animation-slide-bottom"
+    style="
+      background-image: url(https://hudsonreporter.com/wp-content/uploads/sites/15/2020/02/02secparking27-768x512.jpg);
+    "
+  >
+    <div class="uk-container container-pertama">
+      <h1 id="judul">SELAMAT DATANG DI CEPark</h1>
+      <ul uk-accordion>
+        <li class="uk-close">
+          <a href="#" class="uk-accordion-title">MOTOR</a>
+          <div
+            class="uk-accordion-content uk-container uk-animation-toggle"
+            tabindex="0"
+          >
+            <h1 id="id-bike"></h1>
+            <h1 id="time-bike"></h1>
+            <button
+              class="uk-button uk-button-default uk-button-large uk-width-1-1 uk-animation-scale-up"
+              type="submit"
+              onclick="saveCostBike()"
+            >
+              GENERATE BIKE
+            </button>
+          </div>
+        </li>
+      </ul>
+      <ul uk-accordion>
+        <li class="uk-close">
+          <a href="#" class="uk-accordion-title">MOBIL</a>
+          <div
+            class="uk-accordion-content uk-container uk-animation-toggle"
+            tabindex="0"
+          >
+            <h1 id="id-car"></h1>
+            <h1 id="time-car"></h1>
+            <h1 hidden id="nopol"></h1>
+            <button
+              class="uk-button uk-button-default uk-button-large uk-width-1-1 uk-animation-scale-up"
+              type="submit"
+              onclick="saveCostCar()"
+            >
+              GENERATE CAR
+            </button>
+          </div>
+        </li>
+      </ul>
     </div>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
