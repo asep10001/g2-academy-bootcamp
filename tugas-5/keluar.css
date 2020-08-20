@@ -1,0 +1,59 @@
+.uk-container {
+  text-align-last: center;
+}
+
+body {
+  height: 100vh !important;
+}
+
+label {
+  font-family: 'Russo One', sans-serif;
+}
+
+.uk-grid > * > :last-child {
+  margin-bottom: 0;
+  height: 100vh;
+}
+
+.uk-child-width-1-2 > * {
+  width: 50%;
+  height: 100vh;
+}
+
+div {
+  text-align: center;
+}
+
+div #content {
+  padding: 20vh 5vw;
+}
+
+div#catatan {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+label {
+  font-family: 'Russo One', sans-serif;
+  font-size: x-large;
+}
+
+div {
+  margin-top: 3em;
+}
+
+h1 {
+  font-family: 'Russo One', sans-serif;
+  text-align: center;
+}
+
+input.uk-input, select.uk-select {
+  font-size: 1.4em;
+}
+
+button.uk-button.uk-button-danger {
+  width: 100%;
+  background: #01baff;
+}
+/*# sourceMappingURL=keluar.css.map */

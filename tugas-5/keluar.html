@@ -4,23 +4,70 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chekout CEPark</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./keluar.css" />
+    <!-- UIkit CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/uikit@3.5.6/dist/css/uikit.min.css"
+    />
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.6/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.6/dist/js/uikit-icons.min.js"></script>
     <script src="keluar.js" defer></script>
   </head>
-  <body>
-    <div>
-      <label for="id">MASUKAN ID CEPark</label>
-      <input type="text" name="id" placeholder="silahkan masukan id" oninput="checkVehicle(), showNopol()"/>
-      <label for="plat" >MASUKAN NO KENDARAAN CEPark</label>
-      <input type="text" name="plat" disabled/>
-      <select name="type" id="" disabled>
-        <option value="Pilih">== Pilih Tipe Kendaraan ==</option>
-        <option value="Mobil">Mobil</option>
-        <option value="Motor">Motor</option>
-      </select>
-      <button type="submit" onclick="hitungTotal(checkVehicle()), tampilData(), removeData(checkVehicle())">INPUT</button>
-      <h1>
-        
-      </h1>
+  <body
+    class="uk-background-cover uk-height-medium uk-panel uk-animation-slide-bottom"
+    onload="addClass()"
+  >
+    <div class="uk-child-width-1-2" uk-grid>
+      <div>
+        <img
+          src="https://hudsonreporter.com/wp-content/uploads/sites/15/2020/02/02secparking27-768x512.jpg"
+          alt=""
+        />
+      </div>
+      <div class="uk-container" id="content">
+        <div>
+          <label for="id">MASUKAN ID CEPark</label> <br />
+          <input
+            class="uk-input uk-animation-scale-up"
+            type="text"
+            name="id"
+            placeholder="silahkan masukan id"
+            oninput="checkVehicle(), showNopol()"
+          />
+        </div>
+
+        <div>
+          <label for="plat">MASUKAN NO KENDARAAN CEPark</label><br />
+          <input class="uk-input" type="text" name="plat" disabled />
+        </div>
+        <div>
+          <select class="uk-select" name="type" id="" disabled>
+            <option value="Pilih">== Pilih Tipe Kendaraan ==</option>
+            <option value="Mobil">Mobil</option>
+            <option value="Motor">Motor</option>
+          </select>
+        </div>
+
+        <div>
+          <button class="uk-button uk-button-danger"
+            type="submit"
+            onclick="hitungTotal(checkVehicle()), tampilData(), removeData(checkVehicle())"
+          >
+            INPUT
+          </button>
+        </div>
+
+        <div id="catatan">
+          <h1></h1>
+        </div>
+      </div>
     </div>
   </body>
 </html>

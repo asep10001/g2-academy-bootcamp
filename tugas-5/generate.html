@@ -18,51 +18,69 @@
   </head>
   <body
     class="uk-background-cover uk-height-medium uk-panel uk-animation-slide-bottom"
-    style="
-      background-image: url(https://hudsonreporter.com/wp-content/uploads/sites/15/2020/02/02secparking27-768x512.jpg);
-    "
   >
-    <div class="uk-container container-pertama">
-      <h1 id="judul">SELAMAT DATANG DI CEPark</h1>
-      <ul uk-accordion>
-        <li class="uk-close">
-          <a href="#" class="uk-accordion-title">MOTOR</a>
-          <div
-            class="uk-accordion-content uk-container uk-animation-toggle"
-            tabindex="0"
-          >
-            <h1 id="id-bike"></h1>
-            <h1 id="time-bike"></h1>
-            <button
-              class="uk-button uk-button-default uk-button-large uk-width-1-1 uk-animation-scale-up"
-              type="submit"
-              onclick="saveCostBike()"
+    <div class="uk-heading-large uk-child-width-1-3" uk-grid>
+      <div class="uk-width-2-3">
+        CEPPARK
+      </div>
+
+      <div class="uk-width-1-3 uk-text-right">
+        <button class="uk-button uk-button-primary" id="home">HOME</button>
+        <a href="./keluar.html">
+          <button class="uk-button uk-button-primary" id="checkout">
+            CHECKOUT
+          </button>
+        </a>
+      </div>
+    </div>
+
+    <div class="uk-container container-pertama uk-child-width-1-2" uk-grid>
+      <div class="uk-width-1-2">
+        <h1 id="judul">SELAMAT DATANG DI CEPark</h1>
+        <ul uk-accordion>
+          <li class="uk-close">
+            <a href="#" class="uk-accordion-title">MOTOR</a>
+            <div class="uk-accordion-content uk-animation-toggle" tabindex="0">
+              <h1 id="id-bike"></h1>
+              <h1 id="time-bike"></h1>
+              <button
+                class="uk-button uk-button-default uk-button-large uk-animation-scale-up"
+                type="submit"
+                onclick="saveCostBike()"
+              >
+                GENERATE BIKE
+              </button>
+            </div>
+          </li>
+        </ul>
+        <ul uk-accordion>
+          <li class="uk-close">
+            <a href="#" class="uk-accordion-title">MOBIL</a>
+            <div
+              class="uk-accordion-content uk-container uk-animation-toggle"
+              tabindex="0"
             >
-              GENERATE BIKE
-            </button>
-          </div>
-        </li>
-      </ul>
-      <ul uk-accordion>
-        <li class="uk-close">
-          <a href="#" class="uk-accordion-title">MOBIL</a>
-          <div
-            class="uk-accordion-content uk-container uk-animation-toggle"
-            tabindex="0"
-          >
-            <h1 id="id-car"></h1>
-            <h1 id="time-car"></h1>
-            <h1 hidden id="nopol"></h1>
-            <button
-              class="uk-button uk-button-default uk-button-large uk-width-1-1 uk-animation-scale-up"
-              type="submit"
-              onclick="saveCostCar()"
-            >
-              GENERATE CAR
-            </button>
-          </div>
-        </li>
-      </ul>
+              <h1 id="id-car"></h1>
+              <h1 id="time-car"></h1>
+              <h1 id="nopol"></h1>
+              <button
+                class="uk-button uk-button-default uk-button-large uk-animation-scale-up"
+                type="submit"
+                onclick="saveCostCar()"
+              >
+                GENERATE CAR
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <img
+          src="https://svg-clipart.com/svg/red/mTeKaKO-red-lambo-vector.svg"
+          alt=""
+          srcset=""
+        />
+      </div>
     </div>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->

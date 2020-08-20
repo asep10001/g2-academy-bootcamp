@@ -1,37 +1,41 @@
+$dark-color: #545454;
 body{
     height: 100vh !important;
+    background: #ffffff;
 }
 
 .uk-container.container-pertama {
-    text-align: center;
-    margin: 35vh 0;
+    text-align: left;
 }
 
 h1#judul {
     font-family: sans-serif;
     font-weight: 900;
-    color: #f2ee8b;
+    color: $dark-color;
+    font-size: 4em;
 }
 
+
 a.uk-accordion-title {
-    color: #49eaf0;
+    color: $dark-color;
     font-size: xx-large;
     font-weight: 900;
     font-family: cursive;
 }
 
 .uk-accordion-title:focus, .uk-accordion-title:hover {
-    color: #81fd69 !important;
+    color: $dark-color !important;
     text-decoration: none;
     outline: 0;
 }
 
-button.uk-button.uk-button-default.uk-button-large.uk-width-1-1.uk-animation-scale-up {
+button.uk-button.uk-button-default.uk-button-large.uk-animation-scale-up {
     background: aliceblue;
     opacity: 75%;
     font-size: x-large;
     color: black;
     font-weight: 900;
+    border-radius: 50px;
 }
 
 .uk-h1, h1 {
@@ -40,4 +44,28 @@ button.uk-button.uk-button-default.uk-button-large.uk-width-1-1.uk-animation-sca
     color: #81fd69 !important;
     font-size: large;
     font-weight: 900!important;
+}
+
+button#checkout {
+    background: $dark-color;
+    font-weight: 900;
+    border-radius: 20px 0 0 20px;;
+}
+
+button#home {
+    background: white;
+    color: #545;
+    border: solid 2px #545;
+    border-radius: 20px 0 0 20px;;
+    font-weight: 900;
+}
+
+.uk-width-1-2 {
+    width: 50%;
+    height: 100vh;
+}
+
+img {
+    height: 90vh !important;
+    max-width: 90vw !important;
 }

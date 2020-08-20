@@ -188,6 +188,8 @@ const removeData = (vehc) => {
     }
     localStorage.setItem("costCar", JSON.stringify(costCar));
   }
-  window.location.href='./generate.html'
-  window.location.href='./keluar.html'
 };
+
+const addClass = ()=>{
+    el("img").classList.add("uk-animation-slide-right");
+}
