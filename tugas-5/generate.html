@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CEPark</title>
+    <script src="./generate.js"></script>
+  </head>
+  <body>
+    <div>
+      <h1>SELAMAT DATANG DI CEPark</h1>
+      <h1 id="id-bike"></h1>
+      <h1 id="time-bike"></h1>
+      <button type="submit" onclick="saveCostBike()">GENERATE BIKE</button>
+    </div>
+
+    <div>
+      <h1>SELAMAT DATANG DI CEPark</h1>
+      <h1 id="id-car"></h1>
+      <h1 id="time-car"></h1>
+      <button type="submit" onclick="saveCostCar()">GENERATE CAR</button>
+    </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyBxlwlmydHtSsR5L-wMIOxRWGY95JysT_A",
+        authDomain: "g2-d5-419b0.firebaseapp.com",
+        databaseURL: "https://g2-d5-419b0.firebaseio.com",
+        projectId: "g2-d5-419b0",
+        storageBucket: "g2-d5-419b0.appspot.com",
+        messagingSenderId: "738737702275",
+        appId: "1:738737702275:web:4ddb4d1d699de5fceaa2b6",
+        measurementId: "G-48KP2M51V5",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+  </body>
+</html>
