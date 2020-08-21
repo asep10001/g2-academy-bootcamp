@@ -7,7 +7,7 @@ body {
 }
 
 label {
-  font-family: 'Russo One', sans-serif;
+  font-family: "Russo One", sans-serif;
 }
 
 .uk-grid > * > :last-child {
@@ -24,10 +24,6 @@ div {
   text-align: center;
 }
 
-div #content {
-  padding: 20vh 5vw;
-}
-
 div#catatan {
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -35,25 +31,44 @@ div#catatan {
 }
 
 label {
-  font-family: 'Russo One', sans-serif;
+  font-family: "Russo One", sans-serif;
   font-size: x-large;
 }
 
 div {
-  margin-top: 3em;
+  margin-top: 1em;
 }
 
 h1 {
-  font-family: 'Russo One', sans-serif;
+  font-family: "Russo One", sans-serif;
   text-align: center;
 }
 
-input.uk-input, select.uk-select {
+input.uk-input,
+select.uk-select {
   font-size: 1.4em;
 }
 
 button.uk-button.uk-button-danger {
   width: 100%;
   background: #01baff;
+}
+
+img.uk-animation-slide-right {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.uk-card.uk-card-default.uk-flex.uk-height-medium.uk-margin.uk-text-center {
+  background-image: url(https://wpforms.com/wp-content/uploads/2019/01/login-summer.jpg);
+  background-size: cover;
+}
+
+img#logo {
+  width: 35%;
+}
+
+.uk-card.uk-card-default.uk-flex.uk-height-medium.uk-margin.uk-text-center {
+  margin-top: 0;
 }
 /*# sourceMappingURL=keluar.css.map */

@@ -12,9 +12,23 @@ h1#judul {
     font-family: sans-serif;
     font-weight: 900;
     color: $dark-color;
-    font-size: 4em;
+    font-size: 2.5em;
 }
 
+.uk-width-1-2.uk-first-column {
+    text-align: center;
+}
+
+img#logo{
+    object-fit: contain;
+    height: 20% !important;
+}
+
+img#gambar-logo {
+    width: 23%;
+    object-fit: contain;
+    height: 15% !important;
+}
 
 a.uk-accordion-title {
     color: $dark-color;
@@ -62,10 +76,10 @@ button#home {
 
 .uk-width-1-2 {
     width: 50%;
-    height: 100vh;
+    height: auto;
 }
 
 img {
-    height: 90vh !important;
-    max-width: 90vw !important;
+    object-fit: cover;
+    height: 70vh !important;
 }
