@@ -71,9 +71,10 @@ const makeidCar = (length) => {
     result += character.charAt(Math.floor(Math.random() * characterLength));
   }
   return result;
-  // menyimpan result ke database
+
 };
 
+// menyimpan result ke database
 const showDataBike = () => {
   el("#id-bike").innerHTML = makeidBike(5);
   el("#time-bike").innerHTML = time();
