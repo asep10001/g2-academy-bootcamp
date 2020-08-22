@@ -7,12 +7,28 @@ const el = (el) => {
 
 const time = () => {
   var d = new Date();
-  var hour = d.getHours();
-  var minutes = d.getMinutes();
-  var seconds = d.getSeconds();
+  var hour = "";
+  if (d.getHours() < 10) {
+    hour = "0" + d.getHours();
+  } else {
+    hour = d.getHours();
+  }
+  var minutes = "";
+  if (d.getMinutes() < 10) {
+    minutes = "0" + d.getMinutes();
+  } else {
+    minutes = d.getMinutes();
+  }
+  var seconds = "";
+  if (d.getSeconds() < 10) {
+    seconds = "0" + d.getSeconds();
+  } else {
+    seconds = d.getSeconds();
+  }
   var time = `${hour} : ${minutes} : ${seconds}`;
   return time;
 };
+
 const makeidBike = (length) => {
   let result = "BK";
   let character =
@@ -62,18 +78,15 @@ const showDataBike = () => {
   el("#id-bike").innerHTML = makeidBike(5);
   el("#time-bike").innerHTML = time();
   el("#nopol").innerHTML = nopol();
-
 };
 
 const showDataCar = () => {
   el("#id-car").innerHTML = makeidCar(5);
   el("#time-car").innerHTML = time();
   el("#nopol").innerHTML = nopol();
-
 };
 
 const saveCostBike = () => {
-  
   showDataBike();
   const id = el("#id-bike").innerHTML;
   const time = el("#time-bike").innerHTML;
@@ -89,7 +102,7 @@ const saveCostCar = () => {
   showDataCar();
   const id = el("#id-car").innerHTML;
   const time = el("#time-car").innerHTML;
-  const nopol = el('#nopol').innerHTML;
-  costCar.push({ id, time, nopol});
+  const nopol = el("#nopol").innerHTML;
+  costCar.push({ id, time, nopol });
   localStorage.setItem("costCar", JSON.stringify(costCar));
 };

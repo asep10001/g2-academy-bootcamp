@@ -1,3 +1,7 @@
+const costBike = localStorage.costBike ? JSON.parse(localStorage.costBike) : [];
+const costCar = localStorage.costCar ? JSON.parse(localStorage.costCar) : [];
+
+
 //ambil data dari input
 
 const el = (el) => {
@@ -9,19 +13,19 @@ let input = el("input");
 const timeNow = () => {
   var d = new Date();
   var hour = "";
-  if (d.getHours < 10) {
+  if (d.getHours() < 10) {
     hour = "0" + d.getHours();
   } else {
     hour = d.getHours();
   }
   var minutes = "";
-  if (d.getMinutes < 10) {
+  if (d.getMinutes() < 10) {
     minutes = "0" + d.getMinutes();
   } else {
     minutes = d.getMinutes();
   }
   var seconds = "";
-  if (d.getSeconds < 10) {
+  if (d.getSeconds() < 10) {
     seconds = "0" + d.getSeconds();
   } else {
     seconds = d.getSeconds();
@@ -69,14 +73,13 @@ const checkVehicle = () => {
     el("select").value = "Mobil";
     return "MOBIL";
   } else {
-    return console.log("kode salah");
+    return console.log("kode salah awalan harus BK atau CR");
   }
   // return vecSelect;
 };
 
 const showNopol = () => {
   if (checkVehicle() === "MOTOR") {
-    const costBike = JSON.parse(localStorage.getItem("costBike"));
     for (let i = 0; i < costBike.length; i++) {
       if (
         costBike[i].id.toUpperCase() ===
@@ -86,7 +89,6 @@ const showNopol = () => {
       }
     }
   } else if (checkVehicle() === "MOBIL") {
-    const costCar = JSON.parse(localStorage.getItem("costCar"));
     for (let i = 0; i < costCar.length; i++) {
       if (
         costCar[i].id.toUpperCase() === el("input[name=id]").value.toUpperCase()
@@ -103,7 +105,6 @@ const hitungTotal = (vehc) => {
   if (vehc === "MOTOR") {
     // ambill time
 
-    const costBike = JSON.parse(localStorage.getItem("costBike"));
     for (let i = 0; i < costBike.length; i++) {
       if (costBike[i].id.toUpperCase() === input.value.toUpperCase()) {
         //time
@@ -132,7 +133,6 @@ const hitungTotal = (vehc) => {
   } else if (vehc === "MOBIL") {
     // ambill time
 
-    const costCar = JSON.parse(localStorage.getItem("costCar"));
     for (let i = 0; i < costCar.length; i++) {
       if (costCar[i].id.toUpperCase() === input.value.toUpperCase()) {
         //time
@@ -172,15 +172,15 @@ const tampilData = () => {
 
 const removeData = (vehc) => {
   if (vehc === "MOTOR") {
-    const costBike = JSON.parse(localStorage.getItem("costBike"));
     for (let i = 0; i < costBike.length; i++) {
       if (input.value === costBike[i].id) {
         costBike.splice(i, 1);
+        localStorage.setItem("costBike", JSON.stringify(costBike));
+        return costBike;
       }
     }
-    localStorage.setItem("costBike", JSON.stringify(costBike));
+
   } else {
-    const costCar = JSON.parse(localStorage.getItem("costCar"));
     for (let i = 0; i < costCar.length; i++) {
       if (input.value === costCar[i].id) {
         costCar.splice(i, 1);
@@ -188,8 +188,9 @@ const removeData = (vehc) => {
     }
     localStorage.setItem("costCar", JSON.stringify(costCar));
   }
+  return costCar;
 };
 
-const addClass = ()=>{
-    el("img").classList.add("uk-animation-slide-right");
-}
+const addClass = () => {
+  el("img").classList.add("uk-animation-slide-right");
+};
