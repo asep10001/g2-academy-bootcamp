@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chekout CEPark</title>
+    <title>Admin</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap"
       rel="stylesheet"
@@ -18,7 +18,7 @@
     <!-- UIkit JS -->
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.6/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.6/dist/js/uikit-icons.min.js"></script>
-    <script src="keluar.js" defer></script>
+    <script src="admin.js" defer></script>
   </head>
   <body
     class="uk-background-cover uk-height-medium uk-panel uk-animation-slide-bottom"
@@ -41,11 +41,11 @@
               power-user feature will help save time and money by letting you
               skip the use of 3rd party connectors, without writing code.
             </p>
-            <a href="./admin.html">
-              <button class="uk-button uk-button-warning">
-                HILANG TIKET
-              </button>
-            </a>
+            <a href="./keluar.html">
+                <button class="uk-button uk-button-warning">
+                  NORMAL
+                </button>
+              </a>
           </div>
         </div>
       </div>
@@ -67,17 +67,22 @@
             class="uk-input uk-animation-scale-up"
             type="text"
             name="id"
-            placeholder="silahkan masukan id"
-            oninput="checkVehicle(), showNopol()"
+            disabled
           />
         </div>
 
         <div>
           <label for="plat">MASUKAN NO KENDARAAN CEPark</label><br />
-          <input class="uk-input" type="text" name="plat" disabled />
+          <input
+            class="uk-input"
+            type="text"
+            name="plat"
+            placeholder="silahkan masukan no kendaraan"
+            oninput="showId()"
+          />
         </div>
         <div>
-          <select class="uk-select" name="type" id="" disabled>
+          <select class="uk-select" name="type" id="">
             <option value="Pilih">== Pilih Tipe Kendaraan ==</option>
             <option value="Mobil">Mobil</option>
             <option value="Motor">Motor</option>

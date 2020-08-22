@@ -12,12 +12,6 @@ let input = el("input");
 
 const timeNow = () => {
   var d = new Date();
-  var date = "";
-  if (d.getDate() < 10) {
-    hour = "0" + d.Date();
-  } else {
-    hour = d.getHours();
-  }
   var hour = "";
   if (d.getHours() < 10) {
     hour = "0" + d.getHours();
@@ -84,22 +78,22 @@ const checkVehicle = () => {
   // return vecSelect;
 };
 
-const showNopol = () => {
-  if (checkVehicle() === "MOTOR") {
+const showId = () => {
+  if ((el("select").value.toUpperCase())=== "MOTOR") {
     for (let i = 0; i < costBike.length; i++) {
       if (
-        costBike[i].id.toUpperCase() ===
-        el("input[name=id]").value.toUpperCase()
+        costBike[i].nopol.toUpperCase() ===
+        el("input[name=plat]").value.toUpperCase()
       ) {
-        el("input[name=plat]").value = costBike[i].nopol;
+        el("input[name=id]").value = costBike[i].id;
       }
     }
-  } else if (checkVehicle() === "MOBIL") {
+  } else if ((el("select").value.toUpperCase()) === "MOBIL") {
     for (let i = 0; i < costCar.length; i++) {
       if (
-        costCar[i].id.toUpperCase() === el("input[name=id]").value.toUpperCase()
+        costCar[i].nopol.toUpperCase() === el("input[name=plat]").value.toUpperCase()
       ) {
-        el("input[name=plat]").value = costCar[i].nopol;
+        el("input[name=id]").value = costCar[i].id;
       }
     }
   }
@@ -124,7 +118,7 @@ const hitungTotal = (vehc) => {
         const parkTime = convertTime(time);
         console.log(parkTime);
         //lama parkir
-        const lamaParkir = Math.ceil(waktuSekarang - parkTime);
+        const lamaParkir = waktuSekarang - parkTime;
         console.log(lamaParkir);
         //biaya parkir
 
@@ -157,9 +151,9 @@ const hitungTotal = (vehc) => {
         //biaya parkir
 
         if (lamaParkir <= 2) {
-          biayaParkir = 5000;
+          biayaParkir = 3000;
         } else if (lamaParkir > 2) {
-          biayaParkir = (lamaParkir - 2) * 3000 + 5000;
+          biayaParkir = (lamaParkir - 2) * 1000 + 3000;
           console.log(biayaParkir);
         }
       }
@@ -200,4 +194,3 @@ const removeData = (vehc) => {
 const addClass = () => {
   el("img").classList.add("uk-animation-slide-right");
 };
-
