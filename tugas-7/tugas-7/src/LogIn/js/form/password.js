@@ -7,7 +7,7 @@ export class Password extends Component {
         <div className="field">
           <label>Password</label>
           <div className="ui fluid input">
-            <input type="password" defaultValue=""></input>
+            <input className="uk-input" type="password" defaultValue=""></input>
           </div>
         </div>
       </div>

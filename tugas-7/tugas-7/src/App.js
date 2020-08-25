@@ -10,8 +10,8 @@ class App extends Component{
   render(){
     return (
       <>
-      <Admin/>
-      {/* <LogIn/> */}
+      {/* <Admin/> */}
+      <LogIn/>
       {/* <LeftComponent/> */}
       </>
     )

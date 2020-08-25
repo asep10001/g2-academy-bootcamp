@@ -5,7 +5,7 @@ export class Submit extends Component {
     return (
       <button
         type="submit"
-        className="ui button"
+        className="uk-button uk-button-primary"
         tabIndex="-1"
       >
         Login

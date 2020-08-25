@@ -7,7 +7,7 @@ export class Email extends Component {
           <div className="field">
             <label>Email Address</label>
             <div className="ui fluid input">
-              <input type="email" defaultValue=""  ></input>
+              <input className="uk-input" type="email" defaultValue=""  ></input>
             </div>
           </div>
         </div>

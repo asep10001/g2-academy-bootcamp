@@ -7,9 +7,9 @@ import './css/login.css'
 export default class LogIn extends Component{
     render() {
         return (
-            <div className="g-logged-out">
-                <div className="g-logged-out-container">
-                    <div className="logged-out-content">
+            <div className="g-logged-out" uk-grid="true">
+                <div className=" g-logged-out-container">
+                    <div className="uk-card uk-card-default logged-out-content">
                         <Logo/>
                         <H1/>
                         <Form/>
