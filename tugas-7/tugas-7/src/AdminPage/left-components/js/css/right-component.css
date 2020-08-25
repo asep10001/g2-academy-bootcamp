@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
+
+img#logo {
+  width: 35%;
+}
+
+label {
+  font-family: "Russo One", sans-serif;
+  font-size: x-large;
+}
+
+input.uk-input,
+select.uk-select {
+  font-size: 1.4em;
+}
+
+button.uk-button.uk-button-danger {
+  width: 100%;
+  background: rgb(1, 186, 255);
+}
+
+div {
+  margin-top: 1em;
+}
+
+.uk-container {
+  text-align-last: center;
+}

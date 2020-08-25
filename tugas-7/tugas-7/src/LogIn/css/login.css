@@ -1,0 +1,49 @@
+.g-logged-out {
+  background-image: url("https://my.lunchmoney.app/f1390a00bebc4d9125ee6ca492f26d8d.jpg");
+  background-repeat: repeat;
+  background-size: 50px 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow-y: scroll;
+}
+
+#logo-container {
+    margin: 1em auto;
+    height: 100px;
+    width: 100px;
+}
+
+#logo {
+  background-image: url("https://my.lunchmoney.app/45cc81deeafb95bc47a680cb64ea0435.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 75px;
+  height: 75px;
+  position: relative;
+  top: 0px;
+  left: 10px;
+  animation-name: mascot-bounce;
+  animation-duration: 0.7s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+}
+
+#shadow {
+  margin: 10px auto;
+  width: 50px;
+  height: 10px;
+  background: #000;
+  opacity: 0.5;
+  border-radius: 80%;
+  animation-name: mascot-shadow;
+  animation-duration: 0.7s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+}
+

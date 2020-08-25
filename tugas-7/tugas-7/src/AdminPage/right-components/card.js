@@ -8,7 +8,7 @@ import {Button1} from './button'
 export default class Card extends Component{
     render(){
         return (
-            <div class="uk-margin-auto uk-margin-auto-vertical uk-card uk-card-default uk-text-center uk-card-body">
+            <div className="uk-margin-auto uk-margin-auto-vertical uk-card uk-card-default uk-text-center uk-card-body">
             <H1/>
             <P/>
             <Button1/>
