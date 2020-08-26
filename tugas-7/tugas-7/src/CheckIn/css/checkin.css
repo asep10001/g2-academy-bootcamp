@@ -1,0 +1,89 @@
+body {
+  height: 100vh !important;
+  background: #ffffff;
+}
+
+.uk-container.container-pertama {
+  text-align: left;
+}
+
+h1#judul {
+    font-family: sans-serif;
+    font-weight: 900 !important;
+    color: #545454 !important;
+    font-size: 2.5em;
+}
+
+.uk-width-1-2.uk-first-column {
+  text-align: center;
+}
+
+img#logo {
+  -o-object-fit: contain;
+     object-fit: contain;
+  height: 20% !important;
+  width: 100%;
+}
+
+img#gambar-logo {
+  width: 23%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  height: 15% !important;
+}
+
+a.uk-accordion-title {
+  color: #545454;
+  font-size: xx-large;
+  font-weight: 900;
+  font-family: cursive;
+}
+
+.uk-accordion-title:focus, .uk-accordion-title:hover {
+  color: #545454 !important;
+  text-decoration: none;
+  outline: 0;
+}
+
+button.uk-button.uk-button-default.uk-button-large.uk-animation-scale-up {
+  background: aliceblue;
+  opacity: 75%;
+  font-size: x-large;
+  color: black;
+  font-weight: 900;
+  border-radius: 50px;
+}
+
+.uk-h1, h1 {
+  font-size: 2.23125rem !important;
+  line-height: 1.2;
+  color: #81fd69 !important;
+  font-size: large;
+  font-weight: 900 !important;
+}
+
+button#checkout {
+  background: #545454;
+  font-weight: 900;
+  border-radius: 20px 0 0 20px;
+}
+
+button#home {
+  background: white;
+  color: #545;
+  border: solid 2px #545;
+  border-radius: 20px 0 0 20px;
+  font-weight: 900;
+}
+
+.uk-width-1-2 {
+  width: 50%;
+  height: auto;
+}
+
+img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 70vh !important;
+}
+/*# sourceMappingURL=generate.css.map */
