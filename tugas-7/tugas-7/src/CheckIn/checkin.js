@@ -7,7 +7,7 @@ export default class CheckIn extends Component {
   render() {
     return (
       <div classNames="uk-background-cover uk-height-medium uk-panel uk-animation-slide-bottom">
-          <Heading/>
+          {/* <Heading/> */}
           <div className="uk-child-width-1-2 container-pertama" uk-grid="true">
               <LeftComponent/>
               <RightComponent/>

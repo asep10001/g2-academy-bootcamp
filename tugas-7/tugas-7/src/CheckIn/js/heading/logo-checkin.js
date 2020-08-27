@@ -3,7 +3,7 @@ import React, { Component } from "react";
 export class LogoCheckin extends Component {
   render() {
     return (
-      <div className="uk-width-2-3 uk-first-column">
+      <div className="uk-width-1-2 uk-first-column">
         <h1>
           <img
             id="gambar-logo"

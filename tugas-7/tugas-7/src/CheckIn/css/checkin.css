@@ -18,6 +18,11 @@ h1#judul {
   text-align: center;
 }
 
+button.uk-button.uk-button-primary {
+  width: fit-content !important;
+}
+
+
 img#logo {
   -o-object-fit: contain;
      object-fit: contain;
