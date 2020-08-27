@@ -13,9 +13,9 @@ class App extends Component{
   render(){
     return (
       <>
-      <generateCar/>
+      {/* <generateCar/> */}
       {/* <Admin/> */}
-      {/* <CheckIn/> */}
+      <CheckIn/>
       {/* <LogIn/> */}
       {/* <LeftComponent/> */}
       </>

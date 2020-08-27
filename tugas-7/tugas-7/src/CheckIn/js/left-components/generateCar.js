@@ -1,25 +1,34 @@
 import React, { Component } from "react";
 import carFunction from "./carFunction";
+import { saveCostCar } from "./saveToLocalStorage";
 
-class generateCar extends Component {
-  constructor(props) {
-    super(props);
+export default function  GenerateCar (props) {
+  if (props.id !== ""){
+    saveCostCar(props.id, props.time, props.nopol)
+  } else{
+    console.log("belum di simpan")
+  }
+  return(
+    <div>
+    <div>
+      <h1>{props.id}</h1>
+      <h1>{props.time}</h1>
+      <h1>{props.nopol}</h1>
+    </div>
+    <button
+      className="uk-button uk-button-default uk-button-large uk-animation-scale-up"
+      type="submit"
+      onClick={props.generate}
+    >
+      GENERATE CAR
+    </button>
+  </div>
 
-    this.state = {
-      parentName: "parent",
-    };
-    this.greetParent = this.greetParent.bind(this);
+  ) 
+
   }
 
-  greetParent() {
-    alert(`Hello ${this.state.parentName}`);
-  }
 
-  render() {
-    return <div>
-        <button>Hi</button>
-        <carFunction/></div>;
-  }
-}
 
-export default generateCar;
+
+
