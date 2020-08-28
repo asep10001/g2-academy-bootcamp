@@ -6,6 +6,7 @@ import "../../node_modules/uikit/dist/css/uikit.min.css";
 import "../../node_modules/uikit/dist/js/uikit.min.js";
 import "../../node_modules/uikit/dist/js/uikit-icons.min.js";
 import './App.css';
+import Member from './pages/member';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Header />
         <NavBar />
         <Footer />
+        <Member/>
       </Router>
     </div>
   );

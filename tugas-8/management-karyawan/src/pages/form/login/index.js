@@ -11,7 +11,7 @@ class Login extends Component {
     this.state = {
       username: "",
       password: "",
-      isLogin: 0,
+      isLogin: false,
       link: "/",
     };
     this.showSecret = this.showSecret.bind(this);
@@ -31,13 +31,16 @@ class Login extends Component {
 
     if (username === "admin" && password === "admin") {
       this.setState({
-        isLogin: 1,
+        isLogin: true,
       });
     } else if (username === "user" && password === "user") {
       this.setState({
         isLogin: 2,
       });
     }
+
+    console.log(this.state.isLogin)
+
   };
 
   showSecret = () => {
@@ -73,7 +76,7 @@ class Login extends Component {
             <button onClick={this.doLogin.bind(this)}>Login</button>
           </div>
 
-          {this.state.isLogin === 1 ? (
+          {this.state.isLogin === true ? (
             <Redirect to="/admin"/>
           ) : null}
 

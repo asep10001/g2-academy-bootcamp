@@ -44,7 +44,6 @@ class RowInputKaryawan extends Component {
 
   handleSubmit(event) {
     alert("A name was submitted: " + this.state.nik);
-    const nomorInduk = this.state.nik;
     karyawan.push({
       nik: this.state.nik,
       name: this.state.name,

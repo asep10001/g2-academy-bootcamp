@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 import { Home, Login, ProfileKaryawan, HalamanHRD } from "../../pages";
-import Menu from "@material-ui/core/Menu";
 import { MenuItem, Button } from "@material-ui/core";
 import InputKaryawan from "../../pages/inputKaryawan";
 import DaftarKaryawan from "../../pages/daftarKaryawan";
+import { Menu } from "../../components/elements";
+import Admin from "../../pages/admin";
+import Register from "../../pages/register";
+import Member from "../../pages/member";
 
 // import Popper from '@material-ui/core/Popper';
 
@@ -13,7 +16,8 @@ class NavBar extends Component {
     super(props);
     this.state = {
       open: false,
-      hidden: true
+      hidden: true,
+      isLogin: false
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleClose = this.handleClose.bind(this);
@@ -43,7 +47,7 @@ class NavBar extends Component {
         >
           Open Menu
         </Button>
-        <Menu
+        {/* <Menu
           id="simple-menu"
             // anchorEl={anchorEl}
             // Popper
@@ -51,22 +55,31 @@ class NavBar extends Component {
           open={Boolean(this.state.open)}
         //   open="false"
         onClose={this.handleClose}
-        >
+        > */}
           <Link to="/">
-            <MenuItem>Home</MenuItem>
+            <Menu>Home</Menu>
           </Link>
           <Link to="/about">
-            <MenuItem>About</MenuItem>
+            <Menu>About</Menu>
           </Link>
           <Link to="/contact">
-            <MenuItem>Contact</MenuItem>
+            <Menu>Contact</Menu>
           </Link>
           <Link to="/login">
-            <MenuItem>Login</MenuItem>
+            <Menu>Login</Menu>
           </Link>
-          <Link to="/karyawan" hidden={this.state.hidden}>
+          <Link to="/logout">
+            <Menu>Logout</Menu>
           </Link>
-          <Link to="/admin" hidden={this.state.hidden}>
+          <Link to="/register">
+            <Menu>Register</Menu>
+          </Link>
+          <Link to="/member">
+            <Menu>Register</Menu>
+          </Link>
+          {/* <Link to="/karyawan">
+          </Link>
+          <Link to="/admin">
           </Link>
           <Link to="/input_karyawan" >
           <MenuItem>Input Karyawan</MenuItem>
@@ -74,13 +87,21 @@ class NavBar extends Component {
           <Link to="/daftar_karyawan" >
           <MenuItem>Daftar Karyawan</MenuItem>
           </Link>
-        </Menu>
+          <Link to="/daftar_karyawan" >
+          <MenuItem>Daftar Karyawan</MenuItem>
+          </Link> */}
+        {/* </Menu> */}
 
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/login" component={Login} />
+          <Route path="/login">
+            <Login logInStatus={this.props.isLogin}/>
+          </Route>
+          <Route path="/register" component={Register} />
           <Route path="/karyawan" component={ProfileKaryawan} />
-          <Route path="/admin" component={HalamanHRD} />
+          <Route path="/admin" component={Admin} />
+          <Route path="/member" component={Member} />
+
           <Route path="/input_karyawan" component={InputKaryawan} />
           <Route path="/daftar_karyawan" component={DaftarKaryawan} />
         </Switch>
@@ -88,5 +109,4 @@ class NavBar extends Component {
     );
   }
 }
-
 export default NavBar;

@@ -43,7 +43,7 @@ export class DaftarKaryawan extends Component {
           <th class="uk-table-expand">Actions</th>
         </tr>
 
-        <tbody>{rows}</tbody>
+        {/* <tbody>{rows}</tbody> */}
       </table>
     );
   }
