@@ -1,10 +1,21 @@
+
 import React from 'react';
+import { BrowserRouter as Router } from "react-router-dom"
+import { Header, NavBar, Footer } from "./template"
+import "../../node_modules/uikit/dist/css/uikit.min.css";
+import "../../node_modules/uikit/dist/js/uikit.min.js";
+import "../../node_modules/uikit/dist/js/uikit-icons.min.js";
 import './App.css';
+
 
 function App() {
   return (
-      <div>
-    Helo
+    <div className="App next">
+      <Router>
+        <Header />
+        <NavBar />
+        <Footer />
+      </Router>
     </div>
   );
 }
