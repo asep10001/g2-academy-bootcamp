@@ -4,6 +4,7 @@ import { Home, Login, ProfileKaryawan, HalamanHRD } from "../../pages";
 import Menu from "@material-ui/core/Menu";
 import { MenuItem, Button } from "@material-ui/core";
 import InputKaryawan from "../../pages/inputKaryawan";
+import DaftarKaryawan from "../../pages/daftarKaryawan";
 
 // import Popper from '@material-ui/core/Popper';
 
@@ -68,7 +69,10 @@ class NavBar extends Component {
           <Link to="/admin" hidden={this.state.hidden}>
           </Link>
           <Link to="/input_karyawan" >
-              Input Karyawan
+          <MenuItem>Input Karyawan</MenuItem>
+          </Link>
+          <Link to="/daftar_karyawan" >
+          <MenuItem>Daftar Karyawan</MenuItem>
           </Link>
         </Menu>
 
@@ -78,6 +82,7 @@ class NavBar extends Component {
           <Route path="/karyawan" component={ProfileKaryawan} />
           <Route path="/admin" component={HalamanHRD} />
           <Route path="/input_karyawan" component={InputKaryawan} />
+          <Route path="/daftar_karyawan" component={DaftarKaryawan} />
         </Switch>
       </div>
     );

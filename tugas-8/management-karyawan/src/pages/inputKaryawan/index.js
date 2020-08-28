@@ -1,6 +1,68 @@
 import React, { Component } from "react";
+import { RowInput } from "../../components/elements";
 
-class InputKaryawan extends Component {
+const karyawan = localStorage.karyawan ? JSON.parse(localStorage.karyawan) : [];
+class RowInputKaryawan extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      nik: "",
+      name: "",
+      birthDate: "",
+      gender: "",
+      address: "",
+      religion: "",
+      citizenship: "",
+      email: "",
+      division: "",
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  setValueRowInput = (el) => {
+    this.setState({
+      [el.name]: el.value,
+    });
+  };
+  handleChange(event) {
+    this.setState({
+      nik: event.target.value,
+      name: event.target.value,
+      birthDate: event.target.value,
+      gender: event.target.value,
+      address: event.target.value,
+      religion: event.target.value,
+      citizenship: event.target.value,
+      email: event.target.value,
+      division: event.target.value,
+    });
+  }
+
+  
+
+  handleSubmit(event) {
+    alert("A name was submitted: " + this.state.nik);
+    const nomorInduk = this.state.nik;
+    karyawan.push({
+      nik: this.state.nik,
+      name: this.state.name,
+      birthDate: this.state.birthDate,
+      gender: this.state.gender,
+      address: this.state.address,
+      religion: this.state.religion,
+      citizenship: this.state.citizenship,
+      email: this.state.email,
+      division: this.state.division,
+    });
+    localStorage.setItem("karyawan", JSON.stringify(karyawan));
+    event.preventDefault();
+    // ()=>{
+
+    // }
+  }
+
   render() {
     return (
       <div classNameName="uk-container uk-container-expand uk-card uk-card-default">
@@ -40,6 +102,7 @@ class InputKaryawan extends Component {
           uk-grid=""
         >
           <form
+            onSubmit={this.handleSubmit}
             id="add-karyawan"
             className="uk-form-horizontal uk-margin-large uk-first-column"
             href="#"
@@ -49,14 +112,17 @@ class InputKaryawan extends Component {
                 NIK
               </label>
               <div className="uk-form-controls">
-                <input
-                  className="uk-input"
+                <RowInput
+                  className="uk-RowInput"
                   id="form-horizontal-text"
                   type="number"
                   name="nik"
-                  placeholder="Please input your taka address"
+                  placeholder="Please RowInput your NIK"
                   min="1"
-                ></input>
+                  value={this.state.nik}
+                  setValue={(el) => this.setValueRowInput(el)}
+                  onChange={(el) => this.props.onChangeValue(el.target)}
+                ></RowInput>
               </div>
             </div>
             <div className="uk-margin">
@@ -64,13 +130,16 @@ class InputKaryawan extends Component {
                 Name
               </label>
               <div className="uk-form-controls">
-                <input
+                <RowInput
                   name="name"
-                  className="uk-input"
+                  className="uk-RowInput"
                   id="form-horizontal-text"
                   type="text"
                   placeholder="What's your name new ninja?"
-                ></input>
+                  value={this.state.name}
+                  setValue={(el) => this.setValueRowInput(el)}
+                  onChange={(el) => this.props.onChangeValue(el.target)}
+                ></RowInput>
               </div>
             </div>
 
@@ -79,127 +148,138 @@ class InputKaryawan extends Component {
                 birthDate
               </label>
               <div className="uk-form-controls">
-                <input
+                <RowInput
                   name="birthDate"
-                  className="uk-input"
+                  className="uk-RowInput"
                   id="form-horizontal-text"
-                  type="date"
-                  min="1"
-                ></input>
-              </div>
-            </div>
-            <div className="uk-margin">
-              <div className="uk-form-label">Gender</div>
-              <div className="uk-form-controls uk-form-controls-text">
-                <label>Male</label>
-                <input
-                  className="uk-radio"
-                  type="radio"
-                  id="radio"
-                  name="gender"
-                ></input>
-
-                <br></br>
-                <label> Female</label>
-                <input
-                  className="uk-radio"
-                  type="radio"
-                  id="radio"
-                  name="gender"
-                ></input>
-
-                <br></br>
-                <label>Genderless</label>
-                <input
-                  classNameName="uk-radio"
-                  type="radio"
-                  id="radio"
-                  name="gender"
-                ></input>
+                  type="text"
+                  placeholder="What's your birthdate new ninja?"
+                  value={this.state.birthDate}
+                  setValue={(el) => this.setValueRowInput(el)}
+                  onChange={(el) => this.props.onChangeValue(el.target)}
+                ></RowInput>
               </div>
             </div>
             <div className="uk-margin">
               <label className="uk-form-label" for="form-horizontal-text">
-                Address
+                Gender
               </label>
               <div className="uk-form-controls">
-                <input
+                <RowInput
+                  name="gender"
+                  className="uk-RowInput"
+                  id="form-horizontal-text"
+                  type="text"
+                  placeholder="What's your gender new ninja?"
+                  value={this.state.gender}
+                  setValue={(el) => this.setValueRowInput(el)}
+                  onChange={(el) => this.props.onChangeValue(el.target)}
+                ></RowInput>
+              </div>
+            </div>
+
+            <div className="uk-margin">
+              <label className="uk-form-label" for="form-horizontal-text">
+                address
+              </label>
+              <div className="uk-form-controls">
+                <RowInput
                   name="address"
-                  className="uk-input"
+                  className="uk-RowInput"
                   id="form-horizontal-text"
                   type="text"
-                  placeholder="What's your village name?"
-                ></input>
+                  placeholder="What's your address new ninja?"
+                  value={this.state.address}
+                  setValue={(el) => this.setValueRowInput(el)}
+                  onChange={(el) => this.props.onChangeValue(el.target)}
+                ></RowInput>
               </div>
             </div>
+
             <div className="uk-margin">
               <label className="uk-form-label" for="form-horizontal-text">
-                Religion
+                religion
               </label>
               <div className="uk-form-controls">
-                <input
+                <RowInput
                   name="religion"
-                  className="uk-input"
+                  className="uk-RowInput"
                   id="form-horizontal-text"
                   type="text"
-                  placeholder="What's your belief?"
-                ></input>
+                  placeholder="What's your religion new ninja?"
+                  value={this.state.religion}
+                  setValue={(el) => this.setValueRowInput(el)}
+                  onChange={(el) => this.props.onChangeValue(el.target)}
+                ></RowInput>
               </div>
             </div>
 
             <div className="uk-margin">
               <label className="uk-form-label" for="form-horizontal-text">
-                Citizenship
+                citizenship
               </label>
               <div className="uk-form-controls">
-                <input
+                <RowInput
                   name="citizenship"
-                  className="uk-input"
+                  className="uk-RowInput"
                   id="form-horizontal-text"
                   type="text"
-                  placeholder="What's your belief?"
-                ></input>
+                  placeholder="What's your citizenship new ninja?"
+                  value={this.state.citizenship}
+                  setValue={(el) => this.setValueRowInput(el)}
+                  onChange={(el) => this.props.onChangeValue(el.target)}
+                ></RowInput>
               </div>
             </div>
 
             <div className="uk-margin">
               <label className="uk-form-label" for="form-horizontal-text">
-                E-mail
+                email
               </label>
               <div className="uk-form-controls">
-                <input
+                <RowInput
                   name="email"
-                  className="uk-input"
+                  className="uk-RowInput"
                   id="form-horizontal-text"
-                  type="email"
-                  placeholder="Please input your taka address"
-                  min="1"
-                ></input>
+                  type="text"
+                  placeholder="What's your email new ninja?"
+                  value={this.state.email}
+                  setValue={(el) => this.setValueRowInput(el)}
+                  onChange={(el) => this.props.onChangeValue(el.target)}
+                ></RowInput>
               </div>
             </div>
 
             <div className="uk-margin">
-              <label className="uk-form-label" for="form-horizontal-select">
-                Division
+              <label className="uk-form-label" for="form-horizontal-text">
+                division
               </label>
               <div className="uk-form-controls">
-                <select
+                <RowInput
                   name="division"
-                  className="uk-select"
-                  id="form-horizontal-select"
-                >
-                  <option>Anbu</option>
-                  <option>Jounnin</option>
-                  <option>Chunnin</option>
-                  <option>Gennin</option>
-                </select>
+                  className="uk-RowInput"
+                  id="form-horizontal-text"
+                  type="text"
+                  placeholder="What's your division new ninja?"
+                  value={this.state.division}
+                  setValue={(el) => this.setValueRowInput(el)}
+                  onChange={(el) => this.props.onChangeValue(el.target)}
+                ></RowInput>
               </div>
             </div>
+
           </form>
         </div>
+        <button
+          className="uk-button uk-button-default uk-button-large"
+          onClick={this.handleSubmit}
+          id="submit"
+        >
+          Submit
+        </button>
       </div>
     );
   }
 }
 
-export default InputKaryawan;
+export default RowInputKaryawan;
