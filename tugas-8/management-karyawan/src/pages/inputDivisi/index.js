@@ -1,3 +1,5 @@
+// MERUPAKAN CHILD DARI DAFTAR KARYAWAN
+
 import React, { Component } from "react";
 
 class InputDivisi extends Component {
