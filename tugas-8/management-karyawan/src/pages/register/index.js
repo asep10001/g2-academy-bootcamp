@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Input } from "@material-ui/core";
 import { RowInput } from "../../components/elements";
+import { Redirect } from "react-router-dom";
 
 export class Register extends Component {
   constructor(props) {
@@ -26,11 +27,12 @@ export class Register extends Component {
 
     if (password === repassword ) {
       this.setState({
-        isLogin: true,
+        isLogin: 2,
       });
     } else if (username  !== password) {
+      alert ("password tidak sama")
       this.setState({
-        isLogin: false,
+        isLogin: 0,
       });
     }
   };

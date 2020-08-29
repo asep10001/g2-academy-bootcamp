@@ -38,7 +38,7 @@ class PenempatanDivisi extends Component {
           <td>
             <RowInput
               type="text"
-              name="newDivision"
+              name={"newDivision"+i}
               value={this.state.newDivision}
               setValue={(el) => this.setValueInput(el)}
             ></RowInput>

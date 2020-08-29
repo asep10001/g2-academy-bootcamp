@@ -55,7 +55,7 @@ export class DaftarKaryawan extends Component {
     });
     this.ind = i;
     // console.log(i, this.state.nik, this.state.name);
-    // console.log(this.set.datalist);
+    console.log("ditekan");
   };
 
 
@@ -189,6 +189,8 @@ export class DaftarKaryawan extends Component {
           email={this.state.email}
           division={this.state.division}
           indek={this.ind}
+          
+          
         />
         <Hidden>
           <ProfileKaryawan

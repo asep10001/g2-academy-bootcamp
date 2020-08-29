@@ -9,6 +9,7 @@ import Register from "../../pages/register";
 import Member from "../../pages/member";
 import UpdateKaryawan from "../../pages/form/update";
 import PenempatanDivisi from "../../pages/PenempatanDivisi";
+import InputDivisi from "../../pages/inputDivisi";
 
 // import Popper from '@material-ui/core/Popper';
 
@@ -16,7 +17,7 @@ class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogin: 0,
+      isLogin: 1,
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleClose = this.handleClose.bind(this);
@@ -142,6 +143,7 @@ class NavBar extends Component {
           <Route path="/member" component={Member} />
 
           <Route path="/input_karyawan" component={InputKaryawan} />
+          <Route path="/input_divisi" component={InputDivisi} />
           <Route path="/daftar_karyawan" component={DaftarKaryawan} />
           <Route path="/update" component={UpdateKaryawan} />
           <Route path="/assigned" component={PenempatanDivisi} />

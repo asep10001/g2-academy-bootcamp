@@ -24,7 +24,7 @@ class UpdateKaryawan extends Component {
 
   componentDidMount(){
     this.setState({
-      datalist: localStorage.karyawan ? JSON.parse(localStorage.karyawan) : []
+      dataList: localStorage.karyawan ? JSON.parse(localStorage.karyawan) : []
     })
   }
   setValueRowInput = (el) => {
@@ -70,7 +70,7 @@ class UpdateKaryawan extends Component {
     // localStorage.setItem("karyawan", JSON.stringify(karyawan));
     // event.preventDefault();
     // ()=>{
-      console.log(this.state.datalist);
+      // console.log(karyawan);
     // }
   }
 
@@ -78,6 +78,7 @@ class UpdateKaryawan extends Component {
     return (
       <div id="update" uk-modal="true" onLoad={this.handleLoad}>
         <div className="uk-modal-dialog uk-modal-body">
+          <h2 className="uk-modal-title">Update karyawan</h2>
           <div className="uk-container uk-container-expand uk-card uk-card-default">
             <div
               className="uk-child-width-expand@s uk-text-center uk-grid uk-grid-stack"
