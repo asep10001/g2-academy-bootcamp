@@ -151,7 +151,7 @@ class RowInputKaryawan extends Component {
                   name="birthDate"
                   className="uk-RowInput"
                   id="form-horizontal-text"
-                  type="text"
+                  type="date"
                   placeholder="What's your birthdate new ninja?"
                   value={this.state.birthDate}
                   setValue={(el) => this.setValueRowInput(el)}
@@ -240,7 +240,7 @@ class RowInputKaryawan extends Component {
                   name="email"
                   className="uk-RowInput"
                   id="form-horizontal-text"
-                  type="text"
+                  type="email"
                   placeholder="What's your email new ninja?"
                   value={this.state.email}
                   setValue={(el) => this.setValueRowInput(el)}

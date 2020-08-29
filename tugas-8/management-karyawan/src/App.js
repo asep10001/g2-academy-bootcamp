@@ -9,6 +9,7 @@ import './App.css';
 import Member from './pages/member';
 
 
+
 function App() {
   return (
     <div className="App next">
@@ -16,7 +17,7 @@ function App() {
         <Header />
         <NavBar />
         <Footer />
-        <Member/>
+        {/* <Member/> */}
       </Router>
     </div>
   );

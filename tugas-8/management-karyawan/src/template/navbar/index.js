@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 import { Home, Login, ProfileKaryawan, HalamanHRD } from "../../pages";
-import { MenuItem, Button } from "@material-ui/core";
+import { MenuItem, Button, Menu } from "@material-ui/core";
 import InputKaryawan from "../../pages/inputKaryawan";
 import DaftarKaryawan from "../../pages/daftarKaryawan";
-import { Menu } from "../../components/elements";
 import Admin from "../../pages/admin";
 import Register from "../../pages/register";
 import Member from "../../pages/member";
@@ -47,7 +46,7 @@ class NavBar extends Component {
         >
           Open Menu
         </Button>
-        {/* <Menu
+        <Menu
           id="simple-menu"
             // anchorEl={anchorEl}
             // Popper
@@ -55,29 +54,29 @@ class NavBar extends Component {
           open={Boolean(this.state.open)}
         //   open="false"
         onClose={this.handleClose}
-        > */}
+        >
           <Link to="/">
-            <Menu>Home</Menu>
+            <MenuItem>Home</MenuItem>
           </Link>
           <Link to="/about">
-            <Menu>About</Menu>
+            <MenuItem>About</MenuItem>
           </Link>
           <Link to="/contact">
-            <Menu>Contact</Menu>
+            <MenuItem>Contact</MenuItem>
           </Link>
           <Link to="/login">
-            <Menu>Login</Menu>
+            <MenuItem>Login</MenuItem>
           </Link>
           <Link to="/logout">
-            <Menu>Logout</Menu>
+            <MenuItem>Logout</MenuItem>
           </Link>
           <Link to="/register">
-            <Menu>Register</Menu>
+            <MenuItem>Register</MenuItem>
           </Link>
           <Link to="/member">
-            <Menu>Register</Menu>
+            <MenuItem>Register</MenuItem>
           </Link>
-          {/* <Link to="/karyawan">
+          <Link to="/karyawan">
           </Link>
           <Link to="/admin">
           </Link>
@@ -87,10 +86,7 @@ class NavBar extends Component {
           <Link to="/daftar_karyawan" >
           <MenuItem>Daftar Karyawan</MenuItem>
           </Link>
-          <Link to="/daftar_karyawan" >
-          <MenuItem>Daftar Karyawan</MenuItem>
-          </Link> */}
-        {/* </Menu> */}
+        </Menu>
 
         <Switch>
           <Route exact path="/" component={Home} />
