@@ -3,20 +3,14 @@ import { RowInput } from "../../../components/elements";
 import { Redirect } from "react-router-dom";
 import { NavBar } from "../../../template";
 
-
-
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: "",
       password: "",
-      isLogin: false,
-      link: "/",
     };
-    this.showSecret = this.showSecret.bind(this);
   }
-
 
   setValueInput = (el) => {
     this.setState({
@@ -30,27 +24,26 @@ class Login extends Component {
     console.info(password);
 
     if (username === "admin" && password === "admin") {
-      this.setState({
-        isLogin: true,
-      });
+      this.props.changeLogin(1);
     } else if (username === "user" && password === "user") {
-      this.setState({
-        isLogin: 2,
-      });
+      this.props.changeLogin(2);
+    } else {
+      this.props.changeLogin(0);
     }
-
-    console.log(this.state.isLogin)
-
   };
 
   showSecret = () => {
-      // alert("selamat datang karyawan")
-      this.setState({
-        link: "./karyawan",
-      });
+    // alert("selamat datang karyawan")
+    this.setState({
+      link: "./karyawan",
+    });
   };
 
   render() {
+    if (this.props.LogInStatus) 
+      return <Redirect to="/"/>
+
+
     return (
       <div
         style={{ marginTop: "10px", display: "flex", justifyContent: "center" }}
@@ -58,7 +51,7 @@ class Login extends Component {
         <div style={{ width: "max-content" }}>
           <RowInput
             label="Username:"
-            type="username"
+            type="text"
             name="username"
             value={this.state.username}
             setValue={(el) => this.setValueInput(el)}
@@ -76,21 +69,10 @@ class Login extends Component {
             <button onClick={this.doLogin.bind(this)}>Login</button>
           </div>
 
-          {this.state.isLogin === true ? (
-            <Redirect to="/admin"/>
-          ) : null}
-
-
-          {this.state.isLogin === 2 ? (
-          <Redirect to="/karyawan"/>
-          ) : null}
-          
-
         </div>
       </div>
     );
   }
 }
-
 
 export default Login;

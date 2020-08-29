@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import UpdateKaryawan from "../form/update";
+import { Hidden } from "@material-ui/core";
+import ProfileKaryawan from "../profileKaryawan";
+import { Redirect } from "react-router-dom";
+import PenempatanDivisi from "../PenempatanDivisi";
 
 //cek dulu dah ada apa belum
 
@@ -54,6 +58,24 @@ export class DaftarKaryawan extends Component {
     // console.log(this.set.datalist);
   };
 
+
+
+  showKaryawan = (i) => {
+    this.setState({
+      nik: this.state.dataList[i].nik,
+      name: this.state.dataList[i].name,
+      birthDate: this.state.dataList[i].birthDate,
+      gender: this.state.dataList[i].gender,
+      address: this.state.dataList[i].address,
+      religion: this.state.dataList[i].religion,
+      citizenship: this.state.dataList[i].citizenship,
+      email: this.state.dataList[i].email,
+      division: this.state.dataList[i].division,
+    });
+    this.ind = i;
+    console.log("berjalan" + this.ind)
+  };
+
   deleteKaryawan = (ind) => {
     //ini fungsi delete karyawannya
     this.dataKaryawan = this.state.dataList;
@@ -73,7 +95,7 @@ export class DaftarKaryawan extends Component {
 
   looping = () => {
     let rows = [];
-    
+
     for (let i = 0; i < this.state.dataList.length; i++) {
       rows.push(
         <tr>
@@ -97,9 +119,17 @@ export class DaftarKaryawan extends Component {
             >
               Update Data
             </button>
-            <a id="info" href="/ninja">
-              <button>Info</button>
-            </a>
+            <button
+              id="info"
+              onClick={() => this.showKaryawan(i)}
+              className="uk-button uk-button-default uk-margin-small-right"
+              type="button"
+              uk-toggle="target: #detail"
+              type="button"
+              id="info"
+            >
+              Info
+            </button>
             <a
               id="delete"
               onClick={() => this.deleteKaryawan(i)}
@@ -111,7 +141,7 @@ export class DaftarKaryawan extends Component {
             ';
           </td>
         </tr>
-      )
+      );
     }
 
     return rows;
@@ -145,43 +175,6 @@ export class DaftarKaryawan extends Component {
             </tr>
           </thead>
           <tbody>
-            {/* {this.looping()} */}
-            {/* {this.state.dataList.map((home) => (
-              <tr key={}>
-                <td>{home.nik}</td>
-                <td>{home.name}</td>
-                <td>{home.birthDate}</td>
-                <td>{home.gender}</td>
-                <td>{home.address}</td>
-                <td>{home.religion}</td>
-                <td>{home.citizenship}</td>
-                <td>{home.email}</td>
-                <td>{home.division}</td>
-                <td>
-                  <button
-                    onClick={() => this.updateClickHandler(home.nik)}
-                    className="uk-button uk-button-default uk-margin-small-right"
-                    type="button"
-                    uk-toggle="target: #update"
-                    id="edit"
-                  >
-                    Update Data
-                  </button>
-                  <a id="info" href="/ninja">
-                    <button>Info</button>
-                  </a>
-                  <a
-                    id="delete"
-                    onClick={() => this.deleteKaryawan(home.nik)}
-                    className="uk-button uk-button-danger delete"
-                    data-id=""
-                  >
-                    Delete
-                  </a>
-                  ';
-                </td>
-              </tr>
-            ))} */}
             {this.looping()}
           </tbody>
         </table>
@@ -197,6 +190,21 @@ export class DaftarKaryawan extends Component {
           division={this.state.division}
           indek={this.ind}
         />
+        <Hidden>
+          <ProfileKaryawan
+            nik={this.state.nik}
+            name={this.state.name}
+            birthDate={this.state.birthDate}
+            gender={this.state.gender}
+            address={this.state.address}
+            religion={this.state.religion}
+            citizenship={this.state.citizenship}
+            email={this.state.email}
+            division={this.state.division}
+            indek={this.ind}
+          />
+        </Hidden>
+
       </>
     );
   }

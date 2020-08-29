@@ -4,7 +4,7 @@ export class Admin extends Component {
     render() {
         return (
             <div>
-                Ini Halaman Admin
+                WELCOME ADMIN
             </div>
         )
     }
