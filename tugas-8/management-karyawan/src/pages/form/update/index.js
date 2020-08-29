@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { RowInput } from "../../../components/elements";
+import Home from "../../home";
 
-const dataKaryawan = localStorage.dataKaryawan ? JSON.parse(localStorage.dataKaryawan) : [];
+
 class UpdateKaryawan extends Component {
   constructor(props) {
     super(props);
@@ -16,19 +17,25 @@ class UpdateKaryawan extends Component {
       citizenship: "",
       email: "",
       division: "",
+      dataList: []
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount(){
+    this.setState({
+      dataList: localStorage.karyawan ? JSON.parse(localStorage.karyawan) : []
+    })
+  }
   setValueRowInput = (el) => {
     this.setState({
       [el.name]: el.value,
     });
-    console.log(this.props.nik)
+    console.log(this.state.nik);
   };
 
-  handleLoad=()=>{
-    this.setState ({
+  handleLoad = () => {
+    this.setState({
       nik: this.props.nik,
       name: this.props.name,
       birthDate: this.props.birthDate,
@@ -39,37 +46,39 @@ class UpdateKaryawan extends Component {
       email: this.props.email,
       division: this.props.division,
     });
-  }
+  };
 
-  componentDidMount(){
-    this.handleLoad()
+  componentDidMount() {
+    this.handleLoad();
   }
 
   handleSubmit(event) {
-    alert("A nik with " + this.state.nik +"was updated" );
-    dataKaryawan[this.props.indek]={
-      nik: this.state.nik,
-      name: this.state.name,
-      birthDate: this.state.birthDate,
-      gender: this.state.gender,
-      address: this.state.address,
-      religion: this.state.religion,
-      citizenship: this.state.citizenship,
-      email: this.state.email,
-      division: this.state.division,
-    };
-    localStorage.setItem("dataKaryawan", JSON.stringify(dataKaryawan));
-    event.preventDefault();
+    alert("A nik with " + this.state.nik + " was updated");
+    let karyawan = this.state.dataList;
+    karyawan.map((tes) => tes.nik)
+    // karyawan.splice(this.props.indek, 1, {
+    //   nik: karyawan.nik,
+    //   name: karyawan.name,
+    //   birthDate: karyawan.birthDate,
+    //   gender: karyawan.gender,
+    //   address: karyawan.address,
+    //   religion: karyawan.religion,
+    //   citizenship: karyawan.citizenship,
+    //   email: karyawan.email,
+    //   division: karyawan.division,
+    // });
+    // localStorage.setItem("karyawan", JSON.stringify(karyawan));
+    // event.preventDefault();
     // ()=>{
-
+      // console.log(karyawan);
     // }
   }
 
   render() {
     return (
-      <div id="update" uk-modal="true" d>
+      <div id="update" uk-modal="true" onLoad={this.handleLoad}>
         <div className="uk-modal-dialog uk-modal-body">
-          <h2 className = "uk-modal-title">Update karyawan</h2>
+          <h2 className="uk-modal-title">Update karyawan</h2>
           <div className="uk-container uk-container-expand uk-card uk-card-default">
             <div
               className="uk-child-width-expand@s uk-text-center uk-grid uk-grid-stack"
@@ -114,7 +123,10 @@ class UpdateKaryawan extends Component {
                 href="#"
               >
                 <div className="uk-margin">
-                  <label className="uk-form-label" htmlFor="form-horizontal-text">
+                  <label
+                    className="uk-form-label"
+                    htmlFor="form-horizontal-text"
+                  >
                     NIK
                   </label>
                   <div className="uk-form-controls">
@@ -132,7 +144,10 @@ class UpdateKaryawan extends Component {
                   </div>
                 </div>
                 <div className="uk-margin">
-                  <label className="uk-form-label" htmlFor="form-horizontal-text">
+                  <label
+                    className="uk-form-label"
+                    htmlFor="form-horizontal-text"
+                  >
                     Name
                   </label>
                   <div className="uk-form-controls">
@@ -150,7 +165,10 @@ class UpdateKaryawan extends Component {
                 </div>
 
                 <div className="uk-margin">
-                  <label className="uk-form-label" for="form-horizontal-text">
+                  <label
+                    className="uk-form-label"
+                    htmlFor="form-horizontal-text"
+                  >
                     birthDate
                   </label>
                   <div className="uk-form-controls">
@@ -167,7 +185,10 @@ class UpdateKaryawan extends Component {
                   </div>
                 </div>
                 <div className="uk-margin">
-                  <label className="uk-form-label" for="form-horizontal-text">
+                  <label
+                    className="uk-form-label"
+                    htmlFor="form-horizontal-text"
+                  >
                     Gender
                   </label>
                   <div className="uk-form-controls">
@@ -185,7 +206,10 @@ class UpdateKaryawan extends Component {
                 </div>
 
                 <div className="uk-margin">
-                  <label className="uk-form-label" for="form-horizontal-text">
+                  <label
+                    className="uk-form-label"
+                    htmlFor="form-horizontal-text"
+                  >
                     address
                   </label>
                   <div className="uk-form-controls">
@@ -203,7 +227,10 @@ class UpdateKaryawan extends Component {
                 </div>
 
                 <div className="uk-margin">
-                  <label className="uk-form-label" for="form-horizontal-text">
+                  <label
+                    className="uk-form-label"
+                    htmlFor="form-horizontal-text"
+                  >
                     religion
                   </label>
                   <div className="uk-form-controls">
@@ -221,7 +248,10 @@ class UpdateKaryawan extends Component {
                 </div>
 
                 <div className="uk-margin">
-                  <label className="uk-form-label" for="form-horizontal-text">
+                  <label
+                    className="uk-form-label"
+                    htmlFor="form-horizontal-text"
+                  >
                     citizenship
                   </label>
                   <div className="uk-form-controls">
@@ -239,7 +269,10 @@ class UpdateKaryawan extends Component {
                 </div>
 
                 <div className="uk-margin">
-                  <label className="uk-form-label" for="form-horizontal-text">
+                  <label
+                    className="uk-form-label"
+                    htmlFor="form-horizontal-text"
+                  >
                     email
                   </label>
                   <div className="uk-form-controls">
@@ -257,7 +290,10 @@ class UpdateKaryawan extends Component {
                 </div>
 
                 <div className="uk-margin">
-                  <label className="uk-form-label" for="form-horizontal-text">
+                  <label
+                    className="uk-form-label"
+                    htmlFor="form-horizontal-text"
+                  >
                     division
                   </label>
                   <div className="uk-form-controls">
@@ -284,8 +320,8 @@ class UpdateKaryawan extends Component {
             </button>
 
             <button
+            onClick={this.handleLoad}
               className="uk-button uk-button-default uk-button-large"
-              onClick={this.handleLoad}
               id="show"
             >
               Tampilkan Data

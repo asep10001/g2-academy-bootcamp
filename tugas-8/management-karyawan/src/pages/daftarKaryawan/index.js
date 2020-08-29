@@ -6,16 +6,10 @@ import UpdateKaryawan from "../form/update";
 // const listUser = () => {
 
 // };
-const dataKaryawan = localStorage.dataKaryawan
-  ? JSON.parse(localStorage.dataKaryawan)
-  : [];
 
-let rows = [];
-let ind;
 export class DaftarKaryawan extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       nik: "",
       name: "",
@@ -26,72 +20,72 @@ export class DaftarKaryawan extends Component {
       citizenship: "",
       email: "",
       division: "",
+      dataList: [],
     };
+    // this.rows = [];
+    this.ind = undefined;
+    // this.dataKaryawan = this.state.dataList;
   }
 
-  // filter =()=> {
-  //   // Declare variables
-  //   var input, filter, table, tr, td, i, txtValue;
-  //   input = document.getElementById("search");
-  //   filter = input.value.toUpperCase();
-  //   table = document.getElementById("table-karyawan");
-  //   tr = table.getElementsByTagName("tr");
-  
-  //   // Loop through all table rows, and hide those who don't match the search query
-  //   for (i = 0; i < tr.length; i++) {
-  //     td = tr[i].getElementsByTagName("td")[7];
-  //     if (td) {
-  //       txtValue = td.textContent || td.innerText;
-  //       if (txtValue.toUpperCase().indexOf(filter) > -1) {
-  //         tr[i].style.display = "";
-  //       } else {
-  //         tr[i].style.display = "none";
-  //       }
-  //     }
-  //   }
-  // }
+  componentDidMount() {
+    this.setState({
+      dataList: localStorage.karyawan ? JSON.parse(localStorage.karyawan) : [],
+    });
+  }
+
+  debug = () => {
+    // console.log(this.dataKaryawan);
+  };
+
   updateClickHandler = (i) => {
     this.setState({
-      nik: dataKaryawan[i].nik,
-      name: dataKaryawan[i].name,
-      birthDate: dataKaryawan[i].birthDate,
-      gender: dataKaryawan[i].gender,
-      address: dataKaryawan[i].address,
-      religion: dataKaryawan[i].religion,
-      citizenship: dataKaryawan[i].citizenship,
-      email: dataKaryawan[i].email,
-      division: dataKaryawan[i].division,
+      nik: this.state.dataList[i].nik,
+      name: this.state.dataList[i].name,
+      birthDate: this.state.dataList[i].birthDate,
+      gender: this.state.dataList[i].gender,
+      address: this.state.dataList[i].address,
+      religion: this.state.dataList[i].religion,
+      citizenship: this.state.dataList[i].citizenship,
+      email: this.state.dataList[i].email,
+      division: this.state.dataList[i].division,
     });
-    ind = i;
-    console.log( i,this.state.nik, this.state.name);
+    this.ind = i;
+    // console.log(i, this.state.nik, this.state.name);
+    // console.log(this.set.datalist);
   };
 
   deleteKaryawan = (ind) => {
     //ini fungsi delete karyawannya
+    this.dataKaryawan = this.state.dataList;
     console.log(ind);
-    dataKaryawan.splice(ind, 1);
-    localStorage.setItem("dataKaryawan", JSON.stringify(dataKaryawan));
+    this.dataKaryawan.splice(ind, 1);
+    localStorage.setItem("karyawan", JSON.stringify(this.dataKaryawan));
   };
 
-  render() {
-    // for (let i = 0; i < dataKaryawan.length; i++) {
-    //   console.log(dataKaryawan[i]);
+  // looping = () => {
+  //   // for (let i = 0; i < this.dataKaryawan.length; i++) {
 
-    // }
+  //   //   console.log(this.dataKaryawan.length);
 
-    for (let i = 0; i < dataKaryawan.length; i++) {
-      const user = dataKaryawan[i];
+  //   // }
+  //   console.log(this.state.dataList[0]);
+  // };
+
+  looping = () => {
+    let rows = [];
+    
+    for (let i = 0; i < this.state.dataList.length; i++) {
       rows.push(
         <tr>
-          <td>{user.nik}</td>
-          <td>{user.name}</td>
-          <td>{user.birthDate}</td>
-          <td>{user.gender}</td>
-          <td>{user.address}</td>
-          <td>{user.religion}</td>
-          <td>{user.citizenship}</td>
-          <td>{user.email}</td>
-          <td>{user.division}</td>
+          <td>{this.state.dataList[i].nik}</td>
+          <td>{this.state.dataList[i].name}</td>
+          <td>{this.state.dataList[i].birthDate}</td>
+          <td>{this.state.dataList[i].gender}</td>
+          <td>{this.state.dataList[i].address}</td>
+          <td>{this.state.dataList[i].religion}</td>
+          <td>{this.state.dataList[i].citizenship}</td>
+          <td>{this.state.dataList[i].email}</td>
+          <td>{this.state.dataList[i].division}</td>
 
           <td>
             <button
@@ -117,8 +111,14 @@ export class DaftarKaryawan extends Component {
             ';
           </td>
         </tr>
-      );
+      )
     }
+
+    return rows;
+  };
+  render() {
+    this.looping();
+    // this.debug()
 
     return (
       <>
@@ -146,7 +146,43 @@ export class DaftarKaryawan extends Component {
           </thead>
           <tbody>
             {/* {this.looping()} */}
-            {rows}
+            {/* {this.state.dataList.map((home) => (
+              <tr key={}>
+                <td>{home.nik}</td>
+                <td>{home.name}</td>
+                <td>{home.birthDate}</td>
+                <td>{home.gender}</td>
+                <td>{home.address}</td>
+                <td>{home.religion}</td>
+                <td>{home.citizenship}</td>
+                <td>{home.email}</td>
+                <td>{home.division}</td>
+                <td>
+                  <button
+                    onClick={() => this.updateClickHandler(home.nik)}
+                    className="uk-button uk-button-default uk-margin-small-right"
+                    type="button"
+                    uk-toggle="target: #update"
+                    id="edit"
+                  >
+                    Update Data
+                  </button>
+                  <a id="info" href="/ninja">
+                    <button>Info</button>
+                  </a>
+                  <a
+                    id="delete"
+                    onClick={() => this.deleteKaryawan(home.nik)}
+                    className="uk-button uk-button-danger delete"
+                    data-id=""
+                  >
+                    Delete
+                  </a>
+                  ';
+                </td>
+              </tr>
+            ))} */}
+            {this.looping()}
           </tbody>
         </table>
         <UpdateKaryawan
@@ -159,7 +195,7 @@ export class DaftarKaryawan extends Component {
           citizenship={this.state.citizenship}
           email={this.state.email}
           division={this.state.division}
-          indek={ind}
+          indek={this.ind}
         />
       </>
     );

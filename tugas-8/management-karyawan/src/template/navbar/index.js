@@ -7,6 +7,7 @@ import DaftarKaryawan from "../../pages/daftarKaryawan";
 import Admin from "../../pages/admin";
 import Register from "../../pages/register";
 import Member from "../../pages/member";
+import UpdateKaryawan from "../../pages/form/update";
 
 // import Popper from '@material-ui/core/Popper';
 
@@ -73,9 +74,6 @@ class NavBar extends Component {
           <Link to="/register">
             <MenuItem>Register</MenuItem>
           </Link>
-          <Link to="/member">
-            <MenuItem>Register</MenuItem>
-          </Link>
           <Link to="/karyawan">
           </Link>
           <Link to="/admin">
@@ -100,6 +98,7 @@ class NavBar extends Component {
 
           <Route path="/input_karyawan" component={InputKaryawan} />
           <Route path="/daftar_karyawan" component={DaftarKaryawan} />
+          <Route path="/update" component={UpdateKaryawan} />
         </Switch>
       </div>
     );
