@@ -1,17 +1,22 @@
 // MERUPAKAN CHILD DARI DAFTAR KARYAWAN
 
 import React, { Component } from "react";
+// mengimport child daftardivisi
+import DaftarDivisi from "../daftarDivisi";
+import { Hidden } from "@material-ui/core";
+import Testing from "../coba";
+import DaftarDivision from "../daftarDivisi";
 
 class InputDivisi extends Component {
   constructor(props) {
     super(props);
     //membuat state awal
     this.state = {
-      divisi: ["Hokage", "Jounin", "chunnin"],
+      divisi: ["Hokage", "Jounin", "Chunnin"],
       //untuk option tag
       value: "",
       //untuk input baru
-      divisiBaru: ""
+      divisiBaru: "",
     };
   }
   // function push divisi
@@ -21,7 +26,7 @@ class InputDivisi extends Component {
   };
 
   onSubmit = (e) => {
-      //tambah parameter di sini
+    //tambah parameter di sini
     e.preventDefault();
     //untuk setState sesuai dengan input value
     //data di ambil langsung dari state divisi baru
@@ -38,8 +43,8 @@ class InputDivisi extends Component {
 
     //setState ke divisi state
     this.setState({
-        divisi : divisi
-    })
+      divisi: divisi,
+    });
     console.log(this.state.divisiBaru);
   };
 
@@ -77,15 +82,26 @@ class InputDivisi extends Component {
   };
 
   //function untuk input baru
-  onChangeInputBaru = (el)=>{
+  onChangeInputBaru = (el) => {
     //membuat state baru untuk menampung hasil input
     //TypeError: this.state is not a function
     //solusi: salah harusnya setState :)
     this.setState({
-        //update state divisibaru
-        divisiBaru: el.target.value
-    })
-  }
+      //update state divisibaru
+      divisiBaru: el.target.value,
+    });
+  };
+
+  checkDivisi = async () => {
+    let divisi;
+    try {
+      divisi = await this.state.divisi;
+    } catch {
+      console.log("belum ada divisinya");
+    }
+
+    if (divisi) return divisi;
+  };
   render() {
     return (
       <div>
@@ -106,24 +122,31 @@ class InputDivisi extends Component {
         */}
         <label>input Baru</label>
         <input
-        //assigned state ke divisi baru
-        value={this.state.divisiBaru}
-        className="uk-input"
-        //assigned function ke input baru
-        onChange={(el) => this.onChangeInputBaru(el)}
-        // akan memiliki value sesuai yang diketik
-        // event handler membuat fungsi baru
+          //assigned state ke divisi baru
+          value={this.state.divisiBaru}
+          className="uk-input"
+          //assigned function ke input baru
+          onChange={(el) => this.onChangeInputBaru(el)}
+          // akan memiliki value sesuai yang diketik
+          // event handler membuat fungsi baru
         ></input>
-
         <button
           type="submit"
           className="uk-button uk-button-primary"
-        //   ketika di onclick ambil value dari input baru assigned ke array divisi
-        //jangan lupa tambahkan parameter untuk prevent default
+          //   ketika di onclick ambil value dari input baru assigned ke array divisi
+          //jangan lupa tambahkan parameter untuk prevent default
           onClick={(e) => this.onSubmit(e)}
         >
           SUBMIT
         </button>
+        {/* sembunyikan component daftar divisi */}
+        {/* ERROR:   Line 132:10:  'Hidden' is not defined  react/jsx-no-undef */}
+        {/* SOLUSI: import Hidden dari material-ui */}
+        {/* membuat props untuk daftar divisi dengan nama divisi */}
+        {/* ERROR UNDEFINED DI PAGE DAFTAR DIVISI */}
+        <div hidden="true">
+          <DaftarDivision divisi={this.state.divisi} />
+        </div>
       </div>
     );
   }

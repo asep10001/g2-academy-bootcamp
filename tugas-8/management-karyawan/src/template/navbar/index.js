@@ -10,6 +10,9 @@ import Member from "../../pages/member";
 import UpdateKaryawan from "../../pages/form/update";
 import PenempatanDivisi from "../../pages/PenempatanDivisi";
 import InputDivisi from "../../pages/inputDivisi";
+import DaftarDivisi from "../../pages/daftarDivisi";
+import DaftarDivision from "../../pages/daftarDivisi";
+import Testing from "../../pages/coba";
 
 // import Popper from '@material-ui/core/Popper';
 
@@ -126,6 +129,9 @@ class NavBar extends Component {
           <Link to="/contact">
             <MenuItem>Contact</MenuItem>
           </Link>
+          <Link to="/testing">
+            <MenuItem>Testing</MenuItem>
+          </Link>
           {this.hideMenu()}
         </Menu>
 
@@ -145,8 +151,10 @@ class NavBar extends Component {
           <Route path="/input_karyawan" component={InputKaryawan} />
           <Route path="/input_divisi" component={InputDivisi} />
           <Route path="/daftar_karyawan" component={DaftarKaryawan} />
+          <Route path="/daftar_divisi" component={DaftarDivision} />
           <Route path="/update" component={UpdateKaryawan} />
           <Route path="/assigned" component={PenempatanDivisi} />
+          <Route path="/testing" component={Testing} />
         </Switch>
       </div>
     );

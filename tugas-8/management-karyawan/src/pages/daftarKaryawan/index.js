@@ -58,8 +58,6 @@ export class DaftarKaryawan extends Component {
     console.log("ditekan");
   };
 
-
-
   showKaryawan = (i) => {
     this.setState({
       nik: this.state.dataList[i].nik,
@@ -73,7 +71,7 @@ export class DaftarKaryawan extends Component {
       division: this.state.dataList[i].division,
     });
     this.ind = i;
-    console.log("berjalan" + this.ind)
+    console.log("berjalan" + this.ind);
   };
 
   deleteKaryawan = (ind) => {
@@ -83,15 +81,6 @@ export class DaftarKaryawan extends Component {
     this.dataKaryawan.splice(ind, 1);
     localStorage.setItem("karyawan", JSON.stringify(this.dataKaryawan));
   };
-
-  // looping = () => {
-  //   // for (let i = 0; i < this.dataKaryawan.length; i++) {
-
-  //   //   console.log(this.dataKaryawan.length);
-
-  //   // }
-  //   console.log(this.state.dataList[0]);
-  // };
 
   looping = () => {
     let rows = [];
@@ -174,9 +163,7 @@ export class DaftarKaryawan extends Component {
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>
-            {this.looping()}
-          </tbody>
+          <tbody>{this.looping()}</tbody>
         </table>
         <UpdateKaryawan
           nik={this.state.nik}
@@ -189,8 +176,6 @@ export class DaftarKaryawan extends Component {
           email={this.state.email}
           division={this.state.division}
           indek={this.ind}
-          
-          
         />
         <Hidden>
           <ProfileKaryawan
@@ -206,7 +191,6 @@ export class DaftarKaryawan extends Component {
             indek={this.ind}
           />
         </Hidden>
-
       </>
     );
   }
