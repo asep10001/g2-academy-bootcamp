@@ -1,20 +1,53 @@
-const { Router, Switch, Link } = require("react-router-dom");
-const { Menu, MenuItem } = require("@material-ui/core");
 import React, { Component } from "react";
-import Registrasi from "../pages";
+const { Link } = require("react-router-dom");
+const { Menu, MenuItem, Button } = require("@material-ui/core");
 
 class Navbar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLogin: 1,
+    };
+    this.handleClick = this.handleClick.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+  }
+
+  handleClick() {
+    this.setState({
+      open: true,
+    });
+  }
+
+  handleClose() {
+    this.setState({
+      open: false,
+    });
+  }
+
   render() {
     return (
-      <Menu>
-        <Link to="/registrasi">
-          <MenuItem>Regitrasi</MenuItem>
-        </Link>
-      </Menu>
-
-      <Switch>
-      <Router path="/registrasi" component={Registrasi}/>
-      </Switch>
+      <>
+        <Button
+          aria-controls="simple-menu"
+          aria-haspopup="true"
+          onClick={this.handleClick}
+        >
+          Open Menu
+        </Button>
+        <Menu
+          id="simple-menu"
+          // anchorEl={anchorEl}
+          // Popper
+          keepMounted
+          open={Boolean(this.state.open)}
+          //   open="false"
+          onClose={this.handleClose}
+        >
+          <Link to="/register">
+            <MenuItem>Register</MenuItem>
+          </Link>
+        </Menu>
+      </>
     );
   }
 }

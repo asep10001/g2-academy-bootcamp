@@ -3,10 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import RegisterPage from './pages/register';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+    <Switch>
+      <Route exact path="/" component={App} />
+      <Route path="/register" component={RegisterPage}/>
+    </Switch>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

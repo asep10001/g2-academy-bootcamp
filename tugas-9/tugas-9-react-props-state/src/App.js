@@ -1,12 +1,11 @@
-import React from 'react';
-import './App.css';
-import Registrasi from './pages';
+import React from "react";
+import "./App.css";
+import Navbar from "./navbar";
 
 function App() {
   return (
-    <div >
-      BISMILLAH
-      <Registrasi/>
+    <div>
+      <Navbar />
     </div>
   );
 }
