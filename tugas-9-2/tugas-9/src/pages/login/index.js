@@ -1,7 +1,8 @@
-import React, {  Component } from "react";
+import React, { Component } from "react";
 import { Input, InputLabel, Button, Hidden } from "@material-ui/core";
 import Member from "../member";
 
+// TODO CEK KEMBALI LOOPING UNTUK MASING MASING DATA
 
 class Login extends Component {
   constructor(props) {
@@ -19,7 +20,6 @@ class Login extends Component {
     };
     this.userDataArray = this.state.userData;
   }
-
 
   //membuat beberapa setValue untuk input yang berbeda
   onChangeValueName = (el) => {
@@ -52,24 +52,33 @@ class Login extends Component {
     console.log(this.state.rePassword);
   };
 
-
   doLogin = () => {
-    const { name, password } = this.state
+    const { name, password } = this.state;
     // console.log(username)
     // console.info(password)
 
     for (let i = 0; i < this.props.data.length; i++) {
-      if(this.props.data[i].name === name && this.props.data[i].password ===  password){
-        this.props.changeLogin(true)
-        alert("berhasil login")
-      } else if (this.props.data[i].name !== name || this.props.data[i].password !==  password){
-        this.props.changeLogin(false)
-        alert("username atau password yang anda masukan salah")
+      if (
+        this.props.data[i].name === name &&
+        this.props.data[i].password === password
+      ) {
+        this.props.changeLogin(true);
+       return alert("berhasil login");
       }
+      continue
       
+
+      // if (
+      //   this.props.data[i].name !== name ||
+      //   this.props.data[i].password !== password
+      // ) {
+      //   alert("username atau password yang anda masukan salah");
+      //   return this.props.changeLogin(false);
+      // } 
     }
-    console.log(this.props.data)
-  }
+    return alert("data salah")
+    console.log(this.props.data);
+  };
 
   // fungsi untuk memasukan data user baru
   saveUser = () => {
@@ -82,7 +91,6 @@ class Login extends Component {
     this.setState({
       userData: this.userDataArray,
     });
-
 
     //debug
   };
@@ -114,7 +122,7 @@ class Login extends Component {
           type="password"
           onChange={(el) => this.onChangeValuePassword(el)}
         ></Input>
-      
+
         <div>
           <Button type="submit" color="primary" onClick={this.doLogin}>
             LOGIN
@@ -125,5 +133,4 @@ class Login extends Component {
   }
 }
 
-
-export  default Login;
+export default Login;
