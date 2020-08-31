@@ -1,9 +1,9 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 
 class Member extends Component {
   constructor(props) {
     super(props);
-
 
     this.state = {
       userData: this.props.data,
@@ -23,45 +23,38 @@ class Member extends Component {
     // menyimpan result ke database
   };
 
-//   infoLoaded = async () => {
-//     try {
-//       await this.showInfo();
-//       console.log("berhasil menuggu");
-//       return true;
-//     } catch {
-//       console.log("belum terdaftar semua");
-//     }
-//   };
-
-  //   updateNamaDanEmail = () => {
-  //         this.setState({
-  //             name: this.nama,
-  //             email: this.mail,
-  //       })
-
-  //       console.log(this.state.name)
-
-  //   };
+  cek = () =>{
+    if(this.props.statusLogin === false){
+      return <Redirect to="/"/>
+    }
+  }
 
   render() {
     // console.log(this.props.data)
     return (
-      <table className="uk-table">
-        <caption></caption>
-        <thead>
-          <tr>
-            <th className="uk-text-center">NAMA</th>
-            <th className="uk-text-center">EMAIl</th>
-          </tr>
-        </thead>
-        <tbody>
-            {this.props.data.map((i) =><tr key={this.makeid(7)}><td key={this.makeid(7)}>{i.name}</td><td key={this.makeid(7)}>{i.email}</td></tr>
-            )}
+      <div id="table-member">
+        <table className="uk-table">
+          <caption></caption>
+          <thead>
+            <tr>
+              <th className="uk-text-center">NAMA</th>
+              <th className="uk-text-center">EMAIl</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.props.data.map((i, ind) => (
+              <tr key={ind}>
+                <td>{i.name}</td>
+                <td >{i.email}</td>
+              </tr>
+            ))}
 
             {/* {this.state.userData.map((mail) => (
             ))} */}
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      {this.cek()}
+      </div>
     );
   }
 }

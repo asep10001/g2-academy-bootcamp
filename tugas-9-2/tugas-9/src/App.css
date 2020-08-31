@@ -1,38 +1,58 @@
-.App {
+button.MuiButtonBase-root.MuiButton-root.MuiButton-text {
+  width: 30vw;
+}
+
+div#reg-form {
+  background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcStkjg8uIp7EHBvJhef5azLFrpEnWjpbo6kwg&usqp=CAU);
+  background-size: cover;
+  height: 65vh;
+}
+
+div#judul-registrasi {
+  background: url(https://images.all-free-download.com/images/graphiclarge/valentine_background_311025.jpg);
+}
+
+h1#text-judul {
+  opacity: 100% !important;
+  color: floralwhite;
+}
+
+span.MuiButton-label {
+  font-weight: 900;
+  font-size: 2em;
+}
+
+div#judul-home {
+  height: 100vh;
+  text-align-last: center;
+  padding: 35vh;
+  background: url(https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm85-tong-08_2.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=e9751deb30bb1843d95a3fcb0d9ff116);
+  background-size: cover;
+}
+
+div#login-form {
   text-align: center;
+  height: 100vh;
+  background: url(https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/v688-kul-70-fluidbackground_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=d6b8760…);
+  background-size: cover;
+  padding: 30vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+div#table-member {
+  height: 100vh;
+  background: url(https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/k-p-bg-ae-47564554610.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=147276bddfa1c920af9a2db3831a5c10);
+  background-size: cover;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+th.uk-text-center {
+  font-size: 1.5em;
+  color: crimson;
+  font-weight: 900;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+td {
+  text-align: center;
+  font-weight: bold;
+  color: crimson;
 }

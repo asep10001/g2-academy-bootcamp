@@ -4,9 +4,8 @@ import Button from "@material-ui/core/Button";
 import { Member, Home, Registrasi } from "../../pages";
 import { InputLabel, Input } from "@material-ui/core";
 import Login from "../../pages/login";
-import Register2 from "../../pages/regristasi2";
 
-class NavBar extends Component {
+class Register2 extends Component {
   constructor(props) {
     super(props);
 
@@ -17,17 +16,12 @@ class NavBar extends Component {
       password: "",
       rePassword: "",
       isLogin: false,
-      hide: false,
+
       redirect: false,
     };
     this.userDataArray = [];
   }
 
-  changeData = (info)=>{
-    this.setState({
-      userData: info
-    })
-  }
   //membuat beberapa setValue untuk input yang berbeda
   onChangeValueName = (el) => {
     this.setState({
@@ -68,12 +62,9 @@ class NavBar extends Component {
       email: this.state.email,
       password: this.state.password,
     });
-
     this.setState({
-      userData: this.userDataArray
-    })
-    
-
+      userData: this.userDataArray,
+    });
   };
 
   //checkField
@@ -123,13 +114,15 @@ class NavBar extends Component {
       this.checkField() === true &&
       (this.checkAva() === true || this.checkAva() === undefined)
     ) {
-      //maka alert selamat anda berhasil login
+      //maka alert selamat anda berhasil registrasi
       this.saveUser();
       alert("selamat anda berhasil register");
       this.setState({
         isLogin: true,
         hide: true,
       });
+      // console.log(this.userDataArray)
+      // this.props.data(this.userDataArray)
       return true;
     } else if (this.state.password !== this.state.rePassword) {
       //maka alert password dan repassword tidak sama
@@ -150,48 +143,9 @@ class NavBar extends Component {
     });
   };
 
-  changeLoginStatus = (newStatus) => {
-    this.setState({
-      isLogin: newStatus,
-    });
-  };
 
-  hideMenuLogin = () => {
-    if (this.state.isLogin) {
-      return (
-        <>
-          <Link to="/">
-            <Button onClick={this.hideApp}>Home</Button>
-          </Link>
-          <Link to="/member">
-            <Button onClick={this.hideApp}>Member</Button>
-          </Link>
-          <Link to="/">
-            <Button onClick={() => this.changeLoginStatus(false)}>
-              LOGOUT
-            </Button>
-          </Link>
-        </>
-      );
-    }
 
-    return (
-      <>
-        <Link to="/">
-          <Button onClick={this.hideApp}>Home</Button>
-        </Link>
-        <Link to="/registration">
-          <Button onClick={this.unHide}>Registration</Button>
-        </Link>
-        <Link to="/login">
-          <Button onClick={this.hideApp}>Log In</Button>
-        </Link>
-        {/* <Link to="/reg2">
-          <Button onClick={this.hideApp}>reg</Button>
-        </Link> */}
-        </>
-    );
-  };
+
 
   render() {
     console.log(this.state.isLogin);
@@ -199,42 +153,13 @@ class NavBar extends Component {
       <div>
         <div
           style={{
+            display: "flex",
+            justifyContent: "flex-end",
             marginTop: "10px",
-            textAlign: "center"
           }}
         >
-          {this.hideMenuLogin()}
-          {/* <Link to="/contact">
-                        <Menu>Contact</Menu>
-                    </Link> */}
-          {/* {this.hideMenuLogin()} */}
-        </div>
 
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/login">
-            <Login
-              data={this.state.userData}
-              statusLogin={this.state.isLogin}
-              changeLogin={this.changeLoginStatus}
-            />
-          </Route>
-          <Route exact path="/registration">
-            <Registrasi statusLogin={this.state.isLogin} />
-          </Route>
-          <Route exact path="/reg2">
-            <Register2 statusLogin={this.state.isLogin}
-            data={this.changeData} />
-          </Route>
-          <Route exact path="/member">
-            <Member
-              data={this.state.userData}
-              statusLogin={this.state.isLogin}
-            />
-          </Route>
-        </Switch>
-
-        <div id="reg-form" className="uk-text-center" hidden={this.state.hide}>
+        <div>
           <div>
             {/* mencoba membuat input dari material ui */}
             <InputLabel>Your Email</InputLabel>
@@ -271,8 +196,9 @@ class NavBar extends Component {
           </div>
         </div>
       </div>
+      </div>
     );
   }
 }
 
-export default NavBar;
+export default Register2;

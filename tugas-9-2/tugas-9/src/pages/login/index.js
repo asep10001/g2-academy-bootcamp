@@ -65,16 +65,8 @@ class Login extends Component {
         this.props.changeLogin(true);
        return alert("berhasil login");
       }
-      continue
-      
-
-      // if (
-      //   this.props.data[i].name !== name ||
-      //   this.props.data[i].password !== password
-      // ) {
-      //   alert("username atau password yang anda masukan salah");
-      //   return this.props.changeLogin(false);
-      // } 
+      //ERROR satu satu di looping
+      //menggunakan continue agar terus ke koding berikutnya
     }
     return alert("data salah")
     console.log(this.props.data);
@@ -108,7 +100,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
+      <div id="login-form">
         {/* mencoba membuat input dari material ui */}
         <InputLabel>Your Username</InputLabel>
         <Input
