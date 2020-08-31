@@ -10,6 +10,11 @@ import { LabelId } from './label-id'
 import { LabelNoKen } from './label-no-ken'
 import './css/right-component.css'
 
+//Import local storage
+//Assigned it to state
+//Input noken Will get array of noken
+
+
 
 
 
