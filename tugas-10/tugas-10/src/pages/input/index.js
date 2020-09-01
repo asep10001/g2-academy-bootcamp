@@ -10,6 +10,10 @@ import ModalDialog from "react-bootstrap/esm/ModalDialog";
 
 //ternyata bisa setState walau state tidak di declare :O
 export class InputData extends Component {
+  //WAJIB MENGGUNAKAN STATE DAN PROPS
+  //HALAMAN LOGIN FOR ALL
+  //ADMIN ADA HOME
+  //INPUT DELETE DAN UPDATE (DALAM SATU PAGE INI DENGAN MODAL)
   constructor(props) {
     super(props);
 
@@ -28,6 +32,9 @@ export class InputData extends Component {
       formGithub: "",
       indexNow: 0,
     };
+
+    //TASK DATA DEFAULT HARUS HARDCODED DAN REAL nama, foto, link github(membawa langsung ke git masing masing perserta
+    //) dan moto
     this.dataArray = [];
   }
 
@@ -173,6 +180,7 @@ export class InputData extends Component {
     console.log("ini index number dari open delete " + i);
   };
 
+  //TASK SEMUA USER HARUS MENGGUNAKAN CARD SEPERTI DI REACT-BOOTSTRAP
   //   untuk setiap student yang ada buat sebuah card
   cardMaker = () => {
     let cards = [];
@@ -253,7 +261,7 @@ export class InputData extends Component {
 
           {this.cardMaker()}
         </Container>
-
+        {/* ===========================================TASK INPUT DATA=============================================== */}
         <div>
           <Modal show={this.state.showModalInput} onHide={this.handleCloseMod}>
             <Modal.Header closeButton>
@@ -315,7 +323,8 @@ export class InputData extends Component {
             </Modal.Footer>
           </Modal>
         </div>
-        {/* ====================================================================================================================== */}
+        {/* ========================================TASK UPDATE DATA MENGGUNAKAN TAMPILAN INPUT DATA (MODAL 
+            INPUT DAN UPDATE)================================================= */}
         <div>
           <Modal show={this.state.showModalEdit} onHide={this.handleCloseMod}>
             <Modal.Header closeButton>
@@ -382,7 +391,7 @@ export class InputData extends Component {
           </Modal>
         </div>
 
-        {/* ==================================================================================================================================== */}
+        {/* ========================================TASK DELETE DATA======================================================================= */}
 
         <div>
           <Modal show={this.state.showModalDelete} onHide={this.handleCloseMod}>
