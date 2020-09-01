@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import Nav from "react-bootstrap/Nav";
 import NavbarBrand from "react-bootstrap/esm/NavbarBrand";
 import NavbarToggle from "react-bootstrap/esm/NavbarToggle";
@@ -13,52 +12,92 @@ import LogIn from "../../pages/login";
 import { Link } from "react-router-dom";
 
 export class NavBar extends Component {
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      isLogin: 0,
+      userData: ''
+    };
+  }
+
+  //untuk meset data user
+  grabDataUser = (data) => {
+    this.setState({
+      userData: data
+    })
+  }
+  //set login
+  //0 berarti belum masuk
+  //1 berarti admin
+  //2 berarti user
+  setLogin = (status) => {
+    this.setState({
+      isLogin: status,
+    });
+  };
+
+  userOn = () => {
+    //jika islogin 0 === belum masuk
+    if (this.state.isLogin === 0) {
+      return (
+          <Nav>
+            <Link to="/login">Log In</Link>
+          </Nav>
+      );
+    } else if (this.state.isLogin === 1) {
+      return (
+        <>
+          <Nav className="mr-auto">
+            <Nav>
+              <Link to="/input">Input</Link>
+            </Nav>
+            <NavLink>Edit Data</NavLink>
+          </Nav>
+          <Nav>
+            <Nav>
+              <Link to="#" onClick={() => this.setLogin(0)}>Log out</Link>
+            </Nav>
+          </Nav>
+        </>
+      );
+    } else if (this.state.isLogin === 2) {
+      return (
+        <>
+          <Nav>
+            <Nav.Link>
+              <Link to='/' onClick={() => this.setLogin(0)}>Log out</Link>
+            </Nav.Link>
+          </Nav>
+        </>
+      );
+    }
+  };
 
   render() {
+    //jika islogin 0 === belum masuk
+
     return (
-      <div>
+      <>
         <Navbar collapseOnSelect expand="lg" bg="warning" variant="dark">
           <NavbarBrand>
             <Link to="/">G2 BOOTCAMP FAMILY</Link>
           </NavbarBrand>
           <NavbarToggle aria-controls="responsive-navbar-nav" />
           <NavbarCollapse id="responsive-navbar-nav">
-            <Nav className="mr-auto">
-              <NavLink >
-                <Link to="/input">Input</Link>
-              </NavLink>
-              <NavLink>Edit Data</NavLink>
-              <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-                <NavDropdown.Item >Action</NavDropdown.Item>
-                <NavDropdown.Item >
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Item >
-                  Something
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item >
-                  Separated link
-                </NavDropdown.Item>
-              </NavDropdown>
-            </Nav>
-            <Nav>
-              <Nav.Link >
-                <Link to="/login">Log In</Link>
-              </Nav.Link>
-            </Nav>
+            {this.userOn()}
           </NavbarCollapse>
         </Navbar>
-
-        <div>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/login" component={LogIn} />
-            <Route path="/input" component={InputData} />
+            <Route path="/login">
+              <LogIn statusLogin={this.setLogin} />
+            </Route>
+            <Route path="/input">
+              <InputData grabData={this.grabDataUser} />
+            </Route>
           </Switch>
-        </div>
-      </div>
+      </>
     );
   }
 }
