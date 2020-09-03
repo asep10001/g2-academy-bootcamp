@@ -7,6 +7,12 @@ import Col from "../../../node_modules/react-bootstrap/Col";
 import Modal from "../../../node_modules/react-bootstrap/Modal";
 import Form from "../../../node_modules/react-bootstrap/Form";
 import ModalDialog from "react-bootstrap/esm/ModalDialog";
+import {
+  saveInputUserData,
+  deleteData,
+  updateUserData,
+} from "../../action/setData";
+import { connect } from "react-redux";
 
 //ternyata bisa setState walau state tidak di declare :O
 export class InputData extends Component {
@@ -18,7 +24,7 @@ export class InputData extends Component {
     super(props);
 
     this.state = {
-      studentsData: [],
+      // studentsData: [],
       img: "",
       name: "",
       moto: "",
@@ -35,57 +41,57 @@ export class InputData extends Component {
 
     //TASK DATA DEFAULT HARUS HARDCODED DAN REAL nama, foto, link github(membawa langsung ke git masing masing perserta
     //) dan moto
-    this.dataArray = [
-      {
-        img:
-          "https://lh3.googleusercontent.com/OUGpBp4h8BirMb1zHrmFXyEtIxEqkLaFD4FkyeL7qSY5aypicd-0XihmUlK7XH8eU-YU4NSGYUaYbavScaht=w2640-h1986-rw",
-        name: "Asep Agus Heri Hermawan",
-        moto:
-          "he who didn't taste the bitterness of learning, will suffer the humiliation of ignorance for the rest of his life.",
-        github: "https://github.com/asep10001",
-      },
-      {
-        img:
-          "https://lh5.googleusercontent.com/--Gfh02KA0PnDmBQl0XDtfkAAMrda2xy1jOpUU9zOIaqT8dbq4tMyZOdROJiF_-A62foamxz6d-au20lQRXB=w2640-h1986-rw",
-        name: "Dian Prasetyo",
-        moto: "Sabar, ikhlas, Bersyukur",
-        github: "https://github.com/dianprsty",
-      },
-      {
-        img:
-          "https://lh4.googleusercontent.com/NaGbPWekLeEbllzWpH4UYzCFnjfwCP-O8BxTfc37i2DVpDcD5j2LE-uMto-TjKfC5pa5FWbNIn84tYv7tsoW=w1366-h624",
-        name: "Shirleen Adriana",
-        moto: "Mengajar adalah cara terbaik untuk belajar",
-        github: "https://github.com/shirahub",
-      },
-      {
-        img:
-          "https://ch3302files.storage.live.com/y4mHeyy0uY1Y-A-Aq1jJu7TW5jJSYlyI1c3yts37BlKu1ACjnkAg-sO8jKx9BFL9ZSeslJoJR9xzukZ2aYcuQmWi55x3EBZJpDr_KfiHoBNdLVOCtuBnLmlBJpfnBFr6n0rxqYRla9h7wpTzR1KNiCju727xWdv8TAk_vErUJ5bq3RxGwxgXRmSXB_jo-DfkvX39lCulb90zy0HRPgbf4cKfQ/pas%20foto%20%28merah%3Bno%20glasses%29.jpg?psid=1&width=390&height=585",
-        name: "Pramadhio Ari Putro",
-        moto: "Khawatir adalah penyalahgunaan sebuah imajinasi",
-        github: "https://github.com/dhioputro",
-      },
-      {
-        img:
-          "https://lh6.googleusercontent.com/lYSI9LX18lDAZDk1aBL80jXhy6XKbbsw3S6zimjjVMiYMcIT6jqJaYrngHfvgOV-nP4wW8pr_wipWzIDHwL9=w2640-h1986-rw",
-        name: "Rifki Harbi Awali",
-        moto: "Basthotan Fil Ilmi Wal Jismi",
-        github: "https://github.com/rifkiharbiawali",
-      },
-      {
-        img:
-          "https://media-exp1.licdn.com/dms/image/C5103AQHSe1OxoQuwog/profile-displayphoto-shrink_200_200/0?e=1604534400&v=beta&t=eicpGCTB4aWrT1wHBRmNgZVbyOEeI8NYZ6AbqR9qN8Y",
-        name: "Yoseph Mario Wibowo",
-        moto: "Ora Et Labora",
-        github: "https://github.com/YosephMarioWibowo/",
-      },
-    ];
+    // this.dataArray = [
+    //   {
+    //     img:
+    //       "https://lh3.googleusercontent.com/OUGpBp4h8BirMb1zHrmFXyEtIxEqkLaFD4FkyeL7qSY5aypicd-0XihmUlK7XH8eU-YU4NSGYUaYbavScaht=w2640-h1986-rw",
+    //     name: "Asep Agus Heri Hermawan",
+    //     moto:
+    //       "he who didn't taste the bitterness of learning, will suffer the humiliation of ignorance for the rest of his life.",
+    //     github: "https://github.com/asep10001",
+    //   },
+    //   {
+    //     img:
+    //       "https://lh5.googleusercontent.com/--Gfh02KA0PnDmBQl0XDtfkAAMrda2xy1jOpUU9zOIaqT8dbq4tMyZOdROJiF_-A62foamxz6d-au20lQRXB=w2640-h1986-rw",
+    //     name: "Dian Prasetyo",
+    //     moto: "Sabar, ikhlas, Bersyukur",
+    //     github: "https://github.com/dianprsty",
+    //   },
+    //   {
+    //     img:
+    //       "https://lh4.googleusercontent.com/NaGbPWekLeEbllzWpH4UYzCFnjfwCP-O8BxTfc37i2DVpDcD5j2LE-uMto-TjKfC5pa5FWbNIn84tYv7tsoW=w1366-h624",
+    //     name: "Shirleen Adriana",
+    //     moto: "Mengajar adalah cara terbaik untuk belajar",
+    //     github: "https://github.com/shirahub",
+    //   },
+    //   {
+    //     img:
+    //       "https://ch3302files.storage.live.com/y4mHeyy0uY1Y-A-Aq1jJu7TW5jJSYlyI1c3yts37BlKu1ACjnkAg-sO8jKx9BFL9ZSeslJoJR9xzukZ2aYcuQmWi55x3EBZJpDr_KfiHoBNdLVOCtuBnLmlBJpfnBFr6n0rxqYRla9h7wpTzR1KNiCju727xWdv8TAk_vErUJ5bq3RxGwxgXRmSXB_jo-DfkvX39lCulb90zy0HRPgbf4cKfQ/pas%20foto%20%28merah%3Bno%20glasses%29.jpg?psid=1&width=390&height=585",
+    //     name: "Pramadhio Ari Putro",
+    //     moto: "Khawatir adalah penyalahgunaan sebuah imajinasi",
+    //     github: "https://github.com/dhioputro",
+    //   },
+    //   {
+    //     img:
+    //       "https://lh6.googleusercontent.com/lYSI9LX18lDAZDk1aBL80jXhy6XKbbsw3S6zimjjVMiYMcIT6jqJaYrngHfvgOV-nP4wW8pr_wipWzIDHwL9=w2640-h1986-rw",
+    //     name: "Rifki Harbi Awali",
+    //     moto: "Basthotan Fil Ilmi Wal Jismi",
+    //     github: "https://github.com/rifkiharbiawali",
+    //   },
+    //   {
+    //     img:
+    //       "https://media-exp1.licdn.com/dms/image/C5103AQHSe1OxoQuwog/profile-displayphoto-shrink_200_200/0?e=1604534400&v=beta&t=eicpGCTB4aWrT1wHBRmNgZVbyOEeI8NYZ6AbqR9qN8Y",
+    //     name: "Yoseph Mario Wibowo",
+    //     moto: "Ora Et Labora",
+    //     github: "https://github.com/YosephMarioWibowo/",
+    //   },
+    // ];
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.setState({
-      studentsData: this.dataArray
-    })
+      studentsData: this.dataArray,
+    });
   }
   //untuk mendapatkan user data kita:
   //onchangeValue
@@ -121,76 +127,77 @@ export class InputData extends Component {
     //debug
     console.log(this.state.github);
   };
-  saveInputUserData = (el) => {
-    //push ke global dataArray
-    this.dataArray.push({
-      img: this.state.img,
-      name: this.state.name,
-      moto: this.state.moto,
-      github: this.state.github,
-    });
+  // saveInputUserData = (el) => {
+  //   //push ke global dataArray
+  //   this.dataArray.push({
+  //     img: this.state.img,
+  //     name: this.state.name,
+  //     moto: this.state.moto,
+  //     github: this.state.github,
+  //   });
 
-    //debug
-    console.log("ini data array" + JSON.stringify(this.dataArray));
+  //   //debug
+  //   console.log("ini data array" + JSON.stringify(this.dataArray));
 
-    // kemudian update state userData
-    this.setState({
-      studentsData: this.dataArray,
-    });
+  //   // kemudian update state userData
+  //   this.setState({
+  //     studentsData: this.dataArray,
+  //   });
 
-    //debug
-    console.log(
-      "ini data baru user data " + JSON.stringify(this.state.studentsData)
-    );
+  //   //debug
+  //   console.log(
+  //     "ini data baru user data " + JSON.stringify(this.state.studentsData)
+  //   );
 
-    this.handleCloseMod();
-  };
+  //   this.handleCloseMod();
+  // };
 
   //untuk update data
-  updateUserData = (ind) => {
-    //push ke global dataArray
-    this.dataArray[this.state.indexNow] = {
-      img: this.state.img,
-      name: this.state.name,
-      moto: this.state.moto,
-      github: this.state.github,
-    };
+  // updateUserData = (ind) => {
+  //   //push ke global dataArray
+  //   this.dataArray[this.state.indexNow] = {
+  //     img: this.state.img,
+  //     name: this.state.name,
+  //     moto: this.state.moto,
+  //     github: this.state.github,
+  //   };
 
-    //debug
-    console.log(
-      "ini data array " +
-        ind +
-        " " +
-        JSON.stringify(this.dataArray[this.state.indexNow])
-    );
+  //   //debug
+  //   console.log(
+  //     "ini data array " +
+  //       ind +
+  //       " " +
+  //       JSON.stringify(this.dataArray[this.state.indexNow])
+  //   );
 
-    // kemudian update state userData
-    this.setState({
-      studentsData: this.dataArray,
-    });
+  //   // kemudian update state userData
+  //   this.setState({
+  //     studentsData: this.dataArray,
+  //   });
 
-    //debug
-    console.log(
-      "ini data baru user data " + JSON.stringify(this.state.studentsData)
-    );
+  //   //debug
+  //   console.log(
+  //     "ini data baru user data " + JSON.stringify(this.state.studentsData)
+  //   );
 
-    this.handleCloseMod();
-  };
+  //   this.handleCloseMod();
+  // };
+  // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  // //delete data menggunakan splice
+  // deleteData = () => {
+  //   //menyesuaikan indeks array dari dataArray Variable
+  //   //kemudian mensplice dengan indeksNow
+  //   this.dataArray.splice(this.state.indexNow, 1);
 
-  //delete data menggunakan splice
-  deleteData = () => {
-    //menyesuaikan indeks array dari dataArray Variable
-    //kemudian mensplice dengan indeksNow
-    this.dataArray.splice(this.state.indexNow, 1);
+  //   //set kembali data di studentsData
+  //   this.setState({
+  //     studentsData: this.dataArray,
+  //   });
 
-    //set kembali data di studentsData
-    this.setState({
-      studentsData: this.dataArray,
-    });
+  //   this.handleCloseMod();
+  // };
 
-    this.handleCloseMod();
-  };
-
+  // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   //handle modal input
   handleCloseMod = () => {
     this.setState({
@@ -234,9 +241,9 @@ export class InputData extends Component {
   cardMaker = () => {
     let cards = [];
     // console.log(JSON.stringify(this.state.studentsData));
-    this.state.studentsData.map((student, ind) => {
-      cards.push(
-        <Col xs={6} md={4}>
+    this.props.dataSiswa.map((student, ind) => {
+      return cards.push(
+        <Col key={ind} xs={6} md={4}>
           <Card style={{ width: "18rem" }}>
             <Card.Img variant="top" src={student.img} />
             <Card.Body>
@@ -264,17 +271,16 @@ export class InputData extends Component {
         </Col>
       );
     });
-
     return cards;
   };
 
   //membuat setvalue untuk mengambil data value form
   setValue = (i) => {
     this.setState({
-      name: this.state.studentsData[i].name,
-      img: this.state.studentsData[i].img,
-      moto: this.state.studentsData[i].moto,
-      github: this.state.studentsData[i].github,
+      name: this.props.dataSiswa[i].name,
+      img: this.props.dataSiswa[i].img,
+      moto: this.props.dataSiswa[i].moto,
+      github: this.props.dataSiswa[i].github,
     });
 
     //
@@ -355,7 +361,18 @@ export class InputData extends Component {
               <Button variant="secondary" onClick={this.handleCloseMod}>
                 Close
               </Button>
-              <Button variant="primary" onClick={this.saveInputUserData}>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  this.props.saveInputUserData(
+                    this.state.img,
+                    this.state.name,
+                    this.state.moto,
+                    this.state.github
+                  );
+                  this.handleCloseMod();
+                }}
+              >
                 Save Changes
               </Button>
             </Modal.Footer>
@@ -422,7 +439,19 @@ export class InputData extends Component {
               <Button variant="secondary" onClick={this.handleCloseMod}>
                 Close
               </Button>
-              <Button variant="primary" onClick={this.updateUserData}>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  this.props.updateData(
+                    this.state.indexNow,
+                    this.state.img,
+                    this.state.name,
+                    this.state.moto,
+                    this.state.github
+                  );
+                  this.handleCloseMod();
+                }}
+              >
                 Update Students
               </Button>
             </Modal.Footer>
@@ -448,7 +477,13 @@ export class InputData extends Component {
               <Button variant="secondary" onClick={this.handleCloseMod}>
                 No
               </Button>
-              <Button variant="primary" onClick={this.deleteData}>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  this.props.deleteData(this.state.indexNow);
+                  this.handleCloseMod();
+                }}
+              >
                 Yes
               </Button>
             </Modal.Footer>
@@ -459,4 +494,16 @@ export class InputData extends Component {
   }
 }
 
-export default InputData;
+const mapStateToProps = (state) => ({
+  dataSiswa: state.setData.studentsData,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  saveInputUserData: (data1, data2, data3, data4) =>
+    dispatch(saveInputUserData(data1, data2, data3, data4)),
+  deleteData: (indeks) => dispatch(deleteData(indeks)),
+  updateData: (ind, image, name, moto, github) =>
+    dispatch(updateUserData(ind, image, name, moto, github)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(InputData);

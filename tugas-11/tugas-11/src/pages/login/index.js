@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
 import Form from "../../../node_modules/react-bootstrap/Form";
 import Button from "../../../node_modules/react-bootstrap/Button";
 import Container from "../../../node_modules/react-bootstrap/Container";
+import { setLogin, setLogout } from "../../action/loginCheck"
 
 export class LogIn extends Component {
   constructor(props) {
@@ -54,11 +56,12 @@ export class LogIn extends Component {
       ) {
         //cek admin atau user
         if (user.name === "admin") {
-          this.props.statusLogin(1);
-          alert("selamat datang" + user.name);
+          this.props.setStatusLogin(1);
+          alert("selamat datang  admin");
+          console.log(this.props.statusLogin)
           return;
         } else {
-          this.props.statusLogin(2);
+          this.props.setStatusLogin(2);
           alert("selamat datang user");
           return;
         }
@@ -101,4 +104,13 @@ export class LogIn extends Component {
   }
 }
 
-export default LogIn;
+const mapStateToProps = (state) => ({
+  statusLogin: state.login.isLogin
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  setStatusLogin: (data) => dispatch(setLogin(data)),
+  setStatusLogOut: () => dispatch(setLogout())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogIn);

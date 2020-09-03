@@ -10,6 +10,8 @@ import Home from "../../pages/home";
 import InputData from "../../pages/input";
 import LogIn from "../../pages/login";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { setLogin, setLogout } from "../../action/loginCheck"
 
 export class NavBar extends Component {
   constructor(props) {
@@ -39,13 +41,13 @@ export class NavBar extends Component {
 
   userOn = () => {
     //jika islogin 0 === belum masuk
-    if (this.state.isLogin === 0) {
+    if (this.props.statusLogin === 0) {
       return (
           <Nav>
             <Link to="/login">Log In</Link>
           </Nav>
       );
-    } else if (this.state.isLogin === 1) {
+    } else if (this.props.statusLogin === 1) {
       return (
         <>
           <Nav className="mr-auto">
@@ -61,12 +63,12 @@ export class NavBar extends Component {
           </Nav>
         </>
       );
-    } else if (this.state.isLogin === 2) {
+    } else if (this.props.statusLogin === 2) {
       return (
         <>
           <Nav>
             <Nav.Link>
-              <Link to='/' onClick={() => this.setLogin(0)}>Log out</Link>
+              <Link to='/' onClick={this.props.setLogin}>Log out</Link>
             </Nav.Link>
           </Nav>
         </>
@@ -91,7 +93,7 @@ export class NavBar extends Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/login">
-              <LogIn statusLogin={this.setLogin} />
+              <LogIn/>
             </Route>
             <Route path="/input">
               <InputData grabData={this.grabDataUser} />
@@ -102,4 +104,13 @@ export class NavBar extends Component {
   }
 }
 
-export default NavBar;
+const mapStateToProps = (state) => ({
+  statusLogin: state.login.isLogin
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  setStatusLogin: (data) => dispatch(setLogin(data)),
+  setStatusLogOut: () => dispatch(setLogout())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar) ;
