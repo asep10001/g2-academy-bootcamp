@@ -35,7 +35,46 @@ export class InputData extends Component {
 
     //TASK DATA DEFAULT HARUS HARDCODED DAN REAL nama, foto, link github(membawa langsung ke git masing masing perserta
     //) dan moto
-    this.dataArray = [];
+    this.dataArray = [
+      {
+        img:
+          "https://lh3.googleusercontent.com/OUGpBp4h8BirMb1zHrmFXyEtIxEqkLaFD4FkyeL7qSY5aypicd-0XihmUlK7XH8eU-YU4NSGYUaYbavScaht=w2640-h1986-rw",
+        name: "Asep Agus Heri Hermawan",
+        moto:
+          "he who didn't taste the bitterness of learning, will suffer the humiliation of ignorance for the rest of his life.",
+        github: "https://github.com/asep10001",
+      },
+      {
+        img:
+          "https://lh5.googleusercontent.com/--Gfh02KA0PnDmBQl0XDtfkAAMrda2xy1jOpUU9zOIaqT8dbq4tMyZOdROJiF_-A62foamxz6d-au20lQRXB=w2640-h1986-rw",
+        name: "Dian Prasetyo",
+        moto: "Sabar, ikhlas, Bersyukur",
+        github: "https://github.com/dianprsty",
+      },
+      {
+        img:
+          "https://lh4.googleusercontent.com/NaGbPWekLeEbllzWpH4UYzCFnjfwCP-O8BxTfc37i2DVpDcD5j2LE-uMto-TjKfC5pa5FWbNIn84tYv7tsoW=w1366-h624",
+        name: "Shirleen Adriana",
+        moto: "Mengajar adalah cara terbaik untuk belajar",
+        github: "https://github.com/shirahub",
+      },
+      {
+        img:
+          "https://lh3.googleusercontent.com/OUGpBp4h8BirMb1zHrmFXyEtIxEqkLaFD4FkyeL7qSY5aypicd-0XihmUlK7XH8eU-YU4NSGYUaYbavScaht=w2640-h1986-rw",
+        name: "Asep Agus Heri Hermawan",
+        moto:
+          "he who didn't taste the bitterness of learning, will suffer the humiliation of ignorance for the rest of his life.",
+        github: "https://github.com/asep10001",
+      },
+      {
+        img:
+          "https://lh3.googleusercontent.com/OUGpBp4h8BirMb1zHrmFXyEtIxEqkLaFD4FkyeL7qSY5aypicd-0XihmUlK7XH8eU-YU4NSGYUaYbavScaht=w2640-h1986-rw",
+        name: "Asep Agus Heri Hermawan",
+        moto:
+          "he who didn't taste the bitterness of learning, will suffer the humiliation of ignorance for the rest of his life.",
+        github: "https://github.com/asep10001",
+      },
+    ];
   }
 
   //untuk mendapatkan user data kita:
