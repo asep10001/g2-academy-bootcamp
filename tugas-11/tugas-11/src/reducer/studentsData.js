@@ -1,7 +1,7 @@
 export let defaultData = [
   {
     img:
-      "https://lh3.googleusercontent.com/OUGpBp4h8BirMb1zHrmFXyEtIxEqkLaFD4FkyeL7qSY5aypicd-0XihmUlK7XH8eU-YU4NSGYUaYbavScaht=w2640-h1986-rw",
+      "https://lh5.googleusercontent.com/mB0WrCg_PVCxvGhDk8IsukjDgszJvtv_VrS6zsttIiOBEGNI51t5v7QcgoHc1IAt8dmIKawKBvXTn6fQzphM=w2064-h1986-rw",
     name: "Asep Agus Heri Hermawan",
     moto:
       "he who didn't taste the bitterness of learning, will suffer the humiliation of ignorance for the rest of his life.",
@@ -9,14 +9,14 @@ export let defaultData = [
   },
   {
     img:
-      "https://lh5.googleusercontent.com/--Gfh02KA0PnDmBQl0XDtfkAAMrda2xy1jOpUU9zOIaqT8dbq4tMyZOdROJiF_-A62foamxz6d-au20lQRXB=w2640-h1986-rw",
+      "https://lh3.googleusercontent.com/1vcZOhTDMxmYZAG87iJKa-UhirxmxWimB8BPp7TqBQ40vnh1AcSm4nBLBYHAdE7eAFeia0Aqx9P70KJ4W--K=w2064-h1986-rw",
     name: "Dian Prasetyo",
     moto: "Sabar, ikhlas, Bersyukur",
     github: "https://github.com/dianprsty",
   },
   {
     img:
-      "https://lh4.googleusercontent.com/NaGbPWekLeEbllzWpH4UYzCFnjfwCP-O8BxTfc37i2DVpDcD5j2LE-uMto-TjKfC5pa5FWbNIn84tYv7tsoW=w1366-h624",
+      "https://lh6.googleusercontent.com/iCnPzwnoFlUuiWq11IXFFX2Try9WO2L3UpP4tNtMRQXq5dKmOux2nBlEJhw5fyJ4VHnAci4HPB4S-fEiR3nR=w1366-h624",
     name: "Shirleen Adriana",
     moto: "Mengajar adalah cara terbaik untuk belajar",
     github: "https://github.com/shirahub",
@@ -30,7 +30,7 @@ export let defaultData = [
   },
   {
     img:
-      "https://lh6.googleusercontent.com/lYSI9LX18lDAZDk1aBL80jXhy6XKbbsw3S6zimjjVMiYMcIT6jqJaYrngHfvgOV-nP4wW8pr_wipWzIDHwL9=w2640-h1986-rw",
+      "https://lh3.googleusercontent.com/elZxhk3pHFeJMH6hOdmTN767eZrQ3DRqDnRY06TcKWVy7ZELCvuDIBx3X-yBEbw6MjDL_2rYyGwWlp6uvohr=w2064-h1986-rw",
     name: "Rifki Harbi Awali",
     moto: "Basthotan Fil Ilmi Wal Jismi",
     github: "https://github.com/rifkiharbiawali",

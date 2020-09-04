@@ -262,7 +262,7 @@ export class InputData extends Component {
               </Button>
               <Button
                 onClick={() => this.handleOpenModDelete(ind)}
-                variant="warning"
+                variant="danger"
               >
                 Delete
               </Button>
@@ -474,11 +474,11 @@ export class InputData extends Component {
               </ModalDialog>
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={this.handleCloseMod}>
+              <Button variant="success" onClick={this.handleCloseMod}>
                 No
               </Button>
               <Button
-                variant="primary"
+                variant="danger"
                 onClick={() => {
                   this.props.deleteData(this.state.indexNow);
                   this.handleCloseMod();

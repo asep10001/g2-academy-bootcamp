@@ -12,6 +12,8 @@ import LogIn from "../../pages/login";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { setLogin, setLogout } from "../../action/loginCheck"
+import Profile from "../../pages/profile";
+import myprofile from "../../pages/profile/myprofile";
 
 export class NavBar extends Component {
   constructor(props) {
@@ -68,6 +70,9 @@ export class NavBar extends Component {
         <>
           <Nav>
             <Nav.Link>
+              <Link to='/profile'>Profile</Link>
+            </Nav.Link>
+            <Nav.Link>
               <Link to='/' onClick={this.props.setLogin}>Log out</Link>
             </Nav.Link>
           </Nav>
@@ -98,14 +103,47 @@ export class NavBar extends Component {
             <Route path="/input">
               <InputData grabData={this.grabDataUser} />
             </Route>
+            <Route path="/profile">
+              <Profile />
+            </Route>
+            <Route path="/studentsprofile/:id" component={myprofile}/>
+
           </Switch>
       </>
     );
   }
 }
 
+// // component dibawah bisa beda file
+// export class AboutComponent extends Component {
+//   constructor(props) {
+//       super(props)
+//       this.state = {
+//           data: 0
+//       }
+//   }
+
+
+//   componentDidMount() {
+//     this.setState(
+//       {
+//         data: this.props.match.params.id
+//       })
+
+//   }
+//   render() {
+//       return (
+//         <>
+//           <h1>Name: {this.props.dataSiswa[0].name}</h1>
+//           <h1>Name: {this.props.match.params.id}</h1>
+//           </>
+//       )
+//   }
+// }
+
 const mapStateToProps = (state) => ({
-  statusLogin: state.login.isLogin
+  statusLogin: state.login.isLogin,
+  dataSiswa: state.setData.studentsData
 })
 
 const mapDispatchToProps = (dispatch) => ({

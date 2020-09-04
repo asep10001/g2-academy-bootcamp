@@ -1,3 +1,81 @@
 .App {
   text-align: center;
 }
+
+/* img.card-img-top {
+  width: 18rem;
+  place-self: center;
+  border-radius: 40px;
+} */
+
+button.btn.btn-primary {
+  background: black;
+  width: 100%;
+}
+
+button.btn.btn-danger, button.btn.btn-success {
+  width: 100%;
+}
+
+a {
+  color: white !important;
+}
+
+a.card-link {
+  color: red !important;
+  font-weight: 900;
+}
+.card-title.h5 {
+  font-weight: 900;
+  font-family: cursive;
+}
+
+p.card-text {
+  font-family: fangsong;
+  font-weight: bold;
+  color: chocolate;
+}
+
+.card {
+  border: 2px solid #8080803d;
+  box-shadow: 10px 10px #ffc1073d;
+  margin-top: 30px;
+  border-radius: 40px 0px !important;
+  background: linear-gradient(
+    45deg,
+    #eccb1378,
+    #ff070738,
+    #00ff3638,
+    transparent
+  );
+}
+
+div#root {
+  background: repeating-linear-gradient(
+    45deg,
+    #f8ff0330,
+    #9c27b0,
+    rgb(47 116 190 / 50%),
+    transparent 500px
+  );
+}
+
+.h2, h2 {
+  font-size: 2rem;
+  font-weight: 900;
+  background: #ffffff38;
+  border-radius: 20px;
+}
+
+span.navbar-brand {
+  font-size: 2em;
+  font-weight: 900;
+  text-decoration: blink;
+}
+
+.navbar-nav {
+  font-size: xx-large;
+  font-weight: 900;
+  /* float: left; */
+  margin: auto;
+}
