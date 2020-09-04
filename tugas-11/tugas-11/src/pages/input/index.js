@@ -13,6 +13,8 @@ import {
   updateUserData,
 } from "../../action/setData";
 import { connect } from "react-redux";
+import { Link, NavLink } from "react-router-dom";
+import Nav from "react-bootstrap/esm/Nav";
 
 //ternyata bisa setState walau state tidak di declare :O
 export class InputData extends Component {
@@ -252,7 +254,7 @@ export class InputData extends Component {
                 {student.moto}
               </Card.Text>
               <Card.Text>
-                <Card.Link>{student.github}</Card.Link>
+                <Nav.Link href={`${student.github}`}>{student.github}</Nav.Link>
               </Card.Text>
               <Button
                 onClick={() => this.handleOpenModEdit(ind)}
@@ -358,7 +360,7 @@ export class InputData extends Component {
               {/* selesai di sini form nya */}
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={this.handleCloseMod}>
+              <Button variant="danger" onClick={this.handleCloseMod}>
                 Close
               </Button>
               <Button
@@ -436,7 +438,7 @@ export class InputData extends Component {
               {/* selesai di sini form nya */}
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={this.handleCloseMod}>
+              <Button variant="danger" onClick={this.handleCloseMod}>
                 Close
               </Button>
               <Button

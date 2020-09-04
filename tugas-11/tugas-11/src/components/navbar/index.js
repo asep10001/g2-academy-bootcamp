@@ -56,7 +56,6 @@ export class NavBar extends Component {
             <Nav>
               <Link to="/input">Input</Link>
             </Nav>
-            <NavLink>Edit Data</NavLink>
           </Nav>
           <Nav>
             <Nav>
