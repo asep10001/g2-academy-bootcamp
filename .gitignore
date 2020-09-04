@@ -1,2 +1,10 @@
-tugas-9-2/index.js
-tugas-9-2/tugas-9/node_modules
+
+node_modules 
+*.env 
+.env* 
+*.local
+/tugas-7
+/tugas-8
+/tugas-9
+/tugas-9-2
+/tugas-10
