@@ -307,7 +307,6 @@ export class InputData extends Component {
           </Row>
         </Container>
         {/* ===========================================TASK INPUT DATA=============================================== */}
-        <div>
           <Modal show={this.state.showModalInput} onHide={this.handleCloseMod}>
             <Modal.Header closeButton>
               <Modal.Title>Input A New Student</Modal.Title>
@@ -378,7 +377,6 @@ export class InputData extends Component {
               </Button>
             </Modal.Footer>
           </Modal>
-        </div>
         {/* ========================================TASK UPDATE DATA MENGGUNAKAN TAMPILAN INPUT DATA (MODAL 
             INPUT DAN UPDATE)================================================= */}
         <div>
