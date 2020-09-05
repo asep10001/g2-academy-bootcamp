@@ -92,3 +92,21 @@ form {
   margin-top: 10em;
   height: 64.4vh;
 }
+
+img#card-image-home {
+  width: 100%;
+}
+
+div#card-home {
+  background: #16102f;
+  text-align: left;
+}
+
+h1#card-home-msg {
+  color: white;
+}
+
+p#card-home-par {
+  color: rgb(101, 91, 110);
+  font-weight: 900;
+}
