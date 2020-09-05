@@ -79,3 +79,16 @@ span.navbar-brand {
   /* float: left; */
   margin: auto;
 }
+
+.bg-warning {
+  background-color: #ffc1071f!important;
+}
+
+img#hero-1, img#hero-2 {
+  width: 100%;
+}
+
+form {
+  margin-top: 10em;
+  height: 64.4vh;
+}

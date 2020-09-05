@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import Form from "../../../node_modules/react-bootstrap/Form";
 import Button from "../../../node_modules/react-bootstrap/Button";
 import Container from "../../../node_modules/react-bootstrap/Container";
-import { setLogin, setLogout } from "../../action/loginCheck"
+import { setLogin, setLogout } from "../../action/loginCheck";
+import { Redirect } from "react-router-dom";
 
 export class LogIn extends Component {
   constructor(props) {
@@ -46,10 +47,15 @@ export class LogIn extends Component {
   //check dan rubah status login
 
   checkUser = (e) => {
-      e.preventDefault();
+    e.preventDefault();
     //looping data user
     this.state.dataUser.forEach((user, ind) => {
-        console.log(user.name, this.state.username, user.password, this.state.password)
+      console.log(
+        user.name,
+        this.state.username,
+        user.password,
+        this.state.password
+      );
       if (
         this.state.name === user.username &&
         this.state.password === user.password
@@ -58,7 +64,8 @@ export class LogIn extends Component {
         if (user.name === "admin") {
           this.props.setStatusLogin(1);
           alert("selamat datang  admin");
-          console.log(this.props.statusLogin)
+
+          console.log(this.props.statusLogin);
           return;
         } else {
           this.props.setStatusLogin(2);
@@ -70,6 +77,7 @@ export class LogIn extends Component {
   };
 
   render() {
+    // if (this.props.statusLogin === 0) return <Redirect to="/login" />;
     return (
       <div>
         <Container>
@@ -105,12 +113,12 @@ export class LogIn extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  statusLogin: state.login.isLogin
-})
+  statusLogin: state.login.isLogin,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   setStatusLogin: (data) => dispatch(setLogin(data)),
-  setStatusLogOut: () => dispatch(setLogout())
-})
+  setStatusLogOut: () => dispatch(setLogout()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogIn);

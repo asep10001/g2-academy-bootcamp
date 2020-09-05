@@ -35,11 +35,11 @@ export class NavBar extends Component {
   //0 berarti belum masuk
   //1 berarti admin
   //2 berarti user
-  setLogin = (status) => {
-    this.setState({
-      isLogin: status,
-    });
-  };
+  // setLogin = (status) => {
+  //   this.setState({
+  //     isLogin: status,
+  //   });
+  // };
 
   userOn = () => {
     //jika islogin 0 === belum masuk
@@ -52,6 +52,7 @@ export class NavBar extends Component {
     } else if (this.props.statusLogin === 1) {
       return (
         <>
+
           <Nav className="mr-auto">
             <Nav>
               <Link to="/input">Input</Link>
@@ -59,7 +60,7 @@ export class NavBar extends Component {
           </Nav>
           <Nav>
             <Nav>
-              <Link to="#" onClick={() => this.setLogin(0)}>Log out</Link>
+              <Link to="/" onClick={this.props.setStatusLogOut}>Log out</Link>
             </Nav>
           </Nav>
         </>
@@ -68,12 +69,12 @@ export class NavBar extends Component {
       return (
         <>
           <Nav>
-            <Nav.Link>
+            <Nav>
               <Link to='/profile'>Profile</Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link to='/' onClick={this.props.setLogin}>Log out</Link>
-            </Nav.Link>
+            </Nav>
+            <Nav>
+              <Link to='/' onClick={this.props.setStatusLogOut}>Log out</Link>
+            </Nav>
           </Nav>
         </>
       );

@@ -34,12 +34,12 @@ class MyProfile extends Component {
                 <Card.Img variant="top" src={this.props.dataSiswa[this.state.data].img} />
                 <Card.Body>
                   <Card.Title><h1>{this.props.dataSiswa[this.state.data].name}</h1></Card.Title>
-                  <Card.Text onClick={() => alert("moto")}>
+                  <Card onClick={() => alert("moto")}>
                     <h2>{this.props.dataSiswa[this.state.data].moto}</h2>
-                  </Card.Text>
-                  <Card.Text>
+                  </Card>
+                  <Card>
                     <Card.Link><h2>{this.props.dataSiswa[this.state.data].github}</h2></Card.Link>
-                  </Card.Text>
+                  </Card>
                   <Button variant="success">
                       <Link to='/'>
                           BACK TO HOME
