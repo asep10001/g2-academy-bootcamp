@@ -4,7 +4,6 @@ import Form from "../../../node_modules/react-bootstrap/Form";
 import Button from "../../../node_modules/react-bootstrap/Button";
 import Container from "../../../node_modules/react-bootstrap/Container";
 import { setLogin, setLogout } from "../../action/loginCheck";
-import { Redirect } from "react-router-dom";
 
 export class LogIn extends Component {
   constructor(props) {

@@ -4,7 +4,6 @@ import Nav from "react-bootstrap/Nav";
 import NavbarBrand from "react-bootstrap/esm/NavbarBrand";
 import NavbarToggle from "react-bootstrap/esm/NavbarToggle";
 import NavbarCollapse from "react-bootstrap/esm/NavbarCollapse";
-import NavLink from "react-bootstrap/esm/NavLink";
 import { Switch, Route } from "react-router-dom/esm/react-router-dom";
 import Home from "../../pages/home";
 import InputData from "../../pages/input";

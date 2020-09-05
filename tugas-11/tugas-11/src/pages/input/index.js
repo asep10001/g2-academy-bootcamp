@@ -13,7 +13,6 @@ import {
   updateUserData,
 } from "../../action/setData";
 import { connect } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
 import Nav from "react-bootstrap/esm/Nav";
 
 //ternyata bisa setState walau state tidak di declare :O

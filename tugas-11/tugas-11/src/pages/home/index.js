@@ -21,6 +21,7 @@ class Home extends Component {
           </Col>
           <Col xs={12} md={6}>
             <img
+              alt=""
               id="hero-1"
               src="https://www.sendspark.com/hubfs/Video%20Email%20Hero%20Image.png"
             ></img>
@@ -29,6 +30,7 @@ class Home extends Component {
         <Row>
           <Col xs={12} md={6}>
             <img
+              alt=""
               id="hero-2"
               src="https://www.sendspark.com/hubfs/Record%20face%20or%20screen.png"
             ></img>
@@ -48,12 +50,19 @@ class Home extends Component {
           <Card.Body>
             <Row>
               <Col xs={12} md={9}>
-                <h1 id="card-home-msg">“A board member said this is the smartest thing he’s seen a marketer do.”</h1>
+                <h1 id="card-home-msg">
+                  “A board member said this is the smartest thing he’s seen a
+                  marketer do.”
+                </h1>
                 <p id="card-home-par">CJ Craig. Marketing Officer</p>
-                <img src="https://www.sendspark.com/hubfs/Big%20Brothers%20Big%20Sister%201%20(1).svg"></img>
+                <img
+                  alt=""
+                  src="https://www.sendspark.com/hubfs/Big%20Brothers%20Big%20Sister%201%20(1).svg"
+                ></img>
               </Col>
               <Col xs={12} md={3}>
                 <img
+                  alt=""
                   id="card-image-home"
                   src="https://www.sendspark.com/hubfs/CJ%20Craig%20Big%20Brothers%20Big%20Sister.png"
                 ></img>

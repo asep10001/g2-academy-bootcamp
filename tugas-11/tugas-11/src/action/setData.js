@@ -1,4 +1,3 @@
-import { defaultData } from "../reducer/studentsData";
 export const saveInputUserData = (
   stateimage,
   statename,
@@ -6,50 +5,43 @@ export const saveInputUserData = (
   stategithub
 ) => {
   //push ke global dataArray
-  defaultData.push({
-    img: stateimage,
-    name: statename,
-    moto: statemoto,
-    github: stategithub,
-  });
+  // defaultData.push({
+  //   img: stateimage,
+  //   name: statename,
+  //   moto: statemoto,
+  //   github: stategithub,
+  // });
 
   //debug
-  console.log("ini data array" + JSON.stringify(defaultData));
+  // console.log("ini data array" + JSON.stringify(defaultData));
 
   return (
     // defaultData,
     {
       type: "ADD",
+      payload: {img: stateimage, name: statename, moto: statemoto, github: stategithub}
     }
   );
 };
 
-export const deleteData = (indeks, closeFunction) => {
+export const deleteData = (indeks) => {
   //menyesuaikan indeks array dari dataArray Variable
   //kemudian mensplice dengan indeksNow
-  defaultData.splice(indeks, 1);
 
   //set kembali data di studentsData
   return {
     type: "DELETE",
+    payload: indeks
   };
 };
 
 //untuk update data
 export const updateUserData = (ind, image, name, moto, github) => {
-  //push ke global dataArray
-  defaultData[ind] = {
-    img: image,
-    name: name,
-    moto: moto,
-    github: github,
-  };
-
-  //debug
-  console.log("ini data array " + ind + " " + JSON.stringify(defaultData[ind]));
 
   // kemudian update default array
   return {
     type: "UPDATE",
+    indeks: ind,
+    payload: {img: image, name: name, moto: moto, github: github}
   };
 };
