@@ -283,7 +283,7 @@ export class InputData extends Component {
               <Button
                 onClick={() => {
                   this.handleOpenModEdit(prop, this.props.dataSiswa[prop].id);
-                  alert("ini id dari edit" + this.props.dataSiswa[prop].id);
+                  // alert("ini id dari edit" + this.props.dataSiswa[prop].id);
                 }}
                 variant="primary"
               >

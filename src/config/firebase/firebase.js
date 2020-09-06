@@ -26,7 +26,7 @@ class Firebase {
       .ref("/students/")
       .once("value")
       .then((hasil) => {
-        alert(JSON.stringify(hasil.val()));
+        // alert(JSON.stringify(hasil.val()));
         if (hasil.val() !== null) {
           for (var prop in hasil.val()) {
             this.data.push(hasil.val()[prop]);
@@ -34,7 +34,7 @@ class Firebase {
         }
       })
       .then(() => {
-        return alert("ini data 1" + JSON.stringify(this.data));
+        // return alert("ini data 1" + JSON.stringify(this.data));
       });
   };
 
@@ -46,7 +46,7 @@ class Firebase {
   }
 
   deleteStudent(stId) {
-    alert(stId);
+    // alert(stId);
     return app
       .database()
       .ref("students/" + stId)
@@ -54,7 +54,7 @@ class Firebase {
   }
 
   updateStudent(id, data) {
-    alert(id);
+    // alert(id);
     app.database().ref("students/" + id).update(data);
   }
 
