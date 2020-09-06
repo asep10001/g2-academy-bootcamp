@@ -86,7 +86,13 @@ export class NavBar extends Component {
               <Link to="/profile">Profile</Link>
             </Nav>
             <Nav>
-              <Link to="/" onClick={this.props.setStatusLogOut}>
+              <Link
+                to="/"
+                onClick={() => {
+                  this.props.firebase.logoutFirebaseUser();
+                  alert("anda logout");
+                }}
+              >
                 Log out
               </Link>
             </Nav>
@@ -122,7 +128,7 @@ export class NavBar extends Component {
             <Profile />
           </Route>
           <Route path="/studentsprofile/:id" component={myprofile} />
-          <Route path='/register' component={RegisterContext}/>
+          <Route path="/register" component={RegisterContext} />
         </Switch>
       </>
     );

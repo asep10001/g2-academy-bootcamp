@@ -10,7 +10,7 @@ class Home extends Component {
   
   checkFirebase = () => {
     return firebase => {
-      return <div> firebase initialized</div>
+      return alert("firebase initialized!!!")
     }
   }
 
