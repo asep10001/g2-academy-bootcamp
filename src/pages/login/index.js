@@ -11,28 +11,28 @@ export class LogIn extends Component {
     super(props);
 
     this.state = {
-      username: "",
+      email: "",
       password: "",
       dataUser: [],
     };
   }
 
-  componentDidMount() {
-    this.setState({
-      dataUser: localStorage.user ? JSON.parse(localStorage.user) : [],
-    });
+  // componentDidMount() {
+  //   this.setState({
+  //     dataUser: localStorage.user ? JSON.parse(localStorage.user) : [],
+  //   });
 
-    //debug
-    console.log("ini data " + this.state.dataUser);
-  }
+  //   //debug
+  //   console.log("ini data " + this.state.dataUser);
+  // }
 
   onchangeName = (val) => {
     this.setState({
-      username: val.target.value,
+      email: val.target.value,
     });
 
     //debug
-    console.log("ini username " + this.state.username);
+    console.log("ini username " + this.state.email);
   };
 
   onchangePassword = (val) => {
@@ -52,12 +52,12 @@ export class LogIn extends Component {
     this.state.dataUser.forEach((user, ind) => {
       console.log(
         user.name,
-        this.state.username,
+        this.state.email,
         user.password,
         this.state.password
       );
       if (
-        this.state.name === user.username &&
+        this.state.email === user.username &&
         this.state.password === user.password
       ) {
         //cek admin atau user
@@ -76,43 +76,58 @@ export class LogIn extends Component {
     });
   };
 
+  doLogin = () => {
+    this.props.firebase
+      .loginFirebaseUser(this.state.email, this.state.password)
+      .then((user) => {
+        console.log(user);
+        alert("login sukses");
+      })
+      .catch((err) => {
+        console.warn(err);
+        alert(err.message);
+      });
+  };
 
+  doLogout = () => {
+    this.props.firebase.logoutFirebaseUser();
+    alert("berhasil logout");
+  };
 
-  doLogin = () =>{
-    const {username, password} = this.state
-    this.props.firebase.oginFirebaseUser(username, password)
-        .then(user => {
-          console.log(user)
-          alert("loginsukses")
-        })
-        .catch(err =>{
-          console.warn(err);
-          alert(err.message)
-        })
-  }
-
-  doLogout = () =>{
-    this.props.firebase.logoutFirebaseUser()
-  }
-
-  componentDidMount(){
-    this.props.firebase.auth.onAuthStateChanged(auth => {
-      console.log("auth: ", auth)
-    })
+  componentDidMount() {
+    this.props.firebase.auth.onAuthStateChanged((auth) => {
+      if (auth !== null) {
+        if (auth.email === "a2h2hemingway@gmail.com") {
+          return this.props.setStatusLogin(1);
+        } else if (auth.email !== "a2h2hemingway@gmail.com") {
+          return this.props.setStatusLogin(2);
+        } else {
+          return this.props.setStatusLogOut();
+        }
+      } else {
+        return this.props.setStatusLogOut();
+      }
+    });
   }
 
   render() {
-    // if (this.props.statusLogin === 0) return <Redirect to="/login" />;
+    // if (this.props.statusLogin === 1) {
+    //   return <Redirect to="/input" />;
+    // } else if (this.props.statusLogin === 0) {
+    //   return <Redirect to="/home" />;
+    // } else if (this.props.statusLogin === 2) {
+    //   return <Redirect to="/profile" />;
+    // }
     return (
       <div>
         <Container>
           <Form>
             <Form.Group controlId="formBasicEmail">
-              <Form.Label>User Name</Form.Label>
+              <Form.Label>Email</Form.Label>
               <Form.Control
                 onChange={this.onchangeName}
                 type="email"
-                placeholder="Enter username"
+                placeholder="Enter email"
               />
             </Form.Group>
 
@@ -128,11 +143,8 @@ export class LogIn extends Component {
               <Form.Check type="checkbox" label="Check me out" />
             </Form.Group>
             {/* this.checkUser(); */}
-            <Button onClick={()=>{this.doLogin()}} variant="warning" type="submit">
-              Submit
-            </Button>
-            <Button onClick={()=>{this.doLogout()}} variant="warning" type="submit">
-              Submit
+            <Button onClick={this.doLogin} variant="warning">
+              Log In
             </Button>
           </Form>
         </Container>
@@ -152,21 +164,18 @@ const mapDispatchToProps = (dispatch) => ({
 
 class LogInFirebase extends Component {
   constructor(props) {
-    super(props)
-  
-    this.state = {
-       
-    }
+    super(props);
+
+    this.state = {};
   }
-  
+
   render() {
     return (
       <FirebaseContext.Consumer>
-        {firebase => <LogIn firebase={firebase} {...this.props}/>}
+        {(firebase) => <LogIn firebase={firebase} {...this.props} />}
       </FirebaseContext.Consumer>
-    )
+    );
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogInFirebase);

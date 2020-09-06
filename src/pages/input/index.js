@@ -14,7 +14,7 @@ import {
 } from "../../action/setData";
 import { connect } from "react-redux";
 import Nav from "react-bootstrap/esm/Nav";
-import {FirebaseContext} from '../../config/firebase'
+import { FirebaseContext } from "../../config/firebase";
 //ternyata bisa setState walau state tidak di declare :O
 export class InputData extends Component {
   //WAJIB MENGGUNAKAN STATE DAN PROPS
@@ -38,6 +38,7 @@ export class InputData extends Component {
       formMoto: "",
       formGithub: "",
       indexNow: 0,
+      idInput: 0,
     };
 
     //TASK DATA DEFAULT HARUS HARDCODED DAN REAL nama, foto, link github(membawa langsung ke git masing masing perserta
@@ -212,57 +213,86 @@ export class InputData extends Component {
   };
 
   //open modal edit
-  handleOpenModEdit = (i) => {
+  handleOpenModEdit = (i, key) => {
     this.setState({ showModalEdit: true });
 
     //setValue modald engan indeks dari parameter handle edit (i)
     this.setValue(i);
     //assign indexNow dengan i dari klik event tombol Edit
     this.setState({
+      idInput: key,
       indexNow: i,
     });
 
-    console.log("ini index number dari open edit " + i);
+    console.log("ini index number dari open edit " + i, key);
   };
 
   //open modal delete
 
-  handleOpenModDelete = (i) => {
+  handleOpenModDelete = (prop, key) => {
     this.setState({ showModalDelete: true });
     //assign indexNow dengan i dari klik event tombol Edit
     this.setState({
-      indexNow: i,
+      idInput: key,
+      indexNow: prop,
     });
 
-    console.log("ini index number dari open delete " + i);
+    console.log("ini index number dari open delete " + prop, key);
   };
 
+  makeidBike = () => {
+    let result = "";
+    let character = "01234567890";
+    let characterLength = character.length;
+
+    for (let i = 0; i < 3; i++) {
+      result += character.charAt(Math.floor(Math.random() * characterLength));
+    }
+    return this.setState({
+      idInput: parseInt(result),
+    });
+    // menyimpan result ke database
+  };
+  // makeid = () => {
+  //   return this.setState({
+  //     idInput: this.length,
+  //   });
+  // };
+
+  // menyimpan result ke database
   //TASK SEMUA USER HARUS MENGGUNAKAN CARD SEPERTI DI REACT-BOOTSTRAP
   //   untuk setiap student yang ada buat sebuah card
   cardMaker = () => {
     let cards = [];
     // console.log(JSON.stringify(this.state.studentsData));
-    this.props.dataSiswa.map((student, ind) => {
-      return cards.push(
-        <Col key={ind} xs={6} md={4}>
+    for (let prop in this.props.dataSiswa) {
+      cards.push(
+        <Col key={prop} xs={6} md={4}>
           <Card style={{ width: "18rem" }}>
-            <Card.Img variant="top" src={student.img} />
+            <Card.Img variant="top" src={this.props.dataSiswa[prop].img} />
             <Card.Body>
-              <Card.Title>{student.name}</Card.Title>
+              <Card.Title>{this.props.dataSiswa[prop].name}</Card.Title>
               <Card.Text onClick={() => alert("moto")}>
-                {student.moto}
+                {this.props.dataSiswa[prop].moto}
               </Card.Text>
               <Card.Text>
-                <Nav.Link href={`${student.github}`}>{student.github}</Nav.Link>
+                <Nav.Link href={`${this.props.dataSiswa[prop].github}`}>
+                  {this.props.dataSiswa[prop].github}
+                </Nav.Link>
               </Card.Text>
               <Button
-                onClick={() => this.handleOpenModEdit(ind)}
+                onClick={() => {
+                  this.handleOpenModEdit(prop, this.props.dataSiswa[prop].id);
+                  alert("ini id dari edit" + this.props.dataSiswa[prop].id);
+                }}
                 variant="primary"
               >
                 Edit
               </Button>
               <Button
-                onClick={() => this.handleOpenModDelete(ind)}
+                onClick={() => {
+                  this.handleOpenModDelete(prop, this.props.dataSiswa[prop].id);
+                }}
                 variant="danger"
               >
                 Delete
@@ -271,7 +301,7 @@ export class InputData extends Component {
           </Card>
         </Col>
       );
-    });
+    }
     return cards;
   };
 
@@ -296,7 +326,12 @@ export class InputData extends Component {
         <Container>
           <Row>
             <Col>
-              <Card onClick={this.handleOpenModInput}>
+              <Card
+                onClick={() => {
+                  this.handleOpenModInput();
+                  this.makeidBike();
+                }}
+              >
                 <Card.Body>
                   <Card.Img></Card.Img>
                   <Card.Title>Add New Student</Card.Title>
@@ -307,86 +342,77 @@ export class InputData extends Component {
           </Row>
         </Container>
         {/* ===========================================TASK INPUT DATA=============================================== */}
-          <Modal show={this.state.showModalInput} onHide={this.handleCloseMod}>
-            <Modal.Header closeButton>
-              <Modal.Title>Input A New Student</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              {/* ada form untuk menginput data siswa baru */}
-              <Form>
-                <Form.Group controlId="formBasicImage">
-                  <Form.Label>Add Image</Form.Label>
-                  <Form.Control
-                    name="img"
-                    type="url"
-                    placeholder="add url for the image"
-                    onChange={this.onChangeValueimg}
-                  />
-                </Form.Group>
+        <Modal show={this.state.showModalInput} onHide={this.handleCloseMod}>
+          <Modal.Header closeButton>
+            <Modal.Title>Input A New Student</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            {/* ada form untuk menginput data siswa baru */}
+            <Form>
+              <Form.Group controlId="formBasicImage">
+                <Form.Label>Add Image</Form.Label>
+                <Form.Control
+                  name="img"
+                  type="text"
+                  placeholder="add url for the image"
+                  onChange={this.onChangeValueimg}
+                />
+              </Form.Group>
 
-                <Form.Group controlId="formBasicName">
-                  <Form.Label>Student's email</Form.Label>
-                  <Form.Control
-                    name="name"
-                    type="email"
-                    placeholder="Student's email"
-                    onChange={this.onChangeValueName}
-                  />
-                </Form.Group>
+              <Form.Group controlId="formBasicName">
+                <Form.Label>Student's Name</Form.Label>
+                <Form.Control
+                  name="name"
+                  type="text"
+                  placeholder="Student's Name"
+                  onChange={this.onChangeValueName}
+                />
+              </Form.Group>
 
-                <Form.Group controlId="formBasicMoto">
-                  <Form.Label>Student's password</Form.Label>
-                  <Form.Control
-                    name="moto"
-                    type="password"
-                    placeholder="Student's Password"
-                    onChange={this.onChangeValuemoto}
-                  />
-                </Form.Group>
+              <Form.Group controlId="formBasicMoto">
+                <Form.Label>Student's moto</Form.Label>
+                <Form.Control
+                  name="moto"
+                  type="text"
+                  placeholder="Student's Moto"
+                  onChange={this.onChangeValuemoto}
+                />
+              </Form.Group>
 
-                <Form.Group controlId="formBasicGithub">
-                  <Form.Label>Student's GitHub</Form.Label>
-                  <Form.Control
-                    name="github"
-                    type="text"
-                    placeholder="Student's GitHub url"
-                    onChange={this.onChangeValuegithub}
-                  />
-                </Form.Group>
-              </Form>
+              <Form.Group controlId="formBasicGithub">
+                <Form.Label>Student's GitHub</Form.Label>
+                <Form.Control
+                  name="github"
+                  type="text"
+                  placeholder="Student's GitHub url"
+                  onChange={this.onChangeValuegithub}
+                />
+              </Form.Group>
+            </Form>
 
-              {/* selesai di sini form nya */}
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="danger" onClick={this.handleCloseMod}>
-                Close
-              </Button>
-              <Button
-                variant="primary"
-                onClick={() => {
-                  this.props.saveInputUserData(
-                    this.state.img,
-                    this.state.name,
-                    this.state.moto,
-                    this.state.github
-                  );
-                  this.handleCloseMod();
-                  this.props.firebase
-                      .registerFirebaseUser(this.state.name, this.state.moto)
-                      .then(user=> {
-                        console.info(user)
-                        alert("sukses ditambah!!")
-                      })
-                      .catch(err=> {
-                        console.warn(err)
-                        alert(err.message)
-                      })
-                }}
-              >
-                Save Changes
-              </Button>
-            </Modal.Footer>
-          </Modal>
+            {/* selesai di sini form nya */}
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="danger" onClick={this.handleCloseMod}>
+              Close
+            </Button>
+            <Button
+              variant="primary"
+              onClick={() => {
+                this.props.saveInputUserData(
+                  this.state.idInput,
+                  this.state.img,
+                  this.state.name,
+                  this.state.moto,
+                  this.state.github
+                );
+                this.handleCloseMod();
+              }}
+            >
+              Save Changes
+            </Button>
+          </Modal.Footer>
+        </Modal>
         {/* ========================================TASK UPDATE DATA MENGGUNAKAN TAMPILAN INPUT DATA (MODAL 
             INPUT DAN UPDATE)================================================= */}
         <div>
@@ -402,7 +428,7 @@ export class InputData extends Component {
                   <Form.Control
                     name="img"
                     value={this.state.img}
-                    type="url"
+                    type="text"
                     placeholder="add url for the image"
                     onChange={this.onChangeValueimg}
                   />
@@ -453,6 +479,7 @@ export class InputData extends Component {
                 onClick={() => {
                   this.props.updateData(
                     this.state.indexNow,
+                    this.state.idInput,
                     this.state.img,
                     this.state.name,
                     this.state.moto,
@@ -469,7 +496,6 @@ export class InputData extends Component {
 
         {/* ========================================TASK DELETE DATA======================================================================= */}
 
-        <div>
           <Modal show={this.state.showModalDelete} onHide={this.handleCloseMod}>
             <Modal.Header closeButton>
               <Modal.Title>Edit New Students</Modal.Title>
@@ -489,7 +515,10 @@ export class InputData extends Component {
               <Button
                 variant="danger"
                 onClick={() => {
-                  this.props.deleteData(this.state.indexNow);
+                  this.props.deleteData(
+                    this.state.indexNow,
+                    this.state.idInput
+                  );
                   this.handleCloseMod();
                 }}
               >
@@ -498,7 +527,6 @@ export class InputData extends Component {
             </Modal.Footer>
           </Modal>
         </div>
-      </div>
     );
   }
 }
@@ -508,31 +536,28 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  saveInputUserData: (data1, data2, data3, data4) =>
-    dispatch(saveInputUserData(data1, data2, data3, data4)),
-  deleteData: (indeks) => dispatch(deleteData(indeks)),
-  updateData: (ind, image, name, moto, github) =>
-    dispatch(updateUserData(ind, image, name, moto, github)),
+  saveInputUserData: (id, data1, data2, data3, data4) =>
+    dispatch(saveInputUserData(id, data1, data2, data3, data4)),
+  deleteData: (indeks, key) => dispatch(deleteData(indeks, key)),
+  updateData: (ind, id, image, name, moto, github) =>
+    dispatch(updateUserData(ind, id, image, name, moto, github)),
 });
 
-
-class Register extends Component {
+class InputStudents extends Component {
   constructor(props) {
-    super(props)
-  
-    this.state = {
-       
-    }
+    super(props);
+
+    this.state = {};
   }
-  
+
   render() {
     return (
       <FirebaseContext.Consumer>
-        {firebase => <InputData firebase={firebase} {...this.props}/>}
+        {(firebase) => <InputData firebase={firebase} {...this.props} />}
       </FirebaseContext.Consumer>
-    )
+    );
   }
 }
 
 // export default Register
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(InputStudents);

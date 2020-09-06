@@ -1,4 +1,4 @@
-export const saveInputUserData = (
+export const saveInputUserData = (id,
   stateimage,
   statename,
   statemoto,
@@ -19,29 +19,32 @@ export const saveInputUserData = (
     // defaultData,
     {
       type: "ADD",
-      payload: {img: stateimage, name: statename, moto: statemoto, github: stategithub}
+      id : id,
+      payload: {id: id, img: stateimage, name: statename, moto: statemoto, github: stategithub}
     }
   );
 };
 
-export const deleteData = (indeks) => {
+export const deleteData = (indeks, key) => {
   //menyesuaikan indeks array dari dataArray Variable
   //kemudian mensplice dengan indeksNow
 
   //set kembali data di studentsData
   return {
     type: "DELETE",
-    payload: indeks
+    indeks: indeks,
+    key: key
   };
 };
 
 //untuk update data
-export const updateUserData = (ind, image, name, moto, github) => {
+export const updateUserData = (ind, id, image, name, moto, github) => {
 
   // kemudian update default array
   return {
     type: "UPDATE",
     indeks: ind,
-    payload: {img: image, name: name, moto: moto, github: github}
+    id: id,
+    payload: {id:id, img: image, name: name, moto: moto, github: github}
   };
 };

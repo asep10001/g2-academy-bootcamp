@@ -114,3 +114,7 @@ p#card-home-par {
 .col-md-6.col-12 {
   margin-top: 7em;
 }
+
+form {
+  margin: 0;
+}
