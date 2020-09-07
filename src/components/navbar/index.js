@@ -107,7 +107,7 @@ export class NavBar extends Component {
 
     return (
       <>
-        <Navbar collapseOnSelect expand="lg" bg="warning" variant="dark">
+        <Navbar expand="lg" bg="warning" variant="dark">
           <NavbarBrand>
             <Link to="/">G2 BOOTCAMP FAMILY</Link>
           </NavbarBrand>
@@ -135,31 +135,6 @@ export class NavBar extends Component {
   }
 }
 
-// // component dibawah bisa beda file
-// export class AboutComponent extends Component {
-//   constructor(props) {
-//       super(props)
-//       this.state = {
-//           data: 0
-//       }
-//   }
-
-//   componentDidMount() {
-//     this.setState(
-//       {
-//         data: this.props.match.params.id
-//       })
-
-//   }
-//   render() {
-//       return (
-//         <>
-//           <h1>Name: {this.props.dataSiswa[0].name}</h1>
-//           <h1>Name: {this.props.match.params.id}</h1>
-//           </>
-//       )
-//   }
-// }
 
 const mapStateToProps = (state) => ({
   statusLogin: state.login.isLogin,
