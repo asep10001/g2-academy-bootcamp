@@ -7,221 +7,286 @@
  */
 
 import React, {Component} from 'react';
+
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-  TextInput,
-  Image,
-  Button,
-  TouchableOpacity,
-} from 'react-native';
+  DetailUSer,
+  HomeScreen,
+  LogIn,
+  Registrasi,
+  ListUser,
+  ListAlbum,
+  UpdateData,
+} from './screen';
 
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/AntDesign';
+import {View, Text, Button} from 'react-native';
+import {Card} from 'react-native-elements';
 
-
-
+const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
+const HomeStack = createStackNavigator();
+const SettingsStack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      loginButton: false,
-      signUpButton: false,
-      username: '',
-      password: '',
-      email: '',
-      view: this.home()
+      userData: '',
+      detailUser: '',
+      isLogin: true,
+      dataForUpdate: {},
+      modalData: [],
+      badgeNum: 0
     };
+    this.data = [
+      {
+        username: 'asep',
+        password: '123',
+        email: 'asep@asep.com',
+        url:
+          'https://storage.googleapis.com/stateless-campfire-pictures/2019/05/e4629f8e-defaultuserimage-15579880664l8pc.jpg',
+      },
+    ];
   }
 
-login = () => {
-    return (
-        <View style={{flex: 1, backgroundColor: '#bcbabd'}}>
-          <View style={{marginHorizontal: 160, marginTop: 160, marginBottom: 80}}>
-            <Image
-              source={require('./assets/red-heart.png')}
-              style={{width: 50, height: 50}}
-            />
-          </View>
-  
-          <View>
-            <Text style={{color: '#fb5854', marginHorizontal: 40}}>USERNAME</Text>
-            <TextInput
-            onChangeText={(username)=> this.setState({username})}
-              style={{
-                borderBottomWidth: 1,
-                borderBottomColor: '#fb5854',
-                marginHorizontal: 40,
-              }}
-              placeholder="username"
-            />
-          </View>
-          <View>
-            <Text style={{color: '#fb5854', marginHorizontal: 40}}>PASSWORD</Text>
-            <TextInput
-            secureTextEntry={true}
-              style={{
-                borderBottomWidth: 1,
-                borderBottomColor: '#fb5854',
-                marginHorizontal: 40,
-              }}
-              placeholder="password"
-              onChangeText={(password)=>this.setState({password})}
-            />
-          </View>
-  
-          <View style={{marginLeft: 210, marginVertical: 10}}>
-            <Text style={{color: 'white', fontWeight: 'bold'}}>
-              Forgot Password?
-            </Text>
-          </View>
-  
-          <View
-            style={{
-              marginHorizontal: 40,
-              borderRadius: 20,
-              justifyContent: 'center',
-              alignItems: 'center',
-              backgroundColor: '#ffffff',
-              height: 40,
-              borderColor: 'black',
-              borderWidth: 1,
-            }}>
-            <TouchableOpacity onPress={()=>{alert(this.state.username + "\n" + this.state.password)}}>
-              <Text style={{color: '#fb5854'}}>LOG IN</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-    );
-  };
-  
-regristasi = () => {
-    return (
-      <>
-        <View style={{flex: 1, backgroundColor: '#bcbabd'}}>
-          <View style={{marginHorizontal: 160, marginTop: 160, marginBottom: 80}}>
-            <Image
-              source={require('./assets/red-heart.png')}
-              style={{width: 50, height: 50}}
-            />
-          </View>
-  
-          <View>
-            <Text style={{color: '#fb5854', marginHorizontal: 40}}>USERNAME</Text>
-            <TextInput
-            onChangeText={(username)=>{this.setState({username})}}
-
-              style={{
-                borderBottomWidth: 1,
-                borderBottomColor: '#fb5854',
-                marginHorizontal: 40,
-              }}
-              placeholder="username"
-            />
-          </View>
-          <View>
-            <Text style={{color: '#fb5854', marginHorizontal: 40}}>EMAIL</Text>
-            <TextInput
-            onChangeText={(email)=>{this.setState({email})}}
-
-              style={{
-                borderBottomWidth: 1,
-                borderBottomColor: '#fb5854',
-                marginHorizontal: 40,
-              }}
-              placeholder="email"
-            />
-          </View>
-          <View>
-            <Text style={{color: '#fb5854', marginHorizontal: 40}}>PASSWORD</Text>
-            <TextInput
-            onChangeText={(password)=>{this.setState({password})}}
-              style={{
-                borderBottomWidth: 1,
-                borderBottomColor: '#fb5854',
-                marginHorizontal: 40,
-              }}
-              placeholder="password"
-            />
-          </View>
-  
-  
-          <View
-            style={{
-              marginTop: 20,
-              marginHorizontal: 40,
-              borderRadius: 20,
-              justifyContent: 'center',
-              alignItems: 'center',
-              backgroundColor: '#ffffff',
-              height: 40,
-              borderColor: 'black',
-              borderWidth: 1,
-            }}>
-            <TouchableOpacity onPress={()=>{alert('ANDA TELAH TEREGISTER SILAHKAN LOGIN' + this.state.username); this.setState({view: this.home()})}}>
-              <Text style={{color: '#fb5854'}}>REGISTER</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </>
-    );
+  componentDidMount() {
+    this.setState({
+      userData: this.data,
+    });
+  }
+  userDataHandler = (data) => {
+    this.setState({
+      userData: data,
+    });
   };
 
-  home = () => {
-    return(
-      <View style={{flex: 1, backgroundColor: '#f1584f', display: 'flex'}}>
-      <View style={{flex: 1}}>
-        <Image
-          style={{
-            backgroundColor: '#f1584f',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: 40,
-            height: 40,
-            marginHorizontal: 160,
-            marginTop: 160,
-          }}
-          source={require('./assets/heart.png')}
-        />
+  setBadgeNum = (data) =>{
+    this.setState({
+      badgeNum: data
+    })
+  }
+  dataUserupdate = (ind) => {
+    this.setState({
+      dataForUpdate: {
+        username: this.state.userData[ind].username,
+        password: this.state.userData[ind].password,
+        email: this.state.userData[ind].email,
+        url: this.state.userData[ind].url,
+        index: ind,
+      },
+    });
+  };
+  deleteData = (ind) => {
+    this.state.userData.splice(ind, 1);
+    alert(JSON.stringify(this.state.userData));
+    this.setState({
+      userData: this.state.userData,
+    });
+  };
+
+  updateData = (ind, data) => {
+    let tempData = this.state.userData;
+    tempData[ind] = data;
+    this.setState({
+      userData: tempData,
+    });
+
+    alert(
+      JSON.stringify('data ' + tempData[ind].username + ' berhasil di update'),
+    );
+  };
+  detailUserDataHandler = (data) => {
+    this.setState({
+      detailUser: data,
+    });
+  };
+
+  changeLoginStatus = () => {
+    this.setState({
+      isLogin: !this.state.isLogin,
+    });
+  };
+
+  // componentDidUpdate(){
+  //   if(this.state.username !== ''){
+  //     return alert('udah update')
+
+  //   }
+  // }
+
+  modalData = (url, title) => {
+    this.setState({
+      modalData: {url: url, title: title},
+    });
+  };
+  HomeStackScreen = () => {
+    return (
+      <HomeStack.Navigator>
+        <Stack.Screen name="List User">
+          {(props) => (
+            <ListUser
+              {...props}
+              userData={this.state.userData}
+              deleteUser={this.deleteData}
+              dataUpdate={this.dataUserupdate}
+              changeLoginStatus={this.changeLoginStatus}
+            />
+          )}
+        </Stack.Screen>
+
+        <Stack.Screen name="update">
+          {(props) => (
+            <UpdateData
+              {...props}
+              dataUpdate={this.state.dataForUpdate}
+              update={this.updateData}
+            />
+          )}
+        </Stack.Screen>
+      </HomeStack.Navigator>
+    );
+  };
+  ModalScreen = ({navigation}) => {
+    return (
+      <Card>
+        <Card.Title>{this.state.modalData.title}</Card.Title>
+        <Card.Divider />
+        <Card.Image source={{uri: this.state.modalData.url}}>
+          <Text
+            style={{
+              fontWeight: 'bold',
+              fontSize: 20,
+              color: 'green',
+              marginBottom: 10,
+              textAlign: 'center',
+            }}>
+            {this.state.modalData.title}
+          </Text>
+        </Card.Image>
+        <Card.Divider />
         <Text
           style={{
-            marginHorizontal: 137,
-            fontSize: 20,
-            color: 'white',
             fontWeight: 'bold',
+            fontSize: 30,
+            color: 'purple',
+            marginBottom: 10,
+            textAlign: 'center',
           }}>
-          heartLink
+          INI MERUPAKAN HALAMAN MODAL UNTUK PHOTO{' '}
+          {this.state.modalData.title.toUpperCase()}
         </Text>
-      </View>
-      <View style={{flex: 1, margin: 40}}>
-        {/* <TouchableOpacity style={{justifyContent: 'center', alignItems: 'center', height: 40,}}>
-      <Text style={{borderWidth:1, backgroundColor: 'white', borderColor: '#ffffff',  }}>Sign Up</Text>
-      </TouchableOpacity> */}
-        <Button onPress ={()=> this.setState({
-          view: this.regristasi()
-        })}color="pink" style={{border: 10}} title="Sign Up" />
-        <Button onPress={() => this.setState({
-          view: this.login()
-        })} title="Log In" />
-      </View>
-    </View>
-    )
-  }
-  
+        <Button title="GO BACK" onPress={navigation.goBack}></Button>
+      </Card>
+    );
+  };
+
+  SettingsStackScreen = () => {
+    return (
+      <SettingsStack.Navigator>
+        <Stack.Screen name="List Album">
+          {(props) => (
+            <ListAlbum
+              {...props}
+              detailUserDataHandler={this.detailUserDataHandler}
+              setBadgeNum = {this.setBadgeNum}
+            />
+          )}
+        </Stack.Screen>
+        <Stack.Screen name="Details">
+          {(props) => (
+            <DetailUSer
+              {...props}
+              userData={this.state.detailUser}
+              modalData={this.modalData}
+            />
+          )}
+        </Stack.Screen>
+        <Stack.Screen name="Modal" component={this.ModalScreen} />
+      </SettingsStack.Navigator>
+    );
+  };
+
+  Register = () => {
+    return (
+      // <Stack.Navigator initialRouteName="Register">
+        <Stack.Screen name="Register">
+          {(props) => (
+            <Registrasi {...props} userDataHandler={this.userDataHandler} />
+          )}
+        </Stack.Screen>
+      // </Stack.Navigator>
+    );
+  };
+
+  LogIn = () => {
+    return (
+      <Stack.Navigator initialRouteName="Log In">
+        <Stack.Screen name="Log In">
+          {(props) => (
+            <LogIn
+              {...props}
+              userData={this.state.userData}
+              changeLoginStatus={this.changeLoginStatus}
+            />
+          )}
+        </Stack.Screen>
+      </Stack.Navigator>
+    );
+  };
 
   render() {
     return (
       <>
-      {this.state.view}
+        {this.state.isLogin ? (
+          <>
+            <NavigationContainer>
+              <Drawer.Navigator>
+                <Drawer.Screen name="Home">
+                  {(props) => <HomeScreen {...props} />}
+                </Drawer.Screen>
+                <Drawer.Screen name="Register" component={this.Register} />
+                <Drawer.Screen name="Log In" component={this.LogIn} />
+              </Drawer.Navigator>
+            </NavigationContainer>
+            {/* <NavigationContainer>
+              
+                  </NavigationContainer>*/}
+          </>
+        ) : (
+          <NavigationContainer>
+            <Tab.Navigator
+              mode="modal"
+              screenOptions={({route}) => ({
+                tabBarIcon: ({focused, color, size}) => {
+                  let iconName;
+
+                  if (route.name === 'User Settings') {
+                    iconName = focused ? "user" : "user";
+                  } else if (route.name === 'Albums') {
+                    iconName = focused ? "picture" : "picture";
+                  }
+
+                  // You can return any component that you like here!
+                  return <Icon name={iconName} size={size} color={color} />;
+                },
+              })}>
+              <Tab.Screen
+                name="User Settings"
+                component={this.HomeStackScreen}
+                options={{tabBarBadge: this.state.userData.length}}
+              />
+              <Tab.Screen name="Albums" component={this.SettingsStackScreen} options={{tabBarBadge: this.state.badgeNum}}/>
+            </Tab.Navigator>
+          </NavigationContainer>
+        )}
       </>
     );
   }
 }
-
-
-
 
 export default App;
