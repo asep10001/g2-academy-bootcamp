@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {View, Image, Text, Button, TouchableOpacity} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
+import {connect} from 'react-redux';
+import {setLogin} from '../../actions/login';
 
 export class LogIn extends Component {
   constructor(props) {
@@ -23,9 +25,10 @@ export class LogIn extends Component {
       for (let i = 0; i < this.props.userData.length; i++) {
         if (this.props.userData[i].username === this.state.username) {
           return (
-            this.props.changeLoginStatus(),
-            alert('anda berhasil log in ' + this.state.username)
-          )
+            this.props.setStatusLogin('PRESSED'),
+            alert('anda berhasil log in ' + this.state.username))
+            // this.props.navigation.navigate('User Settings')
+
         }
         continue;
       }
@@ -69,10 +72,15 @@ export class LogIn extends Component {
         </View>
 
         <View style={{marginLeft: 210, marginVertical: 10}}>
-          <TouchableOpacity onPress={()=> alert('An email with instruction to reset your password has been sent to your email address! Please check your Inbox or your Spam/Junk E-Mail as Well!')}>
-          <Text style={{color: 'white', fontWeight: 'bold'}}>
-            Forgot Password?
-          </Text>
+          <TouchableOpacity
+            onPress={() =>
+              alert(
+                'An email with instruction to reset your password has been sent to your email address! Please check your Inbox or your Spam/Junk E-Mail as Well!',
+              )
+            }>
+            <Text style={{color: 'white', fontWeight: 'bold'}}>
+              Forgot Password?
+            </Text>
           </TouchableOpacity>
         </View>
 
@@ -99,4 +107,16 @@ export class LogIn extends Component {
   }
 }
 
-export default LogIn;
+const mapStateToProps = (state) => ({
+  statusLogin: state.auth.isLoggedin,
+  // dataSiswa: state.setData.studentsData
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setStatusLogin: (data) => {
+    console.log(data);
+    return dispatch(setLogin(data));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogIn);

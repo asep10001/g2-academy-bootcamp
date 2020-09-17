@@ -7,6 +7,8 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
+import {setAddData} from '../../actions';
+import {connect} from 'react-redux';
 
 export class Registrasi extends Component {
   constructor(props) {
@@ -79,7 +81,7 @@ export class Registrasi extends Component {
       url: this.state.url,
     });
     this.setState({
-      dataUSer: this.data
+      dataUSer: this.data,
     });
   };
 
@@ -181,7 +183,12 @@ export class Registrasi extends Component {
             <TouchableOpacity
               onPress={() => {
                 this.checkAva();
-                this.props.userDataHandler(this.data);
+                this.props.addData(
+                  this.state.username,
+                  this.state.password,
+                  this.state.email,
+                  this.state.url,
+                );
                 // this.props.deleteData(this.deleteUser)
               }}>
               <Text style={{color: '#fb5854'}}>REGISTER</Text>
@@ -193,4 +200,10 @@ export class Registrasi extends Component {
   }
 }
 
-export default Registrasi;
+const mapStateToProps = (state) => ({
+  dataUser: state.data.userData,
+});
+const mapDispatchToProps = (dispatch) => ({
+  addData: (a, b, c, d) => dispatch(setAddData(a, b, c, d)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Registrasi);

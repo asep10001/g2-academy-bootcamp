@@ -25,6 +25,8 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {View, Text, Button} from 'react-native';
 import {Card} from 'react-native-elements';
+import {connect} from 'react-redux';
+import {setAddData} from './actions';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -38,10 +40,10 @@ class App extends Component {
     this.state = {
       userData: '',
       detailUser: '',
-      isLogin: true,
+      isLogin: this.props.statusLogin,
       dataForUpdate: {},
       modalData: [],
-      badgeNum: 0
+      badgeNum: 0,
     };
     this.data = [
       {
@@ -54,10 +56,17 @@ class App extends Component {
     ];
   }
 
-  componentDidMount() {
-    this.setState({
-      userData: this.data,
+  async componentDidMount() {
+    await this.setState({
+      userData: this.props.dataUser,
     });
+    // this.props.addData(
+    //   'asep',
+    //   '123',
+    //   'asep@asep.com',
+    //   'https://storage.googleapis.com/stateless-campfire-pictures/2019/05/e4629f8e-defaultuserimage-15579880664l8pc.jpg',
+    // );
+    console.info('ini dari userdata ' + this.props.dataUser);
   }
   userDataHandler = (data) => {
     this.setState({
@@ -65,11 +74,11 @@ class App extends Component {
     });
   };
 
-  setBadgeNum = (data) =>{
+  setBadgeNum = (data) => {
     this.setState({
-      badgeNum: data
-    })
-  }
+      badgeNum: data,
+    });
+  };
   dataUserupdate = (ind) => {
     this.setState({
       dataForUpdate: {
@@ -131,7 +140,7 @@ class App extends Component {
           {(props) => (
             <ListUser
               {...props}
-              userData={this.state.userData}
+              // userData={this.state.userData}
               deleteUser={this.deleteData}
               dataUpdate={this.dataUserupdate}
               changeLoginStatus={this.changeLoginStatus}
@@ -193,7 +202,7 @@ class App extends Component {
             <ListAlbum
               {...props}
               detailUserDataHandler={this.detailUserDataHandler}
-              setBadgeNum = {this.setBadgeNum}
+              setBadgeNum={this.setBadgeNum}
             />
           )}
         </Stack.Screen>
@@ -213,13 +222,13 @@ class App extends Component {
 
   Register = () => {
     return (
-      // <Stack.Navigator initialRouteName="Register">
+      <Stack.Navigator initialRouteName="Register">
         <Stack.Screen name="Register">
           {(props) => (
             <Registrasi {...props} userDataHandler={this.userDataHandler} />
           )}
         </Stack.Screen>
-      // </Stack.Navigator>
+      </Stack.Navigator>
     );
   };
 
@@ -242,7 +251,7 @@ class App extends Component {
   render() {
     return (
       <>
-        {this.state.isLogin ? (
+        {this.props.statusLogin ? (
           <>
             <NavigationContainer>
               <Drawer.Navigator>
@@ -266,9 +275,9 @@ class App extends Component {
                   let iconName;
 
                   if (route.name === 'User Settings') {
-                    iconName = focused ? "user" : "user";
+                    iconName = focused ? 'user' : 'user';
                   } else if (route.name === 'Albums') {
-                    iconName = focused ? "picture" : "picture";
+                    iconName = focused ? 'picture' : 'picture';
                   }
 
                   // You can return any component that you like here!
@@ -280,7 +289,11 @@ class App extends Component {
                 component={this.HomeStackScreen}
                 options={{tabBarBadge: this.state.userData.length}}
               />
-              <Tab.Screen name="Albums" component={this.SettingsStackScreen} options={{tabBarBadge: this.state.badgeNum}}/>
+              <Tab.Screen
+                name="Albums"
+                component={this.SettingsStackScreen}
+                options={{tabBarBadge: this.state.badgeNum}}
+              />
             </Tab.Navigator>
           </NavigationContainer>
         )}
@@ -289,4 +302,14 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  statusLogin: state.auth.isLoggedin,
+  dataUser: state.data.userData,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setStatusLogin: (data) => dispatch(setLogin(data)),
+  addData: (a, b, c, d) => dispatch(setAddData(a, b, c, d)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

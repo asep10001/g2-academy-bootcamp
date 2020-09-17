@@ -4,6 +4,8 @@ import {ListItem, Avatar} from 'react-native-elements';
 import TouchableScale from 'react-native-touchable-scale'; // https://github.com/kohver/react-native-touchable-scale
 import LinearGradient from 'react-native-linear-gradient';
 import {ScrollView} from 'react-native-gesture-handler';
+import { connect } from 'react-redux';
+import { setLogin } from '../../actions/login';
 
 export class ListUser extends Component {
   constructor(props) {
@@ -17,13 +19,14 @@ export class ListUser extends Component {
   }
 
   componentDidMount() {
-    this.props.userData;
+  this.props.dataUser;
+  console.log(this.props.dataUser)
   }
 
   listingUser = () => {
     let list = [];
 
-    this.props.userData.map((l, ind) => {
+    this.props.dataUser.map((l, ind) => {
       if (ind < 300) {
         console.log(ind, l.id, l.thumbnailUrl);
         list.push(
@@ -75,7 +78,7 @@ export class ListUser extends Component {
         {this.listingUser()}
         <Button
           onPress={() => {
-            this.props.changeLoginStatus(), alert('selamat tinggal ');
+            this.props.setStatusLogin("PRESSED"), alert('selamat tinggal ');
           }}
           title="Log Out"
           color="red"
@@ -85,4 +88,16 @@ export class ListUser extends Component {
   }
 }
 
-export default ListUser;
+const mapStateToProps = (state) => ({
+  statusLogin: state.auth.isLoggedin,
+  dataUser: state.data.userData
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setStatusLogin: (data) => {
+    console.log(data);
+    return dispatch(setLogin(data));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListUser);
