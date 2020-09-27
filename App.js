@@ -16,6 +16,8 @@ import {
   ListUser,
   ListAlbum,
   UpdateData,
+  updateAlbum,
+  Deletealbum,
 } from './screen';
 
 import {NavigationContainer} from '@react-navigation/native';
@@ -23,10 +25,14 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/AntDesign';
-import {View, Text, Button} from 'react-native';
+import {View, Text, Button, Alert, RefreshControl} from 'react-native';
 import {Card} from 'react-native-elements';
 import {connect} from 'react-redux';
-import {setAddData} from './actions';
+import {setAddData, setCameraUrl} from './actions';
+import RegisterAlbum from './screen/registerAlbum';
+import SQLite from 'react-native-sqlite-storage';
+import Camera from './components/camera';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -42,8 +48,14 @@ class App extends Component {
       detailUser: '',
       isLogin: this.props.statusLogin,
       dataForUpdate: {},
-      modalData: [],
+      modalDataUrl: [],
+      modalDataTitle: [],
+      refreshing: false,
       badgeNum: 0,
+      dataNow: '',
+      updateCamera: '',
+      imageUrlCamera: '',
+      modalDataIndex: 0
     };
     this.data = [
       {
@@ -66,8 +78,10 @@ class App extends Component {
     //   'asep@asep.com',
     //   'https://storage.googleapis.com/stateless-campfire-pictures/2019/05/e4629f8e-defaultuserimage-15579880664l8pc.jpg',
     // );
-    console.info('ini dari userdata ' + this.props.dataUser);
+    // console.info('ini dari userdata ' + this.props.dataUser);
+    // this.createAlbum()
   }
+
   userDataHandler = (data) => {
     this.setState({
       userData: data,
@@ -128,10 +142,22 @@ class App extends Component {
   //   }
   // }
 
-  modalData = (url, title) => {
+  modalData = (url, title, index) => {
     this.setState({
-      modalData: {url: url, title: title},
+      modalDataUrl: url,
+      modalDataTitle: title,
+      modalDataIndex: index
     });
+  };
+
+  getCameraData = (data) => {
+    this.setState({
+      modalDataUrl: data,
+      modalDataTitle: data,
+    });
+    // Alert.alert('Dari camera', (this.state.modalDataUrl).toString())
+    // this.props.setUrlCamera(data);
+    // Alert.alert('Dari camera', this.props.urlCamera.toString());
   };
   HomeStackScreen = () => {
     return (
@@ -140,14 +166,18 @@ class App extends Component {
           {(props) => (
             <ListUser
               {...props}
-              // userData={this.state.userData}
+              userData={this.state.userData}
               deleteUser={this.deleteData}
               dataUpdate={this.dataUserupdate}
               changeLoginStatus={this.changeLoginStatus}
             />
           )}
         </Stack.Screen>
-
+        <Stack.Screen name="register album">
+          {(props) => <RegisterAlbum {...props} />}
+        </Stack.Screen>
+        <Stack.Screen name="update album" component={updateAlbum} />
+        <Stack.Screen name="delete album" component={Deletealbum} />
         <Stack.Screen name="update">
           {(props) => (
             <UpdateData
@@ -160,38 +190,108 @@ class App extends Component {
       </HomeStack.Navigator>
     );
   };
+
+  onRefresh = async () => {
+    await this.state.modalDataUrl;
+    this.listingCard(this.state.modalDataTitle, this.state.modalDataUrl);
+  };
+
+  componentDidUpdate() {
+    // alert('dari component update ' + this.state.modalDataUrl)
+    // ModalScreen = ({navigation}) => {
+    //   return (
+    //     <ScrollView
+    //       refreshControl={
+    //         <RefreshControl
+    //           refreshing={this.state.refreshing}
+    //           onRefresh={this.onRefresh}
+    //         />
+    //       }>
+    //       <Card>
+    //         {this.listingCard(this.state.modalDataTitle, this.state.modalDataUrl)}
+    //         <Card.Divider />
+    //         <Text
+    //           style={{
+    //             fontWeight: 'bold',
+    //             fontSize: 30,
+    //             color: 'purple',
+    //             marginBottom: 10,
+    //             textAlign: 'center',
+    //           }}>
+    //           INI MERUPAKAN HALAMAN MODAL UNTUK PHOTO{' '}
+    //           {this.state.modalDataTitle.toUpperCase()}
+    //         </Text>
+    //         <Button title="GO BACK" onPress={navigation.goBack}></Button>
+    //         <Button
+    //           title="CAMERA"
+    //           onPress={() => navigation.navigate('camera')}></Button>
+    //       </Card>
+    //     </ScrollView>
+    //   );
+    // };
+  }
+
+  setUrl = (data) => {
+    this.setState({
+      imageUrlCamera: data
+    })
+  };
   ModalScreen = ({navigation}) => {
     return (
-      <Card>
-        <Card.Title>{this.state.modalData.title}</Card.Title>
-        <Card.Divider />
-        <Card.Image source={{uri: this.state.modalData.url}}>
-          <Text
-            style={{
-              fontWeight: 'bold',
-              fontSize: 20,
-              color: 'green',
-              marginBottom: 10,
-              textAlign: 'center',
-            }}>
-            {this.state.modalData.title}
-          </Text>
-        </Card.Image>
-        <Card.Divider />
-        <Text
-          style={{
-            fontWeight: 'bold',
-            fontSize: 30,
-            color: 'purple',
-            marginBottom: 10,
-            textAlign: 'center',
-          }}>
-          INI MERUPAKAN HALAMAN MODAL UNTUK PHOTO{' '}
-          {this.state.modalData.title.toUpperCase()}
-        </Text>
-        <Button title="GO BACK" onPress={navigation.goBack}></Button>
-      </Card>
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={async () => {
+              await this.setState({
+                modalDataUrl: this.state.modalDataUrl,
+              }),
+                alert(
+                  'ini camera url ' + JSON.stringify(this.state.modalDataUrl),
+                );
+            }}
+          />
+        }>
+            <Card>
+            <Card.Title>{this.state.modalDataTitle}</Card.Title>
+            <Card.Divider />
+            <Card.Image source={{uri: this.state.modalDataUrl}}>
+              <Text
+                style={{
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: 'green',
+                  marginBottom: 10,
+                  textAlign: 'center',
+                }}>
+                {this.state.modalDataTitle}
+              </Text>
+            </Card.Image>
+            <Card.Divider />
+            <Text
+              style={{
+                fontWeight: 'bold',
+                fontSize: 30,
+                color: 'purple',
+                marginBottom: 10,
+                textAlign: 'center',
+              }}>
+              INI MERUPAKAN HALAMAN MODAL UNTUK PHOTO {this.state.modalDataUrl}
+            </Text>
+            <Button title="GO BACK" onPress={navigation.goBack}></Button>
+            <Button
+              title="CAMERA"
+              onPress={() => navigation.navigate('camera')}></Button>
+          </Card>
+      </ScrollView>
     );
+  };
+
+  setDataNow = (data) => {
+    this.setState({
+      dataNow: data,
+    });
+    alert(JSON.stringify(this.state.dataNow));
   };
 
   SettingsStackScreen = () => {
@@ -203,6 +303,8 @@ class App extends Component {
               {...props}
               detailUserDataHandler={this.detailUserDataHandler}
               setBadgeNum={this.setBadgeNum}
+              dataNow={this.state.dataNow}
+              setDataNow={this.setDataNow}
             />
           )}
         </Stack.Screen>
@@ -212,10 +314,15 @@ class App extends Component {
               {...props}
               userData={this.state.detailUser}
               modalData={this.modalData}
+              imgCamera={this.state.imageUrlCamera}
+              indexCamera={this.state.modalDataIndex}
             />
           )}
         </Stack.Screen>
         <Stack.Screen name="Modal" component={this.ModalScreen} />
+        <Stack.Screen name="camera">
+          {(props) => <Camera {...props} getCameraData={this.getCameraData} getCameraUrl={this.setUrl}/>}
+        </Stack.Screen>
       </SettingsStack.Navigator>
     );
   };
@@ -269,7 +376,7 @@ class App extends Component {
         ) : (
           <NavigationContainer>
             <Tab.Navigator
-              mode="modal"
+              // mode="modal"
               screenOptions={({route}) => ({
                 tabBarIcon: ({focused, color, size}) => {
                   let iconName;
@@ -305,11 +412,13 @@ class App extends Component {
 const mapStateToProps = (state) => ({
   statusLogin: state.auth.isLoggedin,
   dataUser: state.data.userData,
+  urlCamera: JSON.stringify(state.cameraUrl),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   setStatusLogin: (data) => dispatch(setLogin(data)),
   addData: (a, b, c, d) => dispatch(setAddData(a, b, c, d)),
+  setUrlCamera: (url) => dispatch(setCameraUrl(url)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

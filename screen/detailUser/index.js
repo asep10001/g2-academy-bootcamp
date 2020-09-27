@@ -6,6 +6,7 @@ import {
   FlatList,
   TouchableOpacity,
 } from 'react-native-gesture-handler';
+let list = [];
 
 export class DetailUSer extends Component {
   constructor(props) {
@@ -15,51 +16,95 @@ export class DetailUSer extends Component {
       pagination: 0,
       data: [],
       refreshing: false,
+      urlCamera: this.props.imgCamera,
     };
+    // this.list = [];
   }
 
   componentDidMount() {
     this.props.userData;
   }
+  setList = (data) => {
+    this.setState({
+      list: data,
+    });
+  };
   makeList = () => {
-    let list = [];
-    for (
-      let i = this.state.pagination;
-      i < this.props.userData.url.length;
-      i++
-    ) {
-      if (i < this.state.pagination + 10) {
-        list.push(
-          <TouchableOpacity
-            key={i}
-            onPress={() => {
-              this.props.modalData(
-                this.props.userData.url[i],
-                this.props.userData.title[i],
-              );
-              this.props.navigation.navigate('Modal')
-            }}>
-            <Card>
-              <Card.Title>{this.props.userData.name}</Card.Title>
-              <Card.Divider />
-              <Card.Image source={{uri: this.props.userData.url[i]}}>
-                <Text
-                  style={{
-                    fontWeight: 'bold',
-                    fontSize: 20,
-                    color: 'green',
-                    marginBottom: 10,
-                  }}>
-                  {this.props.userData.title[i]}
-                </Text>
-              </Card.Image>
-            </Card>
-          </TouchableOpacity>,
-        );
+    if (this.props.imgCamera === '') {
+      list =[]
+      for (
+        let i = this.state.pagination;
+        i < this.props.userData.url.length;
+        i++
+      ) {
+        if (i < this.state.pagination + 10) {
+          // alert(true);
+          list.push(
+            <TouchableOpacity
+              key={i}
+              onPress={() => {
+                this.setList(list);
+                console.log(this.state.list);
+                this.props.modalData(
+                  this.props.userData.url[i],
+                  this.props.userData.title[i],
+                  i,
+                );
+                this.props.navigation.navigate('Modal');
+              }}>
+              <Card>
+                <Card.Title>{this.props.userData.name}</Card.Title>
+                <Card.Divider />
+                <Card.Image source={{uri: this.props.userData.url[i]}}>
+                  <Text
+                    style={{
+                      fontWeight: 'bold',
+                      fontSize: 20,
+                      color: 'green',
+                      marginBottom: 10,
+                    }}>
+                    {this.props.userData.title[i]}
+                  </Text>
+                </Card.Image>
+              </Card>
+            </TouchableOpacity>,
+          );
+        }
       }
-    }
+      return list;
+    } else if (this.props.imgCamera !== '') {
+      console.log(this.state.list);
 
-    return list;
+      list[this.props.indexCamera] = (
+        <TouchableOpacity
+          key={this.props.indexCamera}
+          onPress={() => {
+            this.props.modalData(
+              this.props.imgCamera,
+              this.props.userData.title[this.props.indexCamera],
+              this.props.indexCamera,
+            );
+            this.props.navigation.navigate('Modal');
+          }}>
+          <Card>
+            <Card.Title>{'diupdate dari kamera '}</Card.Title>
+            <Card.Divider />
+            <Card.Image source={{uri: this.props.imgCamera}}>
+              <Text
+                style={{
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: 'green',
+                  marginBottom: 10,
+                }}>
+                {this.props.userData.title[this.props.indexCamera]}
+              </Text>
+            </Card.Image>
+          </Card>
+        </TouchableOpacity>
+      );
+      return list;
+    }
   };
 
   render() {
@@ -71,33 +116,6 @@ export class DetailUSer extends Component {
             onRefresh={() => alert('hi')}
           />
         }>
-        {/* {alert(JSON.stringify(this.props.userData))}
-        <FlatList
-          data={this.props.userData}
-          renderItem={({item}) => {
-            <ListItem>
-              <Card>
-                <Card.Title>{item.name}</Card.Title>
-                <Card.Divider />
-                {item.map((data, index) => (
-                  <Card.Image source={{uri: data.url[index]}}>
-                    <Text
-                      style={{
-                        fontWeight: 'bold',
-                        fontSize: 20,
-                        color: 'green',
-                        marginBottom: 10,
-                      }}>
-                      {data.title[index]}
-                    </Text>
-                  </Card.Image>
-                ))}
-              </Card>
-              ;
-            </ListItem>;
-          }}
-        /> */}
-
         {this.makeList()}
         <View style={{flex: 1, flexDirection: 'row'}}>
           <View style={{flex: 1}}>

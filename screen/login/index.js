@@ -33,7 +33,8 @@ export class LogIn extends Component {
         continue;
       }
     }
-    return alert('silahkan cek kembali username anda');
+    return (alert('silahkan cek kembali username anda'),
+    console.log(JSON.stringify(this.props.userData)))
   };
   render() {
     return (

@@ -4,8 +4,8 @@ import {ListItem, Avatar} from 'react-native-elements';
 import TouchableScale from 'react-native-touchable-scale'; // https://github.com/kohver/react-native-touchable-scale
 import LinearGradient from 'react-native-linear-gradient';
 import {ScrollView} from 'react-native-gesture-handler';
-import { connect } from 'react-redux';
-import { setLogin } from '../../actions/login';
+import {connect} from 'react-redux';
+import {setLogin} from '../../actions/login';
 
 export class ListUser extends Component {
   constructor(props) {
@@ -19,8 +19,8 @@ export class ListUser extends Component {
   }
 
   componentDidMount() {
-  this.props.dataUser;
-  console.log(this.props.dataUser)
+    this.props.dataUser;
+    console.log(this.props.dataUser);
   }
 
   listingUser = () => {
@@ -78,10 +78,22 @@ export class ListUser extends Component {
         {this.listingUser()}
         <Button
           onPress={() => {
-            this.props.setStatusLogin("PRESSED"), alert('selamat tinggal ');
+            this.props.setStatusLogin('PRESSED'), alert('selamat tinggal ');
           }}
           title="Log Out"
           color="red"
+        />
+        <Button
+          title="Register"
+          onPress={() => this.props.navigation.navigate('register album')}
+        />
+        <Button
+          title="update album"
+          onPress={() => this.props.navigation.navigate('update album')}
+        />
+                <Button
+          title="delete album"
+          onPress={() => this.props.navigation.navigate('delete album')}
         />
       </ScrollView>
     );
@@ -90,7 +102,7 @@ export class ListUser extends Component {
 
 const mapStateToProps = (state) => ({
   statusLogin: state.auth.isLoggedin,
-  dataUser: state.data.userData
+  dataUser: state.data.userData,
 });
 
 const mapDispatchToProps = (dispatch) => ({

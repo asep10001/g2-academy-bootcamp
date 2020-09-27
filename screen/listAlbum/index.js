@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
 import {View, RefreshControl} from 'react-native';
-import {ListItem, Avatar} from 'react-native-elements';
+import {ListItem, Avatar, Button} from 'react-native-elements';
 import TouchableScale from 'react-native-touchable-scale'; // https://github.com/kohver/react-native-touchable-scale
 import LinearGradient from 'react-native-linear-gradient';
 import {FlatList} from 'react-native-gesture-handler';
+import SQLiteContext from '../../config/sqlite/sqliteContext';
+import {connect} from 'react-redux';
+import {setAlbumData, dividedAlbumData} from '../../actions';
 // import Constants from 'expo-constants';
 
-class ListAlbum extends Component {
+class ListAlbumOld extends Component {
   constructor(props) {
     super(props);
 
@@ -19,36 +22,27 @@ class ListAlbum extends Component {
       refreshing: false,
       photoTitle: [],
       photoId: [],
+      maxList: '',
+      albumReducer: [],
     };
-
-    this.list = [];
   }
 
-  wait = (timeout) => {
-    return new Promise((resolve) => {
-      setTimeout(resolve, timeout);
-    });
-  };
-
-  componentDidMount() {
-    fetch('https://jsonplaceholder.typicode.com/albums')
+  async componentDidMount() {
+    // alert(this.props.dividedDataAlbumReducer)
+    await fetch('https://jsonplaceholder.typicode.com/albums')
       .then((response) => response.json())
       .then((json) => {
         this.setState({
           album: json,
         });
-      })
-      .then(() => this.listingAlbum(this.state.refresh))
-      .then(() => {
-        this.setState({
-          dataAlbum: this.list,
-        });
-      })
-      .then(()=>this.props.setBadgeNum(this.state.dataAlbum.length))
-      .catch((error) => {
-        console.error(error);
       });
-
+    // this.insertDataPlaceHolder()
+    await this.fecthingSQL();
+    if (this.props.dataDividedAlbumReducer !== undefined) {
+      this.listingAlbum(this.state.refresh);
+    } else {
+      alert('harap refresh halaman');
+    }
     fetch('https://jsonplaceholder.typicode.com/photos')
       .then((response) => response.json())
       .then((json) => {
@@ -98,6 +92,7 @@ class ListAlbum extends Component {
 
     return tempData;
   };
+
   matchAlbum = async (id) => {
     const tempData = await this.looping(id);
     const photoTempData = await this.loopingTitlePhoto(id);
@@ -109,58 +104,110 @@ class ListAlbum extends Component {
     });
   };
 
+  insertDataPlaceHolder = () =>
+    // console.log(JSON.stringify(this.state.album))
+    this.state.album.map((item, index) => {
+      this.props.sqlite.runQuery(
+        'INSERT INTO album (id, albumId, title) VALUES (?,?,?)',
+        [item.id, item.userId, item.title],
+      );
+    });
+
+  fecthingSQL = () => {
+    let data = [];
+    this.props.sqlite.runQuery('SELECT * FROM album', []).then(([results]) => {
+      for (let i = 0; i < 100; i++) {
+        if (results.rows.item(i) !== undefined) {
+          data.push(results.rows.item(i));
+        }
+      }
+      this.props.setAlbumData(data),
+        this.setState({
+          maxList: this.props.dataAlbumReducer.length,
+        }),
+        // this.setState({
+        //   albumReducer: this.props.dataAlbumReducer,
+        // });
+
+        this.props.setBadgeNum(this.props.dividedDataAlbumReducer.length);
+    });
+  };
+
+  temp = [];
+
   listingAlbum = (now) => {
+    // alert(now)
+
     if (now === 0) {
-      for (let i = now; i < now + 10; i++) {
-        this.list.push(this.state.album[i]);
-      }
-      return this.list;
-    } else if (now >= 5) {
-      for (let i = now; i < now + 10; i++) {
-        this.list.push(this.state.album[i]);
-      }
-      return this.list;
+      this.props.dataAlbumReducer.map((item, index) => {
+        if (item !== undefined && index <= now + 9) {
+          this.temp.push(item);
+        }
+      });
+      this.props.setDividedAlbumData(this.temp);
+      this.props.setBadgeNum(this.temp.length);
+    } else if (now >= 10) {
+      // alert(now)
+      this.props.dataAlbumReducer.map((item, index) => {
+        if (index > now - 1 && index < now + 10) {
+          this.temp.push(item);
+        }
+      });
+      alert('loading');
+      this.props.setBadgeNum(this.temp.length);
     }
   };
 
-  onRefresh = async () => {
-    this.list = [];
-    await this.setState({
-      refresh: 0,
-    });
-    if (this.state.dataAlbum.length < 101) {
-      alert('refreshing');
-      this.listingAlbum(this.state.refresh);
-      this.setState({
-        dataAlbum: this.list,
-      });
-      this.props.setBadgeNum(this.state.dataAlbum.length)
+  onRefresh = () => {
+    if (this.props.dividedDataAlbumReducer === undefined) {
+      return (
+        (this.temp = []),
+        this.setState({
+          refresh: 0,
+        }),
+        this.listingAlbum(this.state.refresh)
+      );
+    }
+    if (this.props.dividedDataAlbumReducer.length <= this.state.maxList) {
+      return (
+        setTimeout(() => alert('refreshed'), 1000),
+        (this.temp = []),
+        this.setState({
+          refresh: 0,
+        }),
+        this.listingAlbum(this.state.refresh)
+      );
     } else {
       alert('gagal');
     }
   };
 
   onEndReached = async () => {
-    // setTimeout(() => alert('loading'), 1000);
     await this.setState({
       refresh: this.state.refresh + 10,
     });
-    if (this.state.dataAlbum.length < 100) {
-      alert('loading');
-      this.listingAlbum(this.state.refresh);
-      this.props.setBadgeNum(this.state.dataAlbum.length)
-    } else {
-      alert('data maksimal');
-    }
 
-    // alert('hi')
+    if (this.props.dividedDataAlbumReducer.length < this.state.maxList) {
+      this.listingAlbum(this.state.refresh);
+    } else {
+      await setTimeout(() => {
+        alert('data maksimal merefresh ulang');
+      }, 1000).then(
+        (this.temp = []),
+        this.setState({
+          refresh: 0,
+        }),
+        this.listingAlbum(this.state.refresh),
+      );
+    }
   };
 
+  // data = this.props.dataAlbumReducer;
   render() {
     return (
       <View style={{flex: 1}}>
         <FlatList
-          data={this.state.dataAlbum}
+          data={this.props.dividedDataAlbumReducer}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({item}) => (
             <ListItem
@@ -211,4 +258,28 @@ class ListAlbum extends Component {
   }
 }
 
-export default ListAlbum;
+const mapStateToProps = (state) => ({
+  dataAlbumReducer: state.dataAlbum.dataAlbum,
+  dividedDataAlbumReducer: state.dataAlbum.dividedData,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setAlbumData: (data) => {
+    return dispatch(setAlbumData(data));
+  },
+  setDividedAlbumData: (data) => {
+    return dispatch(dividedAlbumData(data));
+  },
+});
+
+class ListAlbum extends Component {
+  render() {
+    return (
+      <SQLiteContext.Consumer>
+        {(sqlite) => <ListAlbumOld {...this.props} sqlite={sqlite} />}
+      </SQLiteContext.Consumer>
+    );
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListAlbum);
