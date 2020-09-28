@@ -1,0 +1,83 @@
+@media screen and (max-width: 1024px) {
+   #content,
+   aside {
+       width: 100%;
+       padding: 0;
+   }
+
+   .profile img {
+    width: 30%;
+	}
+}
+
+@media screen and (max-width: 414px) {
+   #content,
+    aside {
+       width: 100%;
+       padding: 0;
+    }
+
+	.jumbotron h1,
+	.jumbotron h2,
+	.jumbotron h3,
+	input#nama, 
+	input#perusahaan {
+    font-size: inherit;
+	}
+
+	nav a {
+	font-size: 13px;
+    font-weight: 900;
+    text-decoration: none;
+    color: white;
+    border: solid;
+    width: fit-content;
+    padding: 10px;
+	}
+
+	p {
+    font-size: x-large;
+}
+
+}
+
+
+@media screen and (max-width: 360px) {
+   #content,
+
+   aside {
+       width: 100%;
+       padding: 0;
+   }
+
+   body{
+   	display: flex;
+   }
+
+   h2#comments {
+    font-size: x-large;
+	}
+
+	input#name,
+	input#email,
+	textarea#message {
+    width: 300px;
+    font-size: x-large;
+	}
+
+   nav a {
+    font-size: 10px;
+    font-weight: 900;
+    text-decoration: none;
+    color: white;
+    border: solid;
+    width: fit-content;
+    padding: 10px;
+	}
+
+
+}
+
+@media screen and (max-width: 1024px) {
+
+	}
