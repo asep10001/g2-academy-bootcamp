@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log In</title>
+    <link rel="stylesheet" type="text/css" href="../styles/login.css" />
+    <!-- UIkit CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/uikit@3.5.6/dist/css/uikit.min.css"
+    />
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.6/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.6/dist/js/uikit-icons.min.js"></script>
+  </head>
+  <body>
+    <div class="uk-container">
+      <div class="uk-child-width-1-2" uk-grid>
+        <div id="form">
+          <h1 class="is-size-4 has-text-weight-semibold is-mb-4">
+            Log in to your account
+          </h1>
+          <p class="is-size-6 has-text-grey is-my-2-touch is-mb-8">
+            Don't have an account yet?
+            <a href="/request-invite" class="is-plain">
+              Request invite
+            </a>
+          </p>
+          <div class="field">
+            <label class="label">
+              Email
+            </label>
+            <div class="control"><input type="email" class="uk-input" /></div>
+
+            <div class="password-innput-field" value>
+              <label class="label">
+                Password
+                <!----></label
+              >
+              <div class="control has-icons-right">
+                <input type="password" placeholder="Password" class="uk-input" />
+              </div>
+
+              <button class="uk-button uk-button-primary is-fullwidth is-mt-6">
+                Log in
+              </button>
+
+              <p class="is-my-2">
+                <a href="#" class="is-plain">
+                  Forgot password?
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="is-full-width">
+          <div class="background-container"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

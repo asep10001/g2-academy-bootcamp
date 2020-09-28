@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tugas-6</title>
+    <link rel="stylesheet" type="text/css" href="../styles/home.css" />
+    <!-- UIkit CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/uikit@3.5.6/dist/css/uikit.min.css"
+    />
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.6/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.6/dist/js/uikit-icons.min.js"></script>
+  </head>
+  <body onload="setTimeout(showImage, 3000)">
+    <div class="uk-container">
+      <div id="heading" class="uk-child-width-1-2" uk-grid>
+        <div class="uk-width-1-2">
+          <img
+            id="logo"
+            src="https://lemon.io/wp-content/uploads/2020/02/logo-lemon@2x.png"
+            alt=""
+            srcset=""
+          />
+        </div>
+        <div id="nav" class="uk-width-1-2">
+          <a href="">home</a>
+          <a href="">kategori produk</a>
+          <a href="">produk</a>
+          <a href="">registrasi</a>
+          <a href="./login.html">login</a>
+          <a href="">list pesanan saya</a>
+        </div>
+      </div>
+      <div id="content" class="uk-child-width-1-2" uk-grid>
+        <div class="home-hero">
+          <h1>
+            Behold! The almighty devs
+          </h1>
+          <p class="home-hero__subtitle">
+            you’ve been searching for
+          </p>
+          <p class="home-hero__descr">
+            // Why squander time and money on developers who aren’t perfect for
+            your startup? Let Lemon match you with engineers that can transform
+            your vision into reality — diabolically fast
+          </p>
+          <div class="home-hero__button">
+            <a class="uk-button uk-button-primary" href="#"></a>
+            <img
+              src="https://lemon.io/wp-content/themes/lemon/assets/images/content/home_new/svg/badge-button-hero-block.svg"
+              alt=""
+            />
+          </div>
+        </div>
+        <div>
+          <img
+            src="https://lemon.io/wp-content/themes/lemon/assets/images/content/home_new/svg/illustration-hero-main.svg"
+            alt=""
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          id="food"
+          class="uk-position-relative uk-visible-toggle"
+          tabindex="-1"
+          uk-slideshow="animation: push"
+        >
+          <ul class="uk-slideshow-items">
+            <!-- <h1>LOADING ....</h1> -->
+          </ul>
+
+          <div class="uk-light">
+            <a
+              class="uk-slidenav-large uk-position-center-left uk-position-small uk-hidden-hover"
+              href="#"
+              uk-slidenav-previous
+              
+              uk-slideshow-item="previous"
+            ></a>
+            <a
+              class="uk-slidenav-large uk-position-center-right uk-position-small uk-hidden-hover"
+              href="#"
+              uk-slidenav-next
+              
+              uk-slideshow-item="next"
+            ></a>
+          </div>
+        </div>
+        <div
+          id="drink"
+          class="uk-position-relative uk-visible-toggle"
+          tabindex="-1"
+          uk-slideshow="animation: push"
+        >
+          <ul class="uk-slideshow-items">
+            <!-- <h1>LOADING ....</h1> -->
+          </ul>
+
+          <div class="uk-light">
+            <a
+              class="uk-slidenav-large uk-position-center-left uk-position-small uk-hidden-hover"
+              href="#"
+              uk-slidenav-previous
+              
+              uk-slideshow-item="previous"
+            ></a>
+            <a
+              class="uk-slidenav-large uk-position-center-right uk-position-small uk-hidden-hover"
+              href="#"
+              uk-slidenav-next
+              
+              uk-slideshow-item="next"
+            ></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-database.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyBxlwlmydHtSsR5L-wMIOxRWGY95JysT_A",
+        authDomain: "g2-d5-419b0.firebaseapp.com",
+        databaseURL: "https://g2-d5-419b0.firebaseio.com",
+        projectId: "g2-d5-419b0",
+        storageBucket: "g2-d5-419b0.appspot.com",
+        messagingSenderId: "738737702275",
+        appId: "1:738737702275:web:0312ad675dbed245eaa2b6",
+        measurementId: "G-2S7QY26E7P",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+    <script  type=text/javascript src="../js/index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>admin page</title>
+    <link rel="stylesheet" href="../styles/admin.css" />
+    <!-- UIkit CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/uikit@3.5.6/dist/css/uikit.min.css"
+    />
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.6/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.6/dist/js/uikit-icons.min.js"></script>
+    <script src="../assets/js/admin.js"></script>
+  </head>
+  <body>
+    <div id="header" class="uk-heading-medium uk-heading-divider">
+      <div class="uk-flex uk-flex-left uk-container">
+        <a href="" uk-toggle="target: #offcanvas-overlay">
+          <h1>
+            Admin Page
+          </h1>
+        </a>
+        <button
+          class="uk-button uk-button-primary"
+          uk-toggle="target: #add-modal"
+        >
+          Add New Entry
+        </button>
+        <form class="uk-search uk-search-default">
+          <span class="uk-search-icon-flip" uk-search-icon></span>
+          <input
+            class="uk-search-input"
+            type="search"
+            placeholder="Search..."
+          />
+        </form>
+      </div>
+      <div id="offcanvas-overlay" uk-offcanvas="mode: push; overlay: true">
+        <div class="uk-offcanvas-bar">
+          <button class="uk-offcanvas-close" type="button" uk-close></button>
+
+          <ul class="uk-nav uk-nav-default">
+            <li class="uk-active"><a href="#">admin name</a></li>
+            <li></li>
+            <li class="uk-nav-header uk-nav-divider">Header</li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Karyawan</a></li>
+            <li><a href="#">Item</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="filter" class="uk-flex uk-flex-left uk-container">
+      <select class="uk-select" name="name" id="">
+        <option value="cabe">cabe</option>
+        <option value="tomat">tomat</option>
+        <option value="wortel">wortel</option>
+      </select>
+      <select class="uk-select" name="id" id="">
+        <option value="id-cabe">329oifoi</option>
+        <option value="id-tomat">39057dsofdsio</option>
+        <option value="id-wortel">0935shlkd</option>
+      </select>
+      <select class="uk-select" name="status" id="">
+        <option value="available">available</option>
+        <option value="sold">sold</option>
+      </select>
+      <select class="uk-select" name="last-updated" id="">
+        <option value="a-z">A-Z</option>
+        <option value="a-z">Z-A</option>
+      </select>
+    </div>
+    <div id="table" class="uk-container">
+      <table class="uk-table uk-table-striped">
+        <thead>
+          <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Stock Product</th>
+            <th>Status</th>
+            <th>Category</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Table Data</td>
+            <td>Table Data</td>
+            <td>Table Data</td>
+            <td>Table Data</td>
+            <td>Table Data</td>
+            <td>Table Data</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="add-modal" uk-modal>
+      <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">ADD NEW PRODUCT</h2>
+        <form action="">
+          <label for="name">Nama Produk</label>
+          <input id="name" name="name" type="text" class="uk-input" />
+          <label for="id">ID Produk</label>
+          <input id="id" name="id" type="text" class="uk-input" />
+          <select name="jenis" id="jenis" class="uk-select">
+            <option value="food">Food</option>
+            <option value="drink">Drink</option>
+          </select>
+          <label for="stock">Stock</label>
+          <input
+            type="number"
+            name="stock"
+            id="stock"
+            min="1"
+            class="uk-input"
+          />
+          <p class="uk-text-right">
+            <button
+              class="uk-button uk-button-default uk-modal-close"
+              type="button"
+            >
+              Cancel
+            </button>
+            <button id="save" onclick="addProduct()" class="uk-button uk-button-primary" type="button">
+              Save
+            </button>
+          </p>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+.background-container {
+    background: url(https://superpeer.com/img/login-bg.abc5d2d6.png);
+    height: 100vh;
+    width: 70vw;
+    background-size: cover;
+    margin-left: -10vw;
+}
+
+div#form {
+    padding-top: 20vh;
+    margin-right: -10vw;
+}
+
+button.uk-button{
+     width: 100%;
+    margin-top: 24px;
+    border-radius: 8px;
+}
+
+input{
+    margin-top: 24px;
+}
+
+svg {
+    color: black;
+    width: 3em;
+}
