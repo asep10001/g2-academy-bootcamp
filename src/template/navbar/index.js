@@ -77,7 +77,7 @@ class NavBar extends Component {
   updateClickHandler = (i, data) => {
     const dataList = this.state.data;
     fetch((dataList[i] = data))
-      .then((this.state.dataUpdate = data))
+      // .then((this.state.dataUpdate = data))
       .then(
         this.setState({
           dataUpdate: data,
