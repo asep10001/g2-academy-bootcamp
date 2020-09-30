@@ -1,0 +1,245 @@
+.App {
+  text-align: center;
+}
+div#judul-home {
+  background: linear-gradient(45deg, #ffeb3b57, transparent);
+  height: 80vh;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* -webkit-mask-repeat: space; */
+  white-space: pre-wrap;
+}
+button.MuiButtonBase-root.MuiButton-root.MuiButton-text {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    45deg,
+    #e8132d3b,
+    #00800094,
+    #0000ffa6,
+    transparent
+  );
+  font-size: xx-large;
+  font-family: fantasy;
+}
+
+.container-login100 {
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-position: center;
+  background-color: #ffffffa8;
+  background-image: url(https://colorlib.com/etc/lf/Login_v3/images/bg-01.jpg);
+  background-blend-mode: color;
+}
+
+.MuiCard-root {
+  overflow: hidden;
+  width: fit-content;
+  padding: 5%;
+}
+
+.wrap-login100 {
+  text-align: -webkit-center;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.MuiPaper-root.MuiCard-root.MuiPaper-elevation1.MuiPaper-rounded {
+  background: -webkit-linear-gradient(top, #7579ff, #b224ef);
+}
+
+.login100-form-title {
+  font-family: Poppins-Medium;
+  font-size: 30px;
+  color: #fff;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+  display: block;
+}
+
+element.style {
+}
+.container-login100-form-btn {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.login100-form-btn {
+  font-family: Poppins-Medium;
+  font-size: 16px;
+  color: #555555;
+  line-height: 1.2;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  min-width: 120px;
+  height: 50px;
+  border-radius: 25px;
+  position: relative;
+  z-index: 1;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+  cursor: pointer;
+}
+.p-t-90 {
+  padding-top: 90px;
+}
+
+.contact100-form-checkbox {
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 35px;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.label-checkbox100 {
+  font-family: Poppins-Regular;
+  font-size: 13px;
+  color: #fff;
+  line-height: 1.2;
+  display: block;
+  position: relative;
+  padding-left: 26px;
+  cursor: pointer;
+}
+#logo h1,
+#logo h1 a {
+  display: inline-block;
+  height: 91px;
+  float: left;
+}
+
+div#register-form {
+  background: linear-gradient(-135deg, #c850c0, #4158d0);
+  height: 100vh;
+  text-align: -webkit-center;
+}
+
+div#register-card {
+  background: white;
+  width: 80%;
+  height: 55vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-form-btn {
+  outline: none;
+  border: none;
+  font-family: Montserrat-Bold;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #fff;
+  text-transform: uppercase;
+  width: 100%;
+  height: 50px;
+  border-radius: 25px;
+  background: #57b846;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 25px;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+span#span-register-form {
+  font-size: 100%;
+  font-weight: bolder;
+  font-family: cursive;
+}
+
+#logo img {
+  margin: 0 10px 0 0;
+  max-height: 40px;
+  vertical-align: middle;
+}
+
+.MuiInputBase-root.MuiInput-root.MuiInput-underline {
+  width: 100%;
+}
+
+li.MuiButtonBase-root.MuiListItem-root.MuiMenuItem-root.MuiMenuItem-gutters.MuiListItem-gutters.MuiListItem-button {
+  place-content: center;
+}
+.row img {
+  height: auto;
+  max-width: 100%;
+  vertical-align: top;
+}
+
+.txt1 {
+  font-family: Poppins-Regular;
+  font-size: 13px;
+  color: #e5e5e5;
+  line-height: 1.5;
+}
+.login100-form-logo {
+  font-size: 60px;
+  color: teal;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: #fff;
+  margin: 0 auto;
+}
+.homepage-div {
+  text-align: -webkit-center;
+  padding-top: 5%;
+  background: #fffbf0;
+}
+
+button#download-btn-home {
+  width: 50%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: #e14348;
+  color: #fff;
+  font-size: 22px;
+  border: none;
+  border-radius: 17px;
+}
+h2.elementor-heading-title.elementor-size-default-1 {
+  font-weight: 900;
+  font-size: xxx-large;
+}
+.MuiGrid-root.MuiGrid-container {
+  width: 70%;
+  align-items: center;
+  justify-content: center;
+}
