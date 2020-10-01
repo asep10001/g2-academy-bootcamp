@@ -10,7 +10,7 @@ class SQLite3 {
             .finally(() => {
                 this.runQuery("insert into album values (?, ?, ?)", ["1", "1", "ini album saya"])
                     .then(() => console.info("Successfully insert default album!!"))
-                    .catch(err => console.warn("Failed create default album: ", err.message))
+                    .catch(err => console.info("Default Album already Exists: "))
             })
     }
 

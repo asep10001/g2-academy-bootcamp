@@ -7,7 +7,8 @@ import {
   SafeAreaView,
   Text,
 } from 'react-native';
-import {Mytextinput, Mybutton} from '..';
+import Mytextinput from '../text_input';
+import Mybutton from '../button';
 import SQLiteContext from '../../config/sqlite/sqliteContext';
 import { registerAlbum } from '../../actions/setAlbumData';
 import { connect } from 'react-redux';

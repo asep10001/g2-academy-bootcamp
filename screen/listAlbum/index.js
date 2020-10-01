@@ -29,6 +29,7 @@ class ListAlbumOld extends Component {
 
   async componentDidMount() {
     // alert(this.props.dividedDataAlbumReducer)
+    try{
     await fetch('https://jsonplaceholder.typicode.com/albums')
       .then((response) => response.json())
       .then((json) => {
@@ -36,13 +37,28 @@ class ListAlbumOld extends Component {
           album: json,
         });
       });
-    // this.insertDataPlaceHolder()
-    await this.fecthingSQL();
-    if (this.props.dataDividedAlbumReducer !== undefined) {
-      this.listingAlbum(this.state.refresh);
-    } else {
-      alert('harap refresh halaman');
+    }  catch (err) {
+      console.log('gagal fetching', err.message)
     }
+    // this.insertDataPlaceHolder()
+    try{
+      await this.fecthingSQL()
+    } catch (err) {
+      console.log('gagal fetching sql', err.message)
+    }
+
+    try{
+      if (this.props.dataDividedAlbumReducer !== undefined) {
+        this.listingAlbum(this.state.refresh);
+      } else {
+        alert('harap refresh halaman');
+      }
+
+    } catch (err){
+      console.log('terjadi kesalahan ', err.message)
+    }
+
+  try{
     fetch('https://jsonplaceholder.typicode.com/photos')
       .then((response) => response.json())
       .then((json) => {
@@ -55,7 +71,11 @@ class ListAlbumOld extends Component {
       .catch((error) => {
         console.error(error);
       });
+  } catch (err){
+    console.log('terjadi kesalahan ', err.message)
   }
+}
+
 
   looping = (indeks) => {
     let tempData = [];
@@ -130,7 +150,7 @@ class ListAlbumOld extends Component {
         // });
 
         this.props.setBadgeNum(this.props.dividedDataAlbumReducer.length);
-    });
+    }).catch((err)=>console.log('maaf terjadi kesalahan', err.message))
   };
 
   temp = [];

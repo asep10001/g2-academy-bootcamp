@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
-import {Button, Text, View, Alert, SafeAreaView} from 'react-native';
-import {Mytextinput} from '..';
-import {Mybutton} from '..';
-import {openDatabase} from 'react-native-sqlite-storage';
+import {View, Alert, SafeAreaView} from 'react-native';
+import Mytextinput from '../text_input';
+import Mybutton from '../button';
 import SQLiteContext from '../../config/sqlite/sqliteContext';
-import dataAlbumReducer from '../../reducers/dataAlbumReducer';
 import { deleteAlbumData } from '../../actions/setAlbumData';
 import { connect } from 'react-redux';
 
-var db = openDatabase({name: 'album.db'});
 
 class DeletealbumOld extends Component {
   constructor(props) {
